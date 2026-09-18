@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今天市场发生了什么 | 2026年8月31日</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg: #f0f3f8; --bg2: #ffffff; --bg2-hover: #f7f9fc;
+  --ink: #1a202c; --muted: #64748b; --rule: #e2e8f0;
+  --accent: #2563eb; --accent2: #7c3aed;
+  --up: #dc2626; --down: #059669;
+  --jp: #7c3aed; --kr: #ea580c; --cn: #059669; --hk: #0891b2; --fu: #dc2626;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--ink); font-family:var(--font); line-height:1.75; font-size:15px; }
+
+.cover { background:linear-gradient(180deg,#fff 0%,#eef2f9 100%); padding:56px 24px 44px; text-align:center; border-bottom:1px solid var(--rule); }
+.cover h1 { font-size:34px; font-weight:800; letter-spacing:1px; color:var(--ink); }
+.cover .subtitle { font-size:15px; color:var(--muted); margin-top:8px; }
+.cover .date-badge { display:inline-block; background:var(--accent); color:#fff; border-radius:6px; padding:5px 16px; font-size:13px; font-weight:600; margin-top:16px; }
+.cover .stats { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:22px; }
+.cover .stat-item { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:14px 22px; min-width:100px; box-shadow:var(--shadow); }
+.cover .stat-item .num { font-size:24px; font-weight:800; color:var(--accent); font-family:var(--mono); }
+.cover .stat-item .label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; }
+
+.container { max-width:1080px; margin:0 auto; padding:0 20px; }
+h2.section-title { font-size:18px; font-weight:700; text-align:center; margin:40px 0 6px; color:var(--ink); }
+p.section-sub { text-align:center; color:var(--muted); font-size:13px; margin-bottom:20px; }
+
+.metrics-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin:20px 0; }
+.metric-card { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:16px 14px; text-align:center; box-shadow:var(--shadow); transition:box-shadow .2s; }
+.metric-card:hover { box-shadow:var(--shadow-md); }
+.metric-card .name { font-size:11px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+.metric-card .value { font-size:22px; font-weight:800; font-family:var(--mono); color:var(--ink); }
+.metric-card .change { font-size:13px; margin-top:4px; font-weight:600; }
+.metric-card .change.up { color:var(--up); }
+.metric-card .change.down { color:var(--down); }
+.metric-card .note { font-size:10px; color:var(--muted); }
+.metric-card.us { border-top:3px solid var(--accent); }
+.metric-card.jp { border-top:3px solid var(--jp); }
+.metric-card.kr { border-top:3px solid var(--kr); }
+.metric-card.cn { border-top:3px solid var(--cn); }
+.metric-card.hk { border-top:3px solid var(--hk); }
+.metric-card.futures { border-top:3px solid var(--fu); }
+
+.chart-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:20px 0; }
+.chart-box { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:20px 24px; margin:20px 0; box-shadow:var(--shadow); }
+.chart-box h3 { font-size:14px; color:var(--ink); margin-bottom:14px; font-weight:700; }
+.chart { width:100%; height:360px; }
+
+.toc { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:20px 24px; margin:28px 0; box-shadow:var(--shadow); }
+.toc h2 { font-size:15px; margin-bottom:14px; color:var(--ink); font-weight:700; }
+.toc ul { list-style:none; display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:6px; }
+.toc a { color:var(--muted); text-decoration:none; font-size:13px; transition:color .2s; display:flex; align-items:center; gap:6px; }
+.toc a:hover { color:var(--accent); }
+.toc a .dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+
+.section { margin:36px 0; }
+.section-header { display:flex; align-items:center; gap:10px; margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid var(--rule); }
+.section-header .icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+.section-header h2 { font-size:20px; font-weight:700; color:var(--ink); }
+.section-header .desc { font-size:12px; color:var(--muted); margin-left:auto; }
+
+.card { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:22px 24px; margin-bottom:14px; box-shadow:var(--shadow); transition:box-shadow .2s, border-color .2s; }
+.card:hover { box-shadow:var(--shadow-md); border-color:var(--accent); }
+.card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:10px; flex-wrap:wrap; }
+.card-title { font-size:15px; font-weight:700; color:var(--ink); flex:1; min-width:200px; }
+.card-date { background:var(--bg); border:1px solid var(--rule); border-radius:5px; padding:3px 10px; font-size:11px; color:var(--muted); white-space:nowrap; }
+.card-body { font-size:14px; color:var(--ink); line-height:1.8; }
+.card-body p { margin-bottom:8px; }
+.card-body mark.key { background:rgba(37,99,235,0.08); color:var(--accent); padding:1px 5px; border-radius:3px; font-weight:600; }
+.card-body mark.red { background:rgba(220,38,38,0.08); color:var(--up); padding:1px 5px; border-radius:3px; font-weight:600; }
+.card-body mark.green { background:rgba(5,150,105,0.08); color:var(--down); padding:1px 5px; border-radius:3px; font-weight:600; }
+
+.card-data { margin-top:10px; overflow-x:auto; }
+.card-data table { width:100%; border-collapse:collapse; font-size:13px; }
+.card-data th { text-align:left; color:var(--muted); padding:6px 10px; border-bottom:1px solid var(--rule); font-weight:600; font-size:12px; }
+.card-data td { padding:7px 10px; border-bottom:1px solid #f1f5f9; }
+.card-data td.num { font-family:var(--mono); text-align:right; }
+.card-data td.up { color:var(--up); font-weight:600; }
+.card-data td.down { color:var(--down); font-weight:600; }
+
+.card-sources { margin-top:12px; display:flex; flex-wrap:wrap; gap:5px; }
+.card-sources a { font-size:11px; color:var(--muted); text-decoration:none; background:var(--bg); border:1px solid var(--rule); border-radius:4px; padding:2px 8px; transition:all .2s; }
+.card-sources a:hover { color:var(--accent); border-color:var(--accent); background:rgba(37,99,235,0.04); }
+
+.table-wrap { overflow-x:auto; overflow-y:auto; max-height:600px; margin:20px 0; border:1px solid var(--rule); border-radius:var(--radius); box-shadow:var(--shadow); }
+.table-wrap table { width:100%; border-collapse:collapse; font-size:13px; min-width:700px; }
+.table-wrap th { background:#f8fafc; color:var(--ink); padding:10px 14px; text-align:left; font-weight:700; border-bottom:2px solid var(--rule); position:sticky; top:0; z-index:1; font-size:12px; }
+.table-wrap td { padding:8px 14px; border-bottom:1px solid #f1f5f9; }
+.table-wrap tr:nth-child(even) { background:#fafbfc; }
+.table-wrap tr:hover { background:rgba(37,99,235,0.03); }
+.table-wrap td.up { color:var(--up); font-weight:600; }
+.table-wrap td.down { color:var(--down); font-weight:600; }
+.region-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:700; }
+.region-tag.us { background:rgba(37,99,235,0.1); color:var(--accent); }
+.region-tag.jp { background:rgba(124,58,237,0.1); color:var(--jp); }
+.region-tag.kr { background:rgba(234,88,12,0.1); color:var(--kr); }
+.region-tag.cn { background:rgba(5,150,105,0.1); color:var(--cn); }
+.region-tag.hk { background:rgba(8,145,178,0.1); color:var(--hk); }
+.region-tag.futures { background:rgba(220,38,38,0.1); color:var(--fu); }
+
+.footer { margin-top:50px; padding:32px 24px; border-top:1px solid var(--rule); background:var(--bg2); }
+.footer .disclaimer { font-size:12px; color:var(--muted); max-width:700px; margin:0 auto 18px; line-height:1.8; text-align:center; }
+.footer .ref-list { text-align:left; max-width:800px; margin:0 auto; font-size:12px; color:var(--muted); }
+.footer .ref-list h2 { font-size:15px; color:var(--ink); margin-bottom:12px; font-weight:700; }
+.footer .ref-list ol { padding-left:20px; }
+.footer .ref-list li { margin-bottom:4px; word-break:break-all; line-height:1.7; }
+.footer .ref-list a { color:var(--accent); text-decoration:none; }
+.footer .ref-list a:hover { text-decoration:underline; }
+.footer .copyright { margin-top:18px; text-align:center; font-size:11px; color:var(--muted); }
+
+@media (max-width: 768px) {
+  .cover h1 { font-size:24px; }
+  .cover .stats { flex-direction:column; align-items:center; }
+  .metrics-grid { grid-template-columns:repeat(2,1fr); }
+  .chart-row { grid-template-columns:1fr; }
+  .section-header { flex-wrap:wrap; }
+  .section-header .desc { margin-left:0; width:100%; }
+  .card-header { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+  <h1>今天市场发生了什么</h1>
+  <p class="subtitle">全球金融市场与宏观经济综述</p>
+  <div class="date-badge">2026年8月31日</div>
+  <div class="stats">
+    <div class="stat-item"><div class="num">6</div><div class="label">覆盖市场区域</div></div>
+    <div class="stat-item"><div class="num">35+</div><div class="label">收录热点事件</div></div>
+    <div class="stat-item"><div class="num">60+</div><div class="label">数据来源</div></div>
+    <div class="stat-item"><div class="num">8/31</div><div class="label">数据截止</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- 核心指标 -->
+<h2 class="section-title">核心指标速览</h2>
+<p class="section-sub">全球主要市场关键数据 | 数据截止 2026年8月28日收盘 / 8月31日实时</p>
+
+<div class="metrics-grid">
+  <div class="metric-card us"><div class="name">标普500</div><div class="value">7,711.76</div><div class="change up">+0.49%</div><div class="note">周涨跌</div></div>
+  <div class="metric-card us"><div class="name">纳斯达克</div><div class="value">26,402.42</div><div class="change up">+0.85%</div><div class="note">周涨跌</div></div>
+  <div class="metric-card us"><div class="name">道琼斯</div><div class="value">53,559.99</div><div class="change up">+0.53%</div><div class="note">周涨跌</div></div>
+  <div class="metric-card us"><div class="name">美元指数</div><div class="value">99.68</div><div class="change up">+0.85%</div><div class="note">周涨跌</div></div>
+  <div class="metric-card us"><div class="name">联邦基金利率</div><div class="value">3.50-3.75%</div><div class="change">不变</div><div class="note">7月FOMC</div></div>
+  <div class="metric-card jp"><div class="name">日经225</div><div class="value">66,405.56</div><div class="change up">+0.41%</div><div class="note">8/28收盘</div></div>
+  <div class="metric-card jp"><div class="name">BOJ利率</div><div class="value">1.00%</div><div class="change">不变</div><div class="note">7/31决议</div></div>
+  <div class="metric-card jp"><div class="name">USD/JPY</div><div class="value">159.97</div><div class="change">--</div><div class="note">8/31实时</div></div>
+  <div class="metric-card kr"><div class="name">KOSPI</div><div class="value">6,788.88</div><div class="change down">-1.79%</div><div class="note">8/28收盘</div></div>
+  <div class="metric-card kr"><div class="name">BOK利率</div><div class="value">3.00%</div><div class="change up">+25bp</div><div class="note">8/27加息</div></div>
+  <div class="metric-card kr"><div class="name">USD/KRW</div><div class="value">1,375.25</div><div class="change down">-0.32%</div><div class="note">8/31实时</div></div>
+  <div class="metric-card cn"><div class="name">上证指数</div><div class="value">3,952.18</div><div class="change down">-0.11%</div><div class="note">周涨+1.2%</div></div>
+  <div class="metric-card cn"><div class="name">深证成指</div><div class="value">13,953.07</div><div class="change down">-0.68%</div><div class="note">8/28收盘</div></div>
+  <div class="metric-card cn"><div class="name">创业板指</div><div class="value">3,424.40</div><div class="change down">-1.41%</div><div class="note">8/28收盘</div></div>
+  <div class="metric-card hk"><div class="name">恒生指数</div><div class="value">25,584.79</div><div class="change up">+0.07%</div><div class="note">周跌-1.63%</div></div>
+  <div class="metric-card hk"><div class="name">恒生科技</div><div class="value">4,605.15</div><div class="change down">-0.33%</div><div class="note">周跌-3.38%</div></div>
+  <div class="metric-card futures"><div class="name">现货黄金</div><div class="value">$4,464.58</div><div class="change up">+0.23%</div><div class="note">8/31实时</div></div>
+  <div class="metric-card futures"><div class="name">WTI原油</div><div class="value">$84.91</div><div class="change up">+1.81%</div><div class="note">8/31实时</div></div>
+  <div class="metric-card futures"><div class="name">沪铜</div><div class="value">108,570</div><div class="change">元/吨</div><div class="note">8/31</div></div>
+  <div class="metric-card futures"><div class="name">碳酸锂</div><div class="value">160,500</div><div class="change up">+4.28%</div><div class="note">元/吨 8/21</div></div>
+</div>
+
+<!-- 图表 -->
+<h2 class="section-title">市场图表</h2>
+<p class="section-sub">全球指数周涨跌幅 | 期货近期波动 | 日韩指数走势</p>
+
+<div class="chart-row">
+  <div class="chart-box">
+    <h3>全球主要指数周涨跌幅（%）</h3>
+    <div id="chart-global-index" class="chart" style="height:360px"></div>
+  </div>
+  <div class="chart-box">
+    <h3>期货品种近期涨跌幅（%）</h3>
+    <div id="chart-futures" class="chart" style="height:360px"></div>
+  </div>
+</div>
+
+<div class="chart-row">
+  <div class="chart-box">
+    <h3>日经225指数8月走势</h3>
+    <div id="chart-nikkei" class="chart" style="height:340px"></div>
+  </div>
+  <div class="chart-box">
+    <h3>KOSPI指数8月走势</h3>
+    <div id="chart-kospi" class="chart" style="height:340px"></div>
+  </div>
+</div>
+
+<!-- 目录 -->
+<div class="toc">
+  <h2>目录导航</h2>
+  <ul>
+    <li><a href="#us"><span class="dot" style="background:var(--accent)"></span>美股与宏观经济</a></li>
+    <li><a href="#jp"><span class="dot" style="background:var(--jp)"></span>日本市场</a></li>
+    <li><a href="#kr"><span class="dot" style="background:var(--kr)"></span>韩国市场</a></li>
+    <li><a href="#cn"><span class="dot" style="background:var(--cn)"></span>A股与中国宏观</a></li>
+    <li><a href="#hk"><span class="dot" style="background:var(--hk)"></span>港股</a></li>
+    <li><a href="#futures"><span class="dot" style="background:var(--fu)"></span>期货市场</a></li>
+    <li><a href="#summary"><span class="dot" style="background:var(--accent2)"></span>关键指标汇总</a></li>
+  </ul>
+</div>
+
+<!-- ============ 美股与宏观经济 ============ -->
+<div class="section" id="us">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(37,99,235,0.1);color:var(--accent)">US</div>
+    <h2>美股与宏观经济</h2>
+    <span class="desc">10个热点事件 | 8月21日-31日</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">美股三大指数8月震荡走强</div>
+      <div class="card-date">2026-08-28</div>
+    </div>
+    <div class="card-body">
+      <p>8月24日至28日当周，美股三大指数震荡走强。<mark class="key">纳斯达克</mark>收报<mark class="key">26,402.42点</mark>，全周累计上涨<mark class="red">+0.85%</mark>；<mark class="key">标普500</mark>收报<mark class="key">7,711.76点</mark>，周涨<mark class="red">+0.49%</mark>；<mark class="key">道琼斯</mark>收报<mark class="key">53,559.99点</mark>，周涨<mark class="red">+0.53%</mark>。此前一周（8月21日当周）三大指数全线下跌，纳斯达克跌2.05%，标普500跌1.43%，市场受高油价推高通胀担忧及美债波动影响。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://finance.sina.com.cn/jjxw/2026-08-30/doc-iniqazcr8133688.shtml" target="_blank">新浪财经</a>
+      <a href="https://www.alternawealth.ca/media/vg1lucbj/weeklymarketpulse-august21.pdf" target="_blank">Aviso Wealth</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">美联储7月FOMC会议纪要：9-3投票维持利率不变</div>
+      <div class="card-date">2026-08-19</div>
+    </div>
+    <div class="card-body">
+      <p>7月28-29日FOMC会议以<mark class="key">9-3</mark>投票维持联邦基金利率目标区间在<mark class="key">3.50%-3.75%</mark>。9位委员赞成维持利率不变，3位委员赞成加息25个基点。纪要显示，如果控制通胀方面无法取得更多进展，美联储就需要尽快上调利率。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.federalreserve.gov/monetarypolicy/files/monetary20260729a1.pdf" target="_blank">Federal Reserve</a>
+      <a href="http://m.toutiao.com/group/7675897917634265640/" target="_blank">证券时报</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">沃什杰克逊霍尔鹰派演讲：通胀仍然过高</div>
+      <div class="card-date">2026-08-28</div>
+    </div>
+    <div class="card-body">
+      <p>美联储主席凯文·沃什在2026年杰克逊霍尔全球央行年会上发表偏鹰讲话，明确表示<mark class="red">通胀仍然过高</mark>，底层趋势没有明显好转。如果通胀没有回落，美联储仍有"工作要做"。市场解读为鹰派信号，<mark class="key">CME FedWatch显示9月加息概率约55%</mark>。讲话后美元指数快速拉升，黄金单日跌幅超过3%。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.cbsnews.com/news/kevin-warsh-fed-speech-jackson-hole-inflation/" target="_blank">CBS News</a>
+      <a href="https://finance.sina.com.cn/wm/2026-08-29/doc-inipywem3516437.shtml" target="_blank">新浪财经</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">7月CPI与PCE通胀数据：通胀黏性明显</div>
+      <div class="card-date">2026-08-12 / 08-26</div>
+    </div>
+    <div class="card-body">
+      <p>7月CPI同比<mark class="key">3.4%</mark>（预期3.4%，前值3.5%），核心CPI同比<mark class="key">2.5%</mark>（预期2.5%）。7月PCE物价指数同比<mark class="key">3.7%</mark>，核心PCE同比<mark class="key">3.3%</mark>。通胀数据黏性明显，但不及此前高位。</p>
+    </div>
+    <div class="card-data">
+      <table>
+        <tr><th>指标</th><th>数据</th><th>预期</th><th>前值</th></tr>
+        <tr><td>7月CPI同比</td><td>3.4%</td><td>3.4%</td><td>3.5%</td></tr>
+        <tr><td>7月核心CPI同比</td><td>2.5%</td><td>2.5%</td><td>2.6%</td></tr>
+        <tr><td>7月PCE同比</td><td>3.7%</td><td>--</td><td>--</td></tr>
+        <tr><td>7月核心PCE同比</td><td>3.3%</td><td>--</td><td>--</td></tr>
+      </table>
+    </div>
+    <div class="card-sources">
+      <a href="https://data.eastmoney.com/report/zw_strategy.jshtml?encodeUrl=9syIe%2FQFFhLEXpZ4D4Kg2Shu55PF9apLo86BYZws718=" target="_blank">东方财富</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">8月PMI：服务业强劲，制造业回落</div>
+      <div class="card-date">2026年8月</div>
+    </div>
+    <div class="card-body">
+      <p>8月综合PMI为<mark class="key">56.0</mark>，为约20个月最高水平，主要受服务业PMI升至<mark class="red">56.8</mark>推动。制造业PMI为<mark class="green">53.2</mark>，低于市场预期53.9，创3月以来最低水平。服务业持续扩张支撑经济，但制造业动能放缓。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://tradingeconomics.com/united-states/manufacturing-pmi" target="_blank">Trading Economics</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">消费者信心连续走弱</div>
+      <div class="card-date">2026年8月</div>
+    </div>
+    <div class="card-body">
+      <p>密歇根大学8月消费者信心指数初值降至<mark class="green">51</mark>，低于7月终值55.2和预期54.2。Conference Board消费者信心指数降至<mark class="green">89.4</mark>，为七个月低点。受访者对通胀和成本上升担忧加剧，预期指数进一步转负。</p>
+    </div>
+    <div class="card-sources">
+      <a href="http://www.chinaview.cn/northamerica/20260815/b9adbf4d65304b408599b6f7743ec459/c.html" target="_blank">ChinaView</a>
+      <a href="https://www.conference-board.org/topics/consumer-confidence/" target="_blank">Conference Board</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">英伟达Q2 FY2027财报：营收962亿美元，同比增106%</div>
+      <div class="card-date">2026-08-26</div>
+    </div>
+    <div class="card-body">
+      <p>英伟达8月26日盘后发布FY2027 Q2财报，营收<mark class="key">962亿美元</mark>，同比增长<mark class="red">106%</mark>，环比增长18%。GAAP净利润<mark class="key">597亿美元</mark>，EPS $2.46。数据中心营收<mark class="key">890亿美元</mark>（+117% YoY）。Q3营收指引<mark class="key">1,080亿美元</mark>（±2%），毛利率指引约74%。盘后股价先跌后反弹。</p>
+    </div>
+    <div class="card-data">
+      <table>
+        <tr><th>指标</th><th>数据</th><th>同比</th></tr>
+        <tr><td>营收</td><td>$962亿</td><td class="up">+106%</td></tr>
+        <tr><td>数据中心营收</td><td>$890亿</td><td class="up">+117%</td></tr>
+        <tr><td>GAAP净利润</td><td>$597亿</td><td>--</td></tr>
+        <tr><td>EPS</td><td>$2.46</td><td>--</td></tr>
+        <tr><td>Q3营收指引</td><td>$1,080亿</td><td>--</td></tr>
+      </table>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.fxleaders.com/news/2026/08/26/nvidia-earnings-beat-nvda-stock-jumps-despite-spending-soars-to-279b/" target="_blank">FXLeaders</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">科技巨头财报季：微软Azure增速39%，亚马逊AWS创18季度最快增速</div>
+      <div class="card-date">2026年7-8月</div>
+    </div>
+    <div class="card-body">
+      <p><strong>微软</strong>：2026财年Q4营收超预期，Azure云业务增速<mark class="key">39%</mark>，Microsoft 365 Copilot付费用户突破<mark class="key">3,000万</mark>。</p>
+      <p><strong>亚马逊</strong>：Q2 AWS收入同比增长<mark class="red">36.7%</mark>，为18个季度以来最快增速，年化收入运行率约1,690亿美元。AI和芯片业务年化收入运行率均超250亿美元。股价8月1日大涨<mark class="red">15.3%</mark>。</p>
+      <p><strong>Meta</strong>：Q2营收608亿美元（+28%），但净利润158.5亿美元（<mark class="green">-14%</mark>），盘后跌近10%，主要因成本支出大幅上升55%。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://finance.sina.com.cn/jjxw/2026-08-03/doc-inikytnr4696336.shtml" target="_blank">新浪财经-微软</a>
+      <a href="https://www.nasdaq.com/articles/amazon-q2-revenues-jump-20-y-y-aws-growth-hits-18-quarter-high" target="_blank">Nasdaq-亚马逊</a>
+      <a href="https://www.aboutamazon.com/news/company-news/amazon-earnings-q2-2026-report" target="_blank">Amazon官方</a>
+      <a href="https://s21.q4cdn.com/399680738/files/doc_financials/2026/q2/Meta-06-30-2026-Exhibit-99-1-FINAL.pdf" target="_blank">Meta官方</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">美加贸易紧张升级：50%惩罚性关税</div>
+      <div class="card-date">2026-08-21</div>
+    </div>
+    <div class="card-body">
+      <p>8月21-22日美加双边谈判破裂，美国对加拿大约<mark class="key">200亿美元</mark>商品加征<mark class="red">50%惩罚性关税</mark>。加拿大拟对约700种美国商品征收最高50%报复性关税，计划<mark class="key">9月8日</mark>生效。该事件被市场视为北美贸易关系恶化，可能推高钢铁、乳制品和大宗商品价格。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://wonford.com/2026/08/28/us-canada-trade-tensions-ai-computing-boom-reshape-global-economic-landscape-in-late-august-2026/" target="_blank">Wonford</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">VIX处于历史低位：8月均值仅15.3</div>
+      <div class="card-date">2026年8月</div>
+    </div>
+    <div class="card-body">
+      <p>8月VIX平均约<mark class="key">15.3</mark>，低于其20年8月平均值18.9，使8月成为2018年以来波动率最低的8月之一。8月17日VIX盘中一度跌至<mark class="key">14.18</mark>，创2026年低点。与3月27日VIX高点31.65相比，VIX在不到五个月内下跌超过50%。策略师提醒，夏末至10月中旬通常波动率上升。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.raymondjames.com/altoonateam/resources/2026/08/28/weekly-investment-strategy" target="_blank">Raymond James</a>
+      <a href="https://www.mitrade.eu/insights/news/live-news/article-8-2011373-20260819" target="_blank">Mitrade</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 日本市场 ============ -->
+<div class="section" id="jp">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(124,58,237,0.1);color:var(--jp)">JP</div>
+    <h2>日本市场</h2>
+    <span class="desc">5个热点事件 | 8月</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">日经225指数8月震荡上行，月涨幅6.47%</div>
+      <div class="card-date">2026-08-28</div>
+    </div>
+    <div class="card-body">
+      <p>日经225指数8月28日收报<mark class="key">66,405.56点</mark>，日涨<mark class="red">+0.41%</mark>，周涨<mark class="red">+0.55%</mark>，月涨<mark class="red">+6.47%</mark>。8月14日至19日经历连续6个交易日下跌，累计下跌约772点；8月20日反弹，此后震荡上行。8月29日至31日休市。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://indexes.nikkei.co.jp/en/nkave/index/profile?cid=0&idx=nk225" target="_blank">日经指数官方</a>
+      <a href="https://tradingeconomics.com/japan/stock-market" target="_blank">TradingEconomics</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">BOJ维持利率1.0%不变，通胀预警升温</div>
+      <div class="card-date">2026-07-31</div>
+    </div>
+    <div class="card-body">
+      <p>日本央行7月31日以8-1投票将政策利率维持在<mark class="key">1.0%</mark>不变，Takata Hajime委员提议加息25bp。BOJ警告CPI通胀将在2026财年下半叶明显超过2%的目标。下次利率决议定于9月18日，市场预期利率为<mark class="key">1.25%</mark>。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.boj.or.jp/about/press/kaiken_2026/kk260803a.pdf" target="_blank">BOJ官方</a>
+      <a href="https://tradingeconomics.com/japan/interest-rate" target="_blank">TradingEconomics</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">创纪录外汇干预：15.3万亿日元</div>
+      <div class="card-date">2026-07-30 至 08-26</div>
+    </div>
+    <div class="card-body">
+      <p>7月30日至8月26日期间，日本政府外汇干预总额达<mark class="key">15.3993万亿日元</mark>（约964亿美元），创历史新高。7月30日日本与韩国央行联合干预，日元一度上涨<mark class="red">3.5%</mark>。8月28日杰克逊霍尔会议后，美元兑日元重新回到<mark class="key">160</mark>关口上方。截至8月31日实时汇率为1美元=<mark class="key">159.97日元</mark>。</p>
+    </div>
+    <div class="card-sources">
+      <a href="http://japan.people.com.cn/n1/2026/0831/c35421-40789353.html" target="_blank">人民网</a>
+      <a href="http://stock.eastmoney.com/a/202608283858844652.html" target="_blank">东方财富</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Rapidus芯片公司：8家日企联合，总投资约5万亿日元</div>
+      <div class="card-date">2026年8月</div>
+    </div>
+    <div class="card-body">
+      <p>丰田、索尼、日本电信、电装、软银等8家日本企业联合成立Rapidus芯片公司，政府补贴<mark class="key">700亿日元</mark>，总投资需求约<mark class="key">5万亿日元</mark>（约350亿美元），目标发展先进芯片制造能力。日本政府追加了约9.44亿美元拨款支持Rapidus在AI芯片竞赛中的发展。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.nextfin.ai/en/news/japan-earmarks-another-944-million-for-rapidus-in-ai-chip-race-cef5ee2290" target="_blank">NextFin</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">软银Q1 FY2026财报：营收增9%</div>
+      <div class="card-date">2026-08-04</div>
+    </div>
+    <div class="card-body">
+      <p>软银Q1 FY2026营收<mark class="key">1,814.7亿日元</mark>（<mark class="red">+9% YoY</mark>），营业利润302.3亿日元（+9%），净利润150.1亿日元（+7%）。此外，日本多家大型企业（富士通、NEC、索尼、本田、三菱UFJ等）支持软银AI投资计划，涵盖制造业AI领域。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.softbank.jp/en/sbnews/entry/20260804_01" target="_blank">软银官网</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 韩国市场 ============ -->
+<div class="section" id="kr">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(234,88,12,0.1);color:var(--kr)">KR</div>
+    <h2>韩国市场</h2>
+    <span class="desc">6个热点事件 | 8月</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">KOSPI剧烈波动：单日跌幅5.8%后反弹5.89%</div>
+      <div class="card-date">2026-08-28</div>
+    </div>
+    <div class="card-body">
+      <p>8月KOSPI剧烈波动。8月18日单日下跌1.55%，8月19日暴跌<mark class="green">5.80%</mark>（-398点），8月20日大幅反弹<mark class="red">5.89%</mark>（+381点）。8月24日再跌3.12%。8月28日收报<mark class="key">6,788.88点</mark>，日跌<mark class="green">-1.79%</mark>。8月27日盘中最高触及6,996.12点，接近7,000关口。半导体板块剧烈波动是指数大幅震荡的主因。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://ir.gsifn.io/kbfng/v5/ir_comp_index.html?koreng=1&mode=korea&period=63&sym2=KS11_WI" target="_blank">GSIFN</a>
+      <a href="https://tradingeconomics.com/south-korea/stock-market" target="_blank">TradingEconomics</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">BOK连续加息至3.00%，GDP预期上调</div>
+      <div class="card-date">2026-08-27</div>
+    </div>
+    <div class="card-body">
+      <p>韩国央行8月27日将基准利率上调25bp至<mark class="key">3.00%</mark>，为连续第二次加息（2023年4月以来首次背靠背加息）。7名委员赞成加息，1名弃权。BOK同时上调全年GDP增长预期至<mark class="red">3.3%</mark>（上调0.7个百分点），维持2026年通胀预测2.7%、2027年2.3%不变。市场预期下次会议（10月）将暂停加息。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.bok.or.kr/eng/bbs/E0000634/view.do?depth=400423&menuNo=400423&nttId=11064193&programType=newsDataEng&relate=Y" target="_blank">BOK官方</a>
+      <a href="https://finance.sina.com.cn/jjxw/2026-08-27/doc-inipthnz5540416.shtml" target="_blank">新浪财经</a>
+      <a href="https://m.ajupress.com/view/20260827102070398" target="_blank">AJU Press</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">三星SDI出售三星显示股份，套现32.1亿美元</div>
+      <div class="card-date">2026-08-27</div>
+    </div>
+    <div class="card-body">
+      <p>三星SDI出售三星显示1,308.8万股（约33%持股），交易金额<mark class="key">4.45万亿韩元</mark>（约<mark class="key">32.1亿美元</mark>），每股340,000韩元。目的是为未来增长引擎投资筹集资金。三星SDI股价当日涨7%。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://cj.sina.com.cn/articles/view/6192937794/17120bb4202002td74" target="_blank">新浪财经</a>
+      <a href="https://www.marketscreener.com/news/samsung-sdi-says-to-sell-3-2-billion-worth-of-samsung-display-shares-back-to-display-maker-ce7859d3d080f622" target="_blank">Marketscreener</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">韩国家庭债务首破2000万亿韩元</div>
+      <div class="card-date">2026年8月</div>
+    </div>
+    <div class="card-body">
+      <p>截至2026年Q2末，韩国家庭信贷余额达<mark class="key">1,999.8万亿韩元</mark>，首次突破2,000万亿韩元大关。环比增加<mark class="red">25.9万亿韩元</mark>，为4年9个月最大增幅。住房相关贷款余额1,190.8万亿韩元，环比+12.2万亿韩元。政府2026年家庭债务增长率目标为1.5%（前一年为1.7%）。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://cj.sina.com.cn/articles/view/2868676035/aafc85c302001vg6g" target="_blank">新浪财经</a>
+      <a href="https://prod.chosunbiz.com/en/en-finance/2026/08/26/H4D6SCMLHFD4DDWVPW3WR72MGU/" target="_blank">朝鲜日报</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">韩国7月出口同比大增62.8%，创历史第二高</div>
+      <div class="card-date">2026-08-01</div>
+    </div>
+    <div class="card-body">
+      <p>7月出口额<mark class="key">988.9亿美元</mark>，同比增长<mark class="red">62.8%</mark>，为历史单月第二高（仅次于6月1,022亿美元）。半导体出口<mark class="key">410.1亿美元</mark>（+178.8%），计算机出口47.9亿美元（+404.0%）。贸易顺差303.2亿美元。</p>
+    </div>
+    <div class="card-data">
+      <table>
+        <tr><th>品类</th><th>出口额</th><th>同比</th></tr>
+        <tr><td>总出口</td><td>$988.9亿</td><td class="up">+62.8%</td></tr>
+        <tr><td>半导体</td><td>$410.1亿</td><td class="up">+178.8%</td></tr>
+        <tr><td>计算机</td><td>$47.9亿</td><td class="up">+404.0%</td></tr>
+        <tr><td>无线通信设备</td><td>$18.1亿</td><td class="up">+51.0%</td></tr>
+      </table>
+    </div>
+    <div class="card-sources">
+      <a href="https://english.motir.go.kr/eng/article/EATCLdfa319ada/2701/view" target="_blank">韩国产业通商资源部</a>
+      <a href="https://chinese.korea.net/NewsFocus/Business/view?articleId=297107" target="_blank">Korea.net</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">半导体板块剧烈抛售：三星、SK海力士双双重挫</div>
+      <div class="card-date">2026年8月</div>
+    </div>
+    <div class="card-body">
+      <p>8月韩国半导体板块经历多轮抛售。8月3日SK海力士跌幅8.93%，三星电子跌幅8.19%，KOSPI大跌5.4%。8月19日三星和SK海力士均下跌超7%，KOSPI跌5.5%，受全球芯片抛售蔓延影响（美光跌7%，费城半导体指数跌5%）。8月28日SK海力士收盘下跌14.65%。<mark class="key">三星和SK海力士合计占KOSPI市值超50%</mark>，其股价波动对指数影响显著。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://newanalytica.com/samsung-and-sk-hynix-both-fall-over-7-as-chip-selloff-crosses-into-asia/" target="_blank">NewAnalytica</a>
+      <a href="https://stcn.com/article/detail/4054514.html" target="_blank">证券时报</a>
+      <a href="https://en.sedaily.com/finance/2026/08/31/us-chip-stocks-tumble-on-rate-hike-fears-as-kospi-eyes-7000" target="_blank">Seoul Economic Daily</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ A股与中国宏观 ============ -->
+<div class="section" id="cn">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(5,150,105,0.1);color:var(--cn)">A股</div>
+    <h2>A股与中国宏观</h2>
+    <span class="desc">7个热点事件 | 8月</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">A股指数走势分化：上证周涨1.2%，创业板承压</div>
+      <div class="card-date">2026-08-28</div>
+    </div>
+    <div class="card-body">
+      <p>上证指数8月28日收报<mark class="key">3,952.18点</mark>，日跌<mark class="green">0.11%</mark>，周K线收阳终结此前2连阴，周涨<mark class="red">+1.2%</mark>。深证成指收报<mark class="key">13,953.07点</mark>，日跌<mark class="green">0.68%</mark>。创业板指收报<mark class="key">3,424.40点</mark>，日跌<mark class="green">1.41%</mark>。8月28日盘中创业板跌超1%，医药、算力硬件、半导体等板块跌幅居前。两市合计成交约2.1万亿元。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://stcn.com/article/kx-tag-detail.html?tag=9189sWQkXlph" target="_blank">证券时报</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">7月CPI同比+0.9%，PPI涨幅回落</div>
+      <div class="card-date">2026-08-09</div>
+    </div>
+    <div class="card-body">
+      <p>7月CPI同比上涨<mark class="key">0.9%</mark>，食品烟酒及在外餐饮价格同比下降0.2%，猪肉价格下降<mark class="green">13.3%</mark>，影响CPI下降约0.25个百分点。7月PPI同比涨幅有所回落，国家统计局解读称受国际输入性因素影响。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.stats.gov.cn/sj/sjjd/202608/t20260809_1965009.html" target="_blank">国家统计局</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">8月PMI回升至49.8%，非重回扩张区间</div>
+      <div class="card-date">2026-08-31</div>
+    </div>
+    <div class="card-body">
+      <p>8月制造业PMI为<mark class="key">49.8%</mark>（7月为49.2%），较前月回升0.6个百分点但仍处于收缩区间。非制造业PMI为<mark class="red">50.4%</mark>（7月为49.9%），重回扩张区间。综合PMI产出指数为<mark class="red">50.1%</mark>（7月为49.0%），回到荣枯线上方。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.stats.gov.cn/sj/zxfb/202608/t20260831_1965154.html" target="_blank">国家统计局</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">央行Q2货币政策报告：坚持适度宽松</div>
+      <div class="card-date">2026-08-12</div>
+    </div>
+    <div class="card-body">
+      <p>中国人民银行8月12日发布Q2货币政策执行报告，坚持适度宽松货币政策，加大逆周期调节力度。6月末社融存量同比增长<mark class="key">7.4%</mark>，M2同比增长<mark class="key">8.0%</mark>。6月新发放企业贷款利率约<mark class="key">3.0%</mark>，较上年同期低约20个基点。下调结构性货币政策工具利率0.25个百分点，单设1万亿元民营企业再贷款。</p>
+    </div>
+    <div class="card-sources">
+      <a href="http://www.cnstock.com/commonDetail/758908?commTag=true" target="_blank">上海证券报</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">8月LPR维持不变：1年期3.0%，5年期3.5%</div>
+      <div class="card-date">2026-08-20</div>
+    </div>
+    <div class="card-body">
+      <p>8月20日公布的LPR报价显示，1年期LPR报<mark class="key">3.0%</mark>，5年期以上LPR报<mark class="key">3.5%</mark>，均较上月保持不变。7月末M2余额355.51万亿元，同比增长<mark class="green">7.7%</mark>（低于预期7.9%）；M1余额115.46万亿元，同比增长<mark class="red">4.0%</mark>（高于预期3.9%）。前7个月新增社融22.25万亿元，同比少1.15万亿元。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://data.eastmoney.com/report/zw_macresearch.jshtml?encodeUrl=nz%2FKFJkETXDLH21AC3d744WHgN8TelAGmJQdEC0ph8I=" target="_blank">东方财富</a>
+      <a href="http://finance.ce.cn/bank12/scroll/202608/t20260814_3148404.shtml" target="_blank">中国经济网</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">证监会发文支持房地产发展新模式，地产板块大涨</div>
+      <div class="card-date">2026-08-28</div>
+    </div>
+    <div class="card-body">
+      <p>8月28日证监会发布《关于资本市场支持构建房地产发展新模式的意见》，涉及股权、并购、债券、资产证券化、不动产私募等融资安排。支持上市房地产开发企业通过向特定对象发行方式再融资；支持综合运用并购重组工具；完善房地产企业ABS和REITs融资制度。8月31日房地产板块大幅爆发，<mark class="key">我爱我家、特发服务、世联行、金融街</mark>等一字涨停。</p>
+    </div>
+    <div class="card-sources">
+      <a href="http://www.xinhuanet.com/politics/20260828/1554b2c0f0354748b7631eda87572270/c.html" target="_blank">新华网</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">ETF资金持续大幅流入：8月净流入超670亿元</div>
+      <div class="card-date">2026年8月</div>
+    </div>
+    <div class="card-body">
+      <p>8月19日以来，股票型ETF净流入超<mark class="key">670亿元</mark>，宽基ETF成为"吸金"主力。其中科创50ETF华夏净流入80.99亿元，沪深300ETF华泰柏瑞净流入63.11亿元，创业板ETF易方达净流入63.0亿元。8月24日至28日ETF资金整体净流入<mark class="key">160.40亿元</mark>，宽基型净流入99.18亿元。</p>
+    </div>
+    <div class="card-sources">
+      <a href="http://m.toutiao.com/group/7678299102732223003/" target="_blank">上海证券报</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 港股 ============ -->
+<div class="section" id="hk">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(8,145,178,0.1);color:var(--hk)">HK</div>
+    <h2>港股</h2>
+    <span class="desc">2个热点事件 | 8月</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">恒生指数周跌1.63%，科技指数承压</div>
+      <div class="card-date">2026-08-28</div>
+    </div>
+    <div class="card-body">
+      <p>恒生指数8月28日收报<mark class="key">25,584.79点</mark>，日涨<mark class="red">+0.07%</mark>，但周跌<mark class="green">-1.63%</mark>。恒生科技指数报<mark class="key">4,605.15点</mark>，日跌<mark class="green">0.33%</mark>，周跌<mark class="green">3.38%</mark>。港股回调主要来自内部个股风险、外部流动性压力与疲弱基本面预期三重压力。恒指上方26000点抛压较重，短期于25000至26000点区间震荡运行。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.hangseng.com/zh-hk/investment/market-express/stock-quote/?code=09933" target="_blank">恒生银行</a>
+      <a href="https://www.cls.cn/detail/2469112" target="_blank">财联社</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">南向资金净买入与板块分化</div>
+      <div class="card-date">2026-08-28</div>
+    </div>
+    <div class="card-body">
+      <p>8月28日南向资金净买入<mark class="key">11.76亿港元</mark>。胜宏科技、智谱分别获净买入约4.54亿港元、3.41亿港元；中国人寿遭净卖出8.78亿港元。板块方面，SaaS股、铜业股表现活跃，重型机械股重挫。科技股和生物制药股出现分化，金斯瑞生物科技涨<mark class="red">16.18%</mark>，药明生物涨<mark class="red">10.83%</mark>。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.gelonghui.com/subject/3" target="_blank">格隆汇</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 期货市场 ============ -->
+<div class="section" id="futures">
+  <div class="section-header">
+    <div class="icon" style="background:rgba(220,38,38,0.1);color:var(--fu)">期货</div>
+    <h2>期货市场</h2>
+    <span class="desc">5个热点事件 | 波动较大品类</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">原油：中东地缘缓和推动油价回落</div>
+      <div class="card-date">2026年8月下旬</div>
+    </div>
+    <div class="card-body">
+      <p>WTI原油8月31日报<mark class="key">$84.91/桶</mark>，日涨<mark class="red">+1.81%</mark>；布伦特原油8月28日报<mark class="key">$88.10/桶</mark>。8月21日当周布伦特曾上涨<mark class="red">5.15%</mark>，受地缘政治紧张推动。但随后伊朗与阿曼就霍尔木兹海峡水域划分达成协议，市场憧憬海峡有望重新开放，另有美伊停火共识传闻，中东供应中断担忧降温。OPEC+计划增产，油价承压回落。8月下旬WTI一度跌超3%触及$79.85，布伦特跌超2%触及$85。</p>
+    </div>
+    <div class="card-sources">
+      <a href="http://m.microbell.com/wap_detail.aspx?id=f080f5c49e34bb87793ce76d87723d8f" target="_blank">信达证券</a>
+      <a href="https://cj.sina.com.cn/articles/view/7879776968/1d5abdac806801jbzw" target="_blank">新浪财经</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">黄金：月内冲高至$4,696后回落3.20%</div>
+      <div class="card-date">2026年8月</div>
+    </div>
+    <div class="card-body">
+      <p>现货黄金自月初$4,050附近启动，盘中最高触及<mark class="key">$4,696/盎司</mark>，月内最大涨幅接近<mark class="red">15%</mark>。第一轮上涨发生在8月5日至12日，美日联合外汇干预支撑日元，带动美元指数回落。8月28日因市场加大对美联储年内加息的押注（沃什鹰派演讲后），国际贵金属显著下跌，现货黄金跌<mark class="green">3.20%</mark>至$4,454.23，现货白银跌<mark class="green">4.26%</mark>至$66.30。8月31日现货黄金报<mark class="key">$4,464.58</mark>（+0.23%），白银报<mark class="key">$69.229</mark>（+1.67%）。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.cls.cn/subject/1483" target="_blank">财联社</a>
+      <a href="http://m.toutiao.com/group/7678958782886429220/" target="_blank">兴业研究</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">有色金属：铜价小幅上行，供给中长期偏紧</div>
+      <div class="card-date">2026-08-31</div>
+    </div>
+    <div class="card-body">
+      <p>沪铜8月31日报<mark class="key">108,570元/吨</mark>。LME铜8月25日报<mark class="key">$14,245/吨</mark>。铜矿TC跌至负值、矿山减产、开采成本抬升，供给中长期偏紧；国内7月铜材产量同比下滑，终端需求偏弱。LME铝报<mark class="key">$3,242/吨</mark>（+0.56%）。金银比为63.39，金铜比为0.3064。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://finance.sina.com.cn/roll/2026-08-31/doc-iniqcrzc8006349.shtml.md" target="_blank">新浪财经/东吴证券</a>
+      <a href="http://wap.hibor.org/wap_detail.aspx?id=cc5c5952b50c88953dd466619612d043" target="_blank">东吴证券</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">黑色系：强预期弱现实，螺纹铁矿震荡运行</div>
+      <div class="card-date">2026-08-31</div>
+    </div>
+    <div class="card-body">
+      <p>螺纹钢2701合约收报<mark class="key">3,178元/吨</mark>，热卷2701收报<mark class="key">3,382元/吨</mark>，铁矿石2701收报<mark class="key">723元/吨</mark>。本周247家钢厂日均铁水产量<mark class="key">236.6万吨</mark>，环比减少1.08万吨；钢厂盈利率<mark class="key">32.47%</mark>，环比持平。47港铁矿石库存<mark class="key">17,375万吨</mark>，环比增加14.63万吨，铁矿处于供强需弱局面。焦煤焦炭持续走强抬升炼钢成本，对螺纹形成底部支撑。市场关注"金九银十"旺季预期，但现实需求偏弱。</p>
+    </div>
+    <div class="card-sources">
+      <a href="http://m.toutiao.com/group/7679601212567650843/" target="_blank">期货黑瞳</a>
+      <a href="https://notice.10jqka.com.cn/api/original/1489457f6b4f02ae.pdf" target="_blank">同花顺</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">碳酸锂：供应紧张预期升温，突破15万元/吨</div>
+      <div class="card-date">2026年8月</div>
+    </div>
+    <div class="card-body">
+      <p>碳酸锂期货8月21日主力合约报<mark class="key">158,680元/吨</mark>，较前一日上涨<mark class="red">4.28%</mark>，库存降低推升供应紧张预期。8月12日主力2609合约一度突破150,000元/吨关口，收盘报149,700元/吨（+2.97%）。8月31日碳酸锂2701合约开盘<mark class="key">160,500元/吨</mark>，最高161,900元/吨。此前7月碳酸锂期货受远期供给过剩悲观预期影响下跌近20%，8月止跌反弹。</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://tsl.100ppi.com/" target="_blank">生意社</a>
+      <a href="https://www.thqh.com.cn/A_UpLoad/upload_file/20260824172307_0375.pdf" target="_blank">天勤期货</a>
+      <a href="https://www.ifnews.com/news.html?aid=859087" target="_blank">国际金融报</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 关键指标汇总 ============ -->
+<div id="summary">
+<h2 class="section-title">关键指标汇总</h2>
+<p class="section-sub">全球主要市场核心数据一览</p>
+
+<div class="table-wrap">
+  <table>
+    <tr>
+      <th>市场</th><th>指标</th><th>最新值</th><th>变动</th><th>备注</th>
+    </tr>
+    <tr><td><span class="region-tag us">美股</span></td><td>标普500</td><td class="num">7,711.76</td><td class="up">+0.49%</td><td>周涨跌</td></tr>
+    <tr><td><span class="region-tag us">美股</span></td><td>纳斯达克</td><td class="num">26,402.42</td><td class="up">+0.85%</td><td>周涨跌</td></tr>
+    <tr><td><span class="region-tag us">美股</span></td><td>道琼斯</td><td class="num">53,559.99</td><td class="up">+0.53%</td><td>周涨跌</td></tr>
+    <tr><td><span class="region-tag us">美国</span></td><td>联邦基金利率</td><td class="num">3.50-3.75%</td><td>不变</td><td>7月FOMC 9-3投票</td></tr>
+    <tr><td><span class="region-tag us">美国</span></td><td>美元指数</td><td class="num">99.68</td><td class="up">+0.85%</td><td>周涨跌</td></tr>
+    <tr><td><span class="region-tag us">美国</span></td><td>7月CPI同比</td><td class="num">3.4%</td><td>持平</td><td>符合预期</td></tr>
+    <tr><td><span class="region-tag us">美国</span></td><td>7月核心PCE同比</td><td class="num">3.3%</td><td>--</td><td>通胀黏性</td></tr>
+    <tr><td><span class="region-tag us">美国</span></td><td>8月制造业PMI</td><td class="num">53.2</td><td>回落</td><td>3月最低</td></tr>
+    <tr><td><span class="region-tag us">美国</span></td><td>8月消费者信心(密歇根)</td><td class="num">51</td><td class="down">下降</td><td>低于预期</td></tr>
+    <tr><td><span class="region-tag us">美国</span></td><td>VIX恐慌指数</td><td class="num">~15.3</td><td>--</td><td>历史低位</td></tr>
+    <tr><td><span class="region-tag jp">日本</span></td><td>日经225</td><td class="num">66,405.56</td><td class="up">+0.41%</td><td>8/28收盘，月涨6.47%</td></tr>
+    <tr><td><span class="region-tag jp">日本</span></td><td>BOJ利率</td><td class="num">1.00%</td><td>不变</td><td>7/31决议 8-1</td></tr>
+    <tr><td><span class="region-tag jp">日本</span></td><td>USD/JPY</td><td class="num">159.97</td><td>--</td><td>8/31实时</td></tr>
+    <tr><td><span class="region-tag kr">韩国</span></td><td>KOSPI</td><td class="num">6,788.88</td><td class="down">-1.79%</td><td>8/28收盘</td></tr>
+    <tr><td><span class="region-tag kr">韩国</span></td><td>BOK利率</td><td class="num">3.00%</td><td class="up">+25bp</td><td>8/27连续加息</td></tr>
+    <tr><td><span class="region-tag kr">韩国</span></td><td>USD/KRW</td><td class="num">1,375.25</td><td class="down">-0.32%</td><td>8/31实时</td></tr>
+    <tr><td><span class="region-tag kr">韩国</span></td><td>7月出口</td><td class="num">$988.9亿</td><td class="up">+62.8%</td><td>历史第二高</td></tr>
+    <tr><td><span class="region-tag cn">A股</span></td><td>上证指数</td><td class="num">3,952.18</td><td class="down">-0.11%</td><td>周涨+1.2%</td></tr>
+    <tr><td><span class="region-tag cn">A股</span></td><td>深证成指</td><td class="num">13,953.07</td><td class="down">-0.68%</td><td>8/28收盘</td></tr>
+    <tr><td><span class="region-tag cn">A股</span></td><td>创业板指</td><td class="num">3,424.40</td><td class="down">-1.41%</td><td>8/28收盘</td></tr>
+    <tr><td><span class="region-tag cn">中国</span></td><td>1年期LPR</td><td class="num">3.00%</td><td>不变</td><td>8月报价</td></tr>
+    <tr><td><span class="region-tag cn">中国</span></td><td>7月CPI同比</td><td class="num">0.9%</td><td>--</td><td>--</td></tr>
+    <tr><td><span class="region-tag cn">中国</span></td><td>8月制造业PMI</td><td class="num">49.8%</td><td class="up">+0.6pp</td><td>仍处收缩区间</td></tr>
+    <tr><td><span class="region-tag hk">港股</span></td><td>恒生指数</td><td class="num">25,584.79</td><td class="up">+0.07%</td><td>周跌-1.63%</td></tr>
+    <tr><td><span class="region-tag hk">港股</span></td><td>恒生科技</td><td class="num">4,605.15</td><td class="down">-0.33%</td><td>周跌-3.38%</td></tr>
+    <tr><td><span class="region-tag futures">期货</span></td><td>现货黄金</td><td class="num">$4,464.58</td><td class="up">+0.23%</td><td>8/31实时</td></tr>
+    <tr><td><span class="region-tag futures">期货</span></td><td>WTI原油</td><td class="num">$84.91</td><td class="up">+1.81%</td><td>8/31实时</td></tr>
+    <tr><td><span class="region-tag futures">期货</span></td><td>沪铜</td><td class="num">108,570元/吨</td><td>--</td><td>8/31</td></tr>
+    <tr><td><span class="region-tag futures">期货</span></td><td>螺纹钢</td><td class="num">3,178元/吨</td><td>--</td><td>8/31</td></tr>
+    <tr><td><span class="region-tag futures">期货</span></td><td>碳酸锂</td><td class="num">160,500元/吨</td><td class="up">+4.28%</td><td>8/21</td></tr>
+  </table>
+</div>
+</div>
+
+</div><!-- /container -->
+
+<!-- 页脚 -->
+<div class="footer">
+  <div class="disclaimer">
+    <strong>免责声明：</strong>本报告由 AI 生成，仅供研究参考，不构成投资建议。报告中的数据来源于公开的财经媒体和官方机构，AI 对数据的准确性和完整性不做保证。投资者应自行核实信息并做出独立判断。市场有风险，投资需谨慎。
+  </div>
+
+  <div class="ref-list">
+    <h2>来源列表</h2>
+    <ol>
+      <li><a href="https://finance.sina.com.cn/jjxw/2026-08-30/doc-iniqazcr8133688.shtml" target="_blank">新浪财经 - 一周要闻：全球市场本周回顾与下周展望（2026-08-30）</a></li>
+      <li><a href="https://www.alternawealth.ca/media/vg1lucbj/weeklymarketpulse-august21.pdf" target="_blank">Aviso Wealth - Weekly Market Pulse August 21, 2026</a></li>
+      <li><a href="https://www.federalreserve.gov/monetarypolicy/files/monetary20260729a1.pdf" target="_blank">Federal Reserve - July 29, 2026 Press Release</a></li>
+      <li><a href="http://m.toutiao.com/group/7675897917634265640/" target="_blank">证券时报 - 美联储会议纪要：加息预期突变（2026-08-19）</a></li>
+      <li><a href="https://www.cbsnews.com/news/kevin-warsh-fed-speech-jackson-hole-inflation/" target="_blank">CBS News - Kevin Warsh Jackson Hole speech on inflation</a></li>
+      <li><a href="https://finance.sina.com.cn/wm/2026-08-29/doc-inipywem3516437.shtml" target="_blank">新浪财经 - 沃什Jackson Hole讲话：战术转向鹰派（2026-08-29）</a></li>
+      <li><a href="https://data.eastmoney.com/report/zw_strategy.jshtml?encodeUrl=9syIe%2FQFFhLEXpZ4D4Kg2Shu55PF9apLo86BYZws718=" target="_blank">东方财富 - 美国2026年7月CPI数据</a></li>
+      <li><a href="https://tradingeconomics.com/united-states/manufacturing-pmi" target="_blank">Trading Economics - US Manufacturing PMI</a></li>
+      <li><a href="http://www.chinaview.cn/northamerica/20260815/b9adbf4d65304b408599b6f7743ec459/c.html" target="_blank">ChinaView - US August consumer sentiment weakens</a></li>
+      <li><a href="https://www.conference-board.org/topics/consumer-confidence/" target="_blank">The Conference Board - US Consumer Confidence</a></li>
+      <li><a href="https://www.fxleaders.com/news/2026/08/26/nvidia-earnings-beat-nvda-stock-jumps-despite-spending-soars-to-279b/" target="_blank">FXLeaders - Nvidia Earnings Beat（2026-08-26）</a></li>
+      <li><a href="https://finance.sina.com.cn/jjxw/2026-08-03/doc-inikytnr4696336.shtml" target="_blank">新浪财经 - 微软2026财年第四财季营收超预期</a></li>
+      <li><a href="https://www.nasdaq.com/articles/amazon-q2-revenues-jump-20-y-y-aws-growth-hits-18-quarter-high" target="_blank">Nasdaq - Amazon Q2 Revenues Jump, AWS Growth Hits 18-Quarter High</a></li>
+      <li><a href="https://www.aboutamazon.com/news/company-news/amazon-earnings-q2-2026-report" target="_blank">Amazon - Q2 2026 Results Announcement</a></li>
+      <li><a href="https://s21.q4cdn.com/399680738/files/doc_financials/2026/q2/Meta-06-30-2026-Exhibit-99-1-FINAL.pdf" target="_blank">Meta Platforms - Q2 2026 Financial Results</a></li>
+      <li><a href="https://wonford.com/2026/08/28/us-canada-trade-tensions-ai-computing-boom-reshape-global-economic-landscape-in-late-august-2026/" target="_blank">Wonford - US-Canada Trade Tensions（2026-08-28）</a></li>
+      <li><a href="https://www.raymondjames.com/altoonateam/resources/2026/08/28/weekly-investment-strategy" target="_blank">Raymond James - Five catalysts that could drive volatility（2026-08-28）</a></li>
+      <li><a href="https://www.mitrade.eu/insights/news/live-news/article-8-2011373-20260819" target="_blank">Mitrade - VIX Index Drops to 2026 Low</a></li>
+      <li><a href="https://indexes.nikkei.co.jp/en/nkave/index/profile?cid=0&idx=nk225" target="_blank">日经指数官方 - Nikkei 225 Index Profile</a></li>
+      <li><a href="https://tradingeconomics.com/japan/stock-market" target="_blank">TradingEconomics - Japan Stock Market Index</a></li>
+      <li><a href="http://stock.eastmoney.com/a/202608283857290813.html" target="_blank">东方财富网 - 日经225指数期货</a></li>
+      <li><a href="https://www.boj.or.jp/about/press/kaiken_2026/kk260803a.pdf" target="_blank">BOJ官方 - 2026年7月31日总裁记者会</a></li>
+      <li><a href="https://tradingeconomics.com/japan/interest-rate" target="_blank">TradingEconomics - Japan Interest Rate</a></li>
+      <li><a href="http://japan.people.com.cn/n1/2026/0831/c35421-40789353.html" target="_blank">人民网 - 日本外汇干预规模创历史新高</a></li>
+      <li><a href="http://stock.eastmoney.com/a/202608283858844652.html" target="_blank">东方财富网 - 美元兑日元触及160关口</a></li>
+      <li><a href="https://www.nextfin.ai/en/news/japan-earmarks-another-944-million-for-rapidus-in-ai-chip-race-cef5ee2290" target="_blank">NextFin - Japan Earmarks $944M for Rapidus</a></li>
+      <li><a href="https://www.softbank.jp/en/sbnews/entry/20260804_01" target="_blank">软银官网 - Q1 FY2026 Earnings</a></li>
+      <li><a href="https://ir.gsifn.io/kbfng/v5/ir_comp_index.html?koreng=1&mode=korea&period=63&sym2=KS11_WI" target="_blank">GSIFN - KOSPI Index</a></li>
+      <li><a href="https://tradingeconomics.com/south-korea/stock-market" target="_blank">TradingEconomics - South Korea Stock Market</a></li>
+      <li><a href="https://www.bok.or.kr/eng/bbs/E0000634/view.do?depth=400423&menuNo=400423&nttId=11064193&programType=newsDataEng&relate=Y" target="_blank">BOK官方 - Monetary Policy Decision (Aug 27, 2026)</a></li>
+      <li><a href="https://finance.sina.com.cn/jjxw/2026-08-27/doc-inipthnz5540416.shtml" target="_blank">新浪财经 - 韩国央行加息25基点至3.00%</a></li>
+      <li><a href="https://m.ajupress.com/view/20260827102070398" target="_blank">AJU Press - Bank of Korea Raises Key Interest Rate to 3.00%</a></li>
+      <li><a href="https://cj.sina.com.cn/articles/view/6192937794/17120bb4202002td74" target="_blank">新浪财经 - 三星SDI出售三星显示股份</a></li>
+      <li><a href="https://www.marketscreener.com/news/samsung-sdi-says-to-sell-3-2-billion-worth-of-samsung-display-shares-back-to-display-maker-ce7859d3d080f622" target="_blank">Marketscreener - Samsung SDI sells Samsung Display shares</a></li>
+      <li><a href="https://cj.sina.com.cn/articles/view/2868676035/aafc85c302001vg6g" target="_blank">新浪财经 - 韩国家庭信贷迈入2000万亿韩元时代</a></li>
+      <li><a href="https://prod.chosunbiz.com/en/en-finance/2026/08/26/H4D6SCMLHFD4DDWVPW3WR72MGU/" target="_blank">朝鲜日报 - Household debt tops 2,000 trillion won</a></li>
+      <li><a href="https://english.motir.go.kr/eng/article/EATCLdfa319ada/2701/view" target="_blank">韩国产业通商资源部 - July 2026 Exports</a></li>
+      <li><a href="https://chinese.korea.net/NewsFocus/Business/view?articleId=297107" target="_blank">Korea.net - 韩国7月出口989亿美元</a></li>
+      <li><a href="https://newanalytica.com/samsung-and-sk-hynix-both-fall-over-7-as-chip-selloff-crosses-into-asia/" target="_blank">NewAnalytica - Samsung and SK Hynix Both Fall Over 7%</a></li>
+      <li><a href="https://stcn.com/article/detail/4054514.html" target="_blank">证券时报 - 日韩股市全线跳水</a></li>
+      <li><a href="https://en.sedaily.com/finance/2026/08/31/us-chip-stocks-tumble-on-rate-hike-fears-as-kospi-eyes-7000" target="_blank">Seoul Economic Daily - US Chip Stocks Tumble</a></li>
+      <li><a href="https://stcn.com/article/kx-tag-detail.html?tag=9189sWQkXlph" target="_blank">证券时报 - 8月28日A股指数及板块表现</a></li>
+      <li><a href="https://www.stats.gov.cn/sj/sjjd/202608/t20260809_1965009.html" target="_blank">国家统计局 - 2026年7月份CPI和PPI数据</a></li>
+      <li><a href="https://www.stats.gov.cn/sj/zxfb/202608/t20260831_1965154.html" target="_blank">国家统计局 - 2026年8月中国采购经理指数运行情况</a></li>
+      <li><a href="http://www.cnstock.com/commonDetail/758908?commTag=true" target="_blank">上海证券报 - 央行2026年Q2货币政策执行报告</a></li>
+      <li><a href="http://www.customs.gov.cn/customs/2026-08/10/article_2026081010585126254.html" target="_blank">海关总署 - 前7月货物贸易进出口超30万亿元</a></li>
+      <li><a href="http://finance.ce.cn/bank12/scroll/202608/t20260814_3148404.shtml" target="_blank">中国经济网 - 前7月新增社融22.25万亿元，M2同比7.7%</a></li>
+      <li><a href="https://data.eastmoney.com/report/zw_macresearch.jshtml?encodeUrl=nz%2FKFJkETXDLH21AC3d744WHgN8TelAGmJQdEC0ph8I=" target="_blank">东方财富 - 2026年8月LPR报价保持不变</a></li>
+      <li><a href="http://www.xinhuanet.com/politics/20260828/1554b2c0f0354748b7631eda87572270/c.html" target="_blank">新华网 - 证监会发文支持构建房地产发展新模式</a></li>
+      <li><a href="http://m.toutiao.com/group/7678299102732223003/" target="_blank">上海证券报 - 超670亿元资金持续加仓</a></li>
+      <li><a href="https://www.hangseng.com/zh-hk/investment/market-express/stock-quote/?code=09933" target="_blank">恒生银行 - 股票报价及指数</a></li>
+      <li><a href="https://www.cls.cn/detail/2469112" target="_blank">财联社 - 香港恒生指数下跌</a></li>
+      <li><a href="https://www.gelonghui.com/subject/3" target="_blank">格隆汇 - 港股收评</a></li>
+      <li><a href="http://m.microbell.com/wap_detail.aspx?id=f080f5c49e34bb87793ce76d87723d8f" target="_blank">信达证券 - 原油周报：地缘进展主导波动</a></li>
+      <li><a href="https://cj.sina.com.cn/articles/view/7879776968/1d5abdac806801jbzw" target="_blank">新浪财经 - OPEC+后续减产政策</a></li>
+      <li><a href="https://www.cls.cn/subject/1483" target="_blank">财联社 - 黄金价格显著下跌</a></li>
+      <li><a href="http://m.toutiao.com/group/7678958782886429220/" target="_blank">兴业研究 - 黄金短线消化后的再上行逻辑</a></li>
+      <li><a href="https://finance.sina.com.cn/roll/2026-08-31/doc-iniqcrzc8006349.shtml.md" target="_blank">新浪财经/东吴证券 - 基本金属周报</a></li>
+      <li><a href="http://wap.hibor.org/wap_detail.aspx?id=cc5c5952b50c88953dd466619612d043" target="_blank">东吴证券 - 有色金属行业跟踪周报</a></li>
+      <li><a href="http://m.toutiao.com/group/7679601212567650843/" target="_blank">期货黑瞳 - 螺纹钢、热卷、铁矿石行情分析</a></li>
+      <li><a href="https://notice.10jqka.com.cn/api/original/1489457f6b4f02ae.pdf" target="_blank">同花顺 - 黑色商品日报（2026年8月28日）</a></li>
+      <li><a href="https://tsl.100ppi.com/" target="_blank">生意社 - 碳酸锂期货行情</a></li>
+      <li><a href="https://www.thqh.com.cn/A_UpLoad/upload_file/20260824172307_0375.pdf" target="_blank">天勤期货 - 碳酸锂供应紧张预期</a></li>
+      <li><a href="https://www.ifnews.com/news.html?aid=859087" target="_blank">国际金融报 - 碳酸锂突破150000元/吨</a></li>
+      <li><a href="http://paper.cnstock.com/html/2026-08/11/content_2253985.htm" target="_blank">上海证券报 - 锂价止跌企稳，碳酸锂紧平衡格局</a></li>
+      <li><a href="https://news.skhynix.com/cn/category/press/" target="_blank">SK海力士官网 - HBM生产基地</a></li>
+      <li><a href="https://en.sedaily.com/finance/2026/08/30/samsung-sk-hynix-corporate-tax-may-near-100-trillion-won" target="_blank">Seoul Economic Daily - Samsung, SK hynix Corporate Tax</a></li>
+    </ol>
+  </div>
+
+  <div class="copyright">
+    报告生成时间：2026年8月31日 | 数据截止：2026年8月28日收盘 / 8月31日实时 | 由 AI 自动生成
+  </div>
+</div>
+
+<script>
+// 全球指数周涨跌幅
+var chart1 = echarts.init(document.getElementById('chart-global-index'), null, {renderer: 'svg'});
+chart1.setOption({
+  animation: false,
+  tooltip: { trigger: 'axis', appendToBody: true, formatter: function(p) { return p[0].name + '<br/>周涨跌: ' + p[0].value + '%'; } },
+  grid: { left: '3%', right: '5%', bottom: '12%', top: '12%', containLabel: true },
+  xAxis: {
+    type: 'category',
+    data: ['上证指数','恒生指数','恒生科技','标普500','纳斯达克','道琼斯','日经225','KOSPI'],
+    axisLabel: { color: '#1a202c', fontSize: 11, rotate: 35 },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  yAxis: {
+    type: 'value', name: '周涨跌幅(%)',
+    axisLabel: { color: '#64748b', formatter: '{value}%' },
+    splitLine: { lineStyle: { color: '#f1f5f9' } },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  series: [{
+    type: 'bar', barWidth: '50%',
+    data: [
+      {value: 1.2, itemStyle: {color: '#059669'}},
+      {value: -1.63, itemStyle: {color: '#dc2626'}},
+      {value: -3.38, itemStyle: {color: '#dc2626'}},
+      {value: 0.49, itemStyle: {color: '#2563eb'}},
+      {value: 0.85, itemStyle: {color: '#2563eb'}},
+      {value: 0.53, itemStyle: {color: '#2563eb'}},
+      {value: 0.55, itemStyle: {color: '#7c3aed'}},
+      {value: -1.79, itemStyle: {color: '#dc2626'}}
+    ],
+    label: { show: true, position: 'top', formatter: '{c}%', fontSize: 10, color: '#64748b' }
+  }]
+});
+
+// 期货涨跌幅
+var chart2 = echarts.init(document.getElementById('chart-futures'), null, {renderer: 'svg'});
+chart2.setOption({
+  animation: false,
+  tooltip: { trigger: 'axis', appendToBody: true, formatter: function(p) { return p[0].name + '<br/>涨跌幅: ' + p[0].value + '%'; } },
+  grid: { left: '3%', right: '5%', bottom: '12%', top: '12%', containLabel: true },
+  xAxis: {
+    type: 'category',
+    data: ['现货黄金','WTI原油','现货白银','碳酸锂','铁矿石','螺纹钢'],
+    axisLabel: { color: '#1a202c', fontSize: 11, rotate: 35 },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  yAxis: {
+    type: 'value', name: '涨跌幅(%)',
+    axisLabel: { color: '#64748b', formatter: '{value}%' },
+    splitLine: { lineStyle: { color: '#f1f5f9' } },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  series: [{
+    type: 'bar', barWidth: '50%',
+    data: [
+      {value: -3.20, itemStyle: {color: '#dc2626'}},
+      {value: 1.81, itemStyle: {color: '#059669'}},
+      {value: 1.67, itemStyle: {color: '#059669'}},
+      {value: 4.28, itemStyle: {color: '#059669'}},
+      {value: -0.49, itemStyle: {color: '#dc2626'}},
+      {value: 0.96, itemStyle: {color: '#059669'}}
+    ],
+    label: { show: true, position: 'top', formatter: '{c}%', fontSize: 10, color: '#64748b' }
+  }]
+});
+
+// 日经225走势
+var chart3 = echarts.init(document.getElementById('chart-nikkei'), null, {renderer: 'svg'});
+chart3.setOption({
+  animation: false,
+  tooltip: { trigger: 'axis', appendToBody: true },
+  grid: { left: '3%', right: '5%', bottom: '10%', top: '8%', containLabel: true },
+  xAxis: {
+    type: 'category',
+    data: ['8/3','8/4','8/5','8/6','8/7','8/10','8/11','8/12','8/13','8/14','8/17','8/18','8/19','8/20','8/21','8/22','8/23','8/24','8/25','8/26','8/27','8/28'],
+    axisLabel: { color: '#1a202c', fontSize: 10 },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  yAxis: {
+    type: 'value', scale: true,
+    axisLabel: { color: '#64748b' },
+    splitLine: { lineStyle: { color: '#f1f5f9' } },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  series: [{
+    type: 'line', smooth: true,
+    data: [63754.90,63280,63118,62756,62756,62969,63284,63554,64134,64441,64909,65377,65903,66036,65440,65676,66041,66406,65856.43,66262.16,66131.98,66405.56],
+    lineStyle: { color: '#7c3aed', width: 2 },
+    itemStyle: { color: '#7c3aed' },
+    areaStyle: { color: 'rgba(124,58,237,0.08)' }
+  }]
+});
+
+// KOSPI走势
+var chart4 = echarts.init(document.getElementById('chart-kospi'), null, {renderer: 'svg'});
+chart4.setOption({
+  animation: false,
+  tooltip: { trigger: 'axis', appendToBody: true },
+  grid: { left: '3%', right: '5%', bottom: '10%', top: '8%', containLabel: true },
+  xAxis: {
+    type: 'category',
+    data: ['8/3','8/4','8/5','8/6','8/7','8/10','8/11','8/12','8/13','8/14','8/18','8/19','8/20','8/21','8/24','8/25','8/26','8/27','8/28'],
+    axisLabel: { color: '#1a202c', fontSize: 10 },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  yAxis: {
+    type: 'value', scale: true,
+    axisLabel: { color: '#64748b' },
+    splitLine: { lineStyle: { color: '#f1f5f9' } },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  series: [{
+    type: 'line', smooth: true,
+    data: [6689,6609,6567.94,6540.95,6612.07,6597.63,6645.83,6675.25,6813.34,6977.94,6869.83,6471.17,6852.58,6912.95,6696.96,6742.74,6808.21,6912.37,6788.88],
+    lineStyle: { color: '#ea580c', width: 2 },
+    itemStyle: { color: '#ea580c' },
+    areaStyle: { color: 'rgba(234,88,12,0.08)' }
+  }]
+});
+
+// 响应式
+window.addEventListener('resize', function() {
+  chart1.resize(); chart2.resize(); chart3.resize(); chart4.resize();
+});
+</script>
+
+</body>
+</html>
