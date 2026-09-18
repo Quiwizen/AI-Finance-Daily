@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 与 GitHub 热门事件速报 · 2026-08-22</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#ffffff; --surface-2:#fbfcfe; --border:#e6e9ef;
+    --text:#1a1d23; --muted:#5b6472; --accent:#2f5fd8; --accent-2:#0a8f6a;
+    --warn:#c2410c; --rank:#d97706; --chip:#eef2fb;
+    --shadow:0 1px 3px rgba(20,30,60,.06),0 6px 18px rgba(20,30,60,.05);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65;font-size:15px;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  /* progress */
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));z-index:99;transition:width .15s}
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(8px);
+    border-bottom:1px solid var(--border);padding:10px 20px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  .nav .brand{font-weight:700;color:var(--accent);margin-right:8px;white-space:nowrap}
+  .nav a{font-size:13px;color:var(--muted);padding:4px 10px;border-radius:20px;border:1px solid transparent}
+  .nav a:hover{background:var(--chip);color:var(--text);text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
+  header.hero{padding:34px 0 10px}
+  .hero h1{font-size:30px;margin:0 0 8px;letter-spacing:.5px}
+  .hero .sub{color:var(--muted);font-size:14px}
+  .chips{margin:14px 0 4px;display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:var(--chip);border:1px solid var(--border);color:var(--muted);font-size:12.5px;padding:4px 11px;border-radius:20px}
+  .chip b{color:var(--accent)}
+  /* kpi */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0 8px}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 16px;box-shadow:var(--shadow)}
+  .kpi .v{font-size:26px;font-weight:800;color:var(--accent);line-height:1.1}
+  .kpi .l{font-size:12.5px;color:var(--muted);margin-top:4px}
+  .kpi .d{font-size:11.5px;color:var(--accent-2);margin-top:3px}
+  section{margin-top:40px}
+  .sec-h{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .sec-h .n{width:30px;height:30px;border-radius:9px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px}
+  .sec-h h2{font-size:21px;margin:0}
+  .sec-d{color:var(--muted);font-size:13.5px;margin:0 0 16px 40px}
+  /* headline cards */
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin-bottom:16px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .card .bar{position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent)}
+  .card .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .rank{background:var(--rank);color:#fff;font-weight:800;font-size:13px;padding:3px 9px;border-radius:8px;white-space:nowrap}
+  .card h3{margin:0;font-size:18px;flex:1;min-width:240px}
+  .tags{display:flex;gap:6px;flex-wrap:wrap}
+  .tag{font-size:11.5px;color:var(--accent);background:var(--chip);border:1px solid var(--border);padding:2px 8px;border-radius:6px}
+  .tag.g{color:var(--accent-2)}
+  .tag.w{color:var(--warn)}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0 12px}
+  .fact{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+  .fact .k{font-size:11.5px;color:var(--muted)}
+  .fact .vv{font-size:16px;font-weight:700;margin-top:2px}
+  .why{background:linear-gradient(180deg,#fbfdff,#f4f8ff);border:1px solid #dbe6fb;border-left:4px solid var(--accent);
+    border-radius:10px;padding:11px 14px;margin-top:6px;font-size:14px}
+  .why b{color:var(--accent)}
+  /* table */
+  .tbl{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:13.5px}
+  .tbl th{background:var(--surface-2);text-align:left;padding:10px 12px;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border)}
+  .tbl td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl tbody tr:hover{background:#fafbfe}
+  .star{color:var(--rank);font-weight:700;white-space:nowrap}
+  .lang{font-size:11px;color:var(--muted);background:var(--chip);border-radius:5px;padding:1px 7px;border:1px solid var(--border)}
+  /* bar chart */
+  .chart{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+  .row{display:flex;align-items:center;gap:10px;margin:9px 0}
+  .row .name{width:210px;font-size:13px;flex-shrink:0;text-align:right;color:var(--text)}
+  .row .track{flex:1;background:var(--surface-2);border-radius:8px;height:22px;position:relative;overflow:hidden;border:1px solid var(--border)}
+  .row .fill{height:100%;background:linear-gradient(90deg,var(--accent),#5b86e8);border-radius:8px 0 0 8px}
+  .row .val{width:78px;font-size:12.5px;color:var(--muted);font-weight:700}
+  /* trends */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .tcard{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:15px 17px;box-shadow:var(--shadow)}
+  .tcard .tt{font-weight:700;font-size:15px;margin-bottom:6px;display:flex;gap:8px;align-items:center}
+  .tcard .tt .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-2)}
+  .tcard p{margin:0;font-size:13.5px;color:var(--muted)}
+  /* sources */
+  .src-group{margin-bottom:18px}
+  .src-group h4{font-size:15px;margin:0 0 8px;color:var(--accent);border-left:4px solid var(--accent);padding-left:9px}
+  .src-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .src-list li{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:8px 11px;font-size:13px}
+  .src-list li .t{font-weight:600}
+  .src-list li .u{color:var(--muted);font-size:11.5px;word-break:break-all;display:block;margin-top:2px}
+  footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--border);color:var(--muted);font-size:12.5px;text-align:center}
+  @media (max-width:860px){
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .grid{grid-template-columns:1fr}
+    .src-list{grid-template-columns:1fr}
+    .row .name{width:120px;font-size:12px}
+    .nav{font-size:12px}
+  }
+  @media print{
+    .nav,.progress{display:none}
+    body{background:#fff}
+    .card,.kpi,.chart,.tcard{box-shadow:none}
+    a{color:#000}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<nav class="nav">
+  <span class="brand">⚡ AI·GitHub 速报</span>
+  <a href="#top">首页</a>
+  <a href="#headlines">头条</a>
+  <a href="#others">其他热点</a>
+  <a href="#github">GitHub 榜</a>
+  <a href="#vc">创投动态</a>
+  <a href="#trends">趋势判断</a>
+  <a href="#sources">原文链接</a>
+</nav>
+
+<div class="wrap" id="top">
+  <header class="hero">
+    <h1>AI 与 GitHub 热门事件速报</h1>
+    <div class="sub">每日聚合 AI 产业与开源社区最热动态 · 覆盖窗口 2026-08-21 → 08-22（近 48 小时）</div>
+    <div class="chips">
+      <span class="chip">日期 <b>2026-08-22</b></span>
+      <span class="chip">主题 <b>浅色亮色</b></span>
+      <span class="chip">主线 <b>Agent 基础设施 / 算力金融化 / 具身智能</b></span>
+      <span class="chip">检索源 <b>WebSearch 多源并行</b></span>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="v">$60亿</div><div class="l">英伟达获 Poolside 授权</div><div class="d">+ $10亿投资</div></div>
+      <div class="kpi"><div class="v">2万亿$</div><div class="l">Anthropic IPO 估值预期</div><div class="d">最快月底递 S-1</div></div>
+      <div class="kpi"><div class="v">100%</div><div class="l">NVIDIA AVO 满分 ARC-AGI-3</div><div class="d">183 关 · 6624 步</div></div>
+      <div class="kpi"><div class="v">935亿</div><div class="l">上半年具身智能融资(元)</div><div class="d">同比 5×</div></div>
+    </div>
+  </header>
+
+  <!-- ===== HEADLINES ===== -->
+  <section id="headlines">
+    <div class="sec-h"><div class="n">1</div><h2>今日头条 TOP 8</h2></div>
+    <p class="sec-d">按热度与关注量筛选；数据来自官方公告、Reuters、财联社、机器之心、WCCFtech、GitHub Trending 等。</p>
+
+    <div class="card"><div class="bar"></div>
+      <div class="top">
+        <span class="rank">TOP 1</span>
+        <h3>英伟达 $60 亿绑定 Poolside：AI 基建整合进入"许可+股权+人才"复合时代</h3>
+        <div class="tags"><span class="tag w">并购审查争议</span><span class="tag">开源模型</span></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">授权费</div><div class="vv">$60 亿</div></div>
+        <div class="fact"><div class="k">战略投资</div><div class="vv">$10 亿</div></div>
+        <div class="fact"><div class="k">投前估值</div><div class="vv">$120 亿</div></div>
+        <div class="fact"><div class="k">转入员工</div><div class="vv">109 人</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>英伟达以"许可费 + 股权投资 + 人才引进"结构绑定 agentic coding 模型公司 Poolside（独立运营、许可非独占），与收购 Groq 手法如出一辙。批评者认为这是在<b>绕过反垄断并购审查</b>。标志算力巨头从"卖芯片"升级为"模型许可 + 数据 + 软件"的纵向整合者。</div>
+    </div>
+
+    <div class="card"><div class="bar"></div>
+      <div class="top">
+        <span class="rank">TOP 2</span>
+        <h3>OpenAI 首次下调旗舰 GPT-5.6 Sol 定价 20%+，价格战烧到最上层</h3>
+        <div class="tags"><span class="tag w">防守性降价</span><span class="tag">API</span></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">输入/M tokens</div><div class="vv">$5 → $4</div></div>
+        <div class="fact"><div class="k">输出/M tokens</div><div class="vv">$30 → $20</div></div>
+        <div class="fact"><div class="k">降幅</div><div class="vv">≥20%</div></div>
+        <div class="fact"><div class="k">窗口</div><div class="vv">至 11/21</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>这是 GPT-5.6 家族 7/9 发布以来<b>首次触及旗舰模型价格</b>（此前仅降 Terra 20%、Luna 80%）。在 Anthropic（Claude 企业 API 更低）与 DeepSeek V4 Pro（约 $0.87/M 输出）、月之暗面 Kimi K3 的夹击下，OpenAI 的"溢价护城河"开始松动。3 个月窗口更像防御性试水，到期大概率转永久。</div>
+    </div>
+
+    <div class="card"><div class="bar"></div>
+      <div class="top">
+        <span class="rank">TOP 3</span>
+        <h3>Anthropic IPO 逼近 2 万亿美元：最快月底递 S-1，花旗加入承销</h3>
+        <div class="tags"><span class="tag">资本</span><span class="tag g">史上最大 IPO?</span></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">Q2 营收</div><div class="vv">$115 亿</div></div>
+        <div class="fact"><div class="k">同比</div><div class="vv">14×</div></div>
+        <div class="fact"><div class="k">ARR(7月底)</div><div class="vv">$650 亿</div></div>
+        <div class="fact"><div class="k">营业利润</div><div class="vv">转正</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>募资规模或追平/超越 SpaceX 862 亿美元纪录，成<b>人类商业史最大 IPO</b>。Anthropic 用企业级黏性（30 万企业、Claude 贡献约 80% 收入）讲通"AI 能赚钱"叙事，把节奏逼到 OpenAI（CFO 称 2027 或更早）之前。同周动作密集：Claude Code 推<b>自托管 Runner</b>、挖来谷歌 TPU 创始老将 Amir Salek 组建自研芯片团队。</div>
+    </div>
+
+    <div class="card"><div class="bar"></div>
+      <div class="top">
+        <span class="rank">TOP 4</span>
+        <h3>NVIDIA AVO 在 ARC-AGI-3 拿下 100% 满分：harness 而非模型才是英雄</h3>
+        <div class="tags"><span class="tag g">Agent 工程</span><span class="tag">基准</span></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">通关</div><div class="vv">25 环境 / 183 关</div></div>
+        <div class="fact"><div class="k">行动步</div><div class="vv">6,624</div></div>
+        <div class="fact"><div class="k">底层模型</div><div class="vv">Claude Opus 5</div></div>
+        <div class="fact"><div class="k">对比 VISTA</div><div class="vv">少 12% 步</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>同一模型裸跑 ARC-AGI-3 仅 30%，套上 AVO（持久记忆 + 执行循环 + 监督恢复）后满分。NVIDIA 借此把自己从"卖芯片"推进到<b>智能体控制层</b>——记忆、工具、监督、执行决定模型能产出多少有效工作。行业共识加速成形：Agent 竞争力已从模型能力转移到运行时架构。</div>
+    </div>
+
+    <div class="card"><div class="bar"></div>
+      <div class="top">
+        <span class="rank">TOP 5</span>
+        <h3>GitHub 热榜被 Agent Skills / Harness 锁定：开发者用 star 投票给"编排层"</h3>
+        <div class="tags"><span class="tag">开源</span><span class="tag g">Agent 基建</span></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">mattpocock/skills</div><div class="vv">+3,368 ⭐</div></div>
+        <div class="fact"><div class="k">obra/superpowers</div><div class="vv">275k ⭐</div></div>
+        <div class="fact"><div class="k">OpenLogi</div><div class="vv">+1,372 ⭐</div></div>
+        <div class="fact"><div class="k">caveman</div><div class="vv">省 65% token</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>今日榜单主线是<b>技能库 / 记忆 / 安全沙箱 / 运行时</b>：skills、superpowers、cursor/plugins、career-ops、PostHog（可观测）、OpenViking（自进化记忆）、caveman（省 token）、agent-substrate/substrate（安全沙箱）、ECC（agent 性能优化）齐上榜。开发者不再崇拜模型，转而工业化部署——把工程方法拆成可调用、可组合的 Skill。</div>
+    </div>
+
+    <div class="card"><div class="bar"></div>
+      <div class="top">
+        <span class="rank">TOP 6</span>
+        <h3>OpenAI 确认 2027 IPO 时间表 + Mac 端接管 iMessage + Codex 周活破 2000 万</h3>
+        <div class="tags"><span class="tag">产品</span><span class="tag">资本</span></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">IPO 时点</div><div class="vv">2027(或提前)</div></div>
+        <div class="fact"><div class="k">营收运行率</div><div class="vv">环比 +35%</div></div>
+        <div class="fact"><div class="k">Codex 周活</div><div class="vv">2000 万</div></div>
+        <div class="fact"><div class="k">Mac 新能力</div><div class="vv">iMessage</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>CFO Sarah Friar 首次在全员会明确 2027 上市窗口；Mac 版 ChatGPT 借"完全磁盘访问"接管 iMessage（读/写/发短信 + 摘要），系统意图编排指挥权归属成悬念。Codex 周活破 2000 万印证 AI 编程渗透，但 OpenAI 当季运营亏损扩至 123 亿美元，被 Anthropic 单季营收反超。</div>
+    </div>
+
+    <div class="card"><div class="bar"></div>
+      <div class="top">
+        <span class="rank">TOP 7</span>
+        <h3>2026 世界机器人大会：宇树 IPO +460%、上半年具身智能融资 935 亿</h3>
+        <div class="tags"><span class="tag w">具身智能</span><span class="tag">资本热</span></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">宇树首日</div><div class="vv">+460.34%</div></div>
+        <div class="fact"><div class="k">上半年融资</div><div class="vv">935 亿元</div></div>
+        <div class="fact"><div class="k">同比</div><div class="vv">5×</div></div>
+        <div class="fact"><div class="k">百亿独角兽</div><div class="vv">7 家</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>机器人从"表演"转向"上岗"：立讯精密苏州工厂已部署人形机器人做上下料搬运。上半年全球人形出货 2.2 万台（中国占 97%），但六成仍在文娱/科研非生产岗。清雁科技数亿元 A 轮（微分几何物理 AI）代表"干活取代炫技"的技术拐点。</div>
+    </div>
+
+    <div class="card"><div class="bar"></div>
+      <div class="top">
+        <span class="rank">TOP 8</span>
+        <h3>Anthropic 欧盟强制水印引用户反弹，同步筹备企业私有云安全系统</h3>
+        <div class="tags"><span class="tag w">合规</span><span class="tag">隐私</span></div>
+      </div>
+      <div class="facts">
+        <div class="fact"><div class="k">触发</div><div class="vv">欧盟法规</div></div>
+        <div class="fact"><div class="k">形式</div><div class="vv">不可见数字水印</div></div>
+        <div class="fact"><div class="k">用户反应</div><div class="vv">部分退订</div></div>
+        <div class="fact"><div class="k">新安全系统</div><div class="vv">客户自云 30 天</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>监管正把"AI 内容可追溯"硬成本转嫁到产品体验，用户用脚投票；Anthropic 拟推新安全系统保留企业数据 30 天但存于客户自有云，是"合规 + 私有化"之间的折中。结合此前 SynthID 水印 4 小时被开源工具破解，水印攻防已成前沿模型"刹车片"。</div>
+    </div>
+  </section>
+
+  <!-- ===== OTHERS ===== -->
+  <section id="others">
+    <div class="sec-h"><div class="n">2</div><h2>其他值得关注的热点</h2></div>
+    <p class="sec-d">Hacker News / HuggingFace / 模型与监管侧补充信号。</p>
+    <table class="tbl">
+      <thead><tr><th style="width:34%">事件</th><th style="width:18%">热度信号</th><th>要点</th></tr></thead>
+      <tbody>
+        <tr><td><b>Qwen3.8-27B 多模态登顶 HF 下载</b></td><td>HuggingFace 日榜 #1</td><td>官方 27B 图文模型下载 1.7M、GGUF 5.8M，衍生"去审查/FP8/MLX"版本横扫榜单，中国开源模型成事实底座。</td></tr>
+        <tr><td><b>DeepSeek 推 v4-flash-vision 实验版</b></td><td>HN 448 分</td><td>视觉实验版模型上线，延续"高频小步快跑"的开放节奏。</td></tr>
+        <tr><td><b>OpenAI 开源 Codex Harness 三组件</b></td><td>Apache-2.0</td><td>CLI / 官方 SDK / app-server 以 Apache-2.0 发布，企业级落地"最后一公里"打通。</td></tr>
+        <tr><td><b>博通 $700–800 亿债务融资服务 Anthropic 芯片采购</b></td><td>信用恐慌</td><td>SPV 分层结构，CDS 狂飙破纪录，撕开科技巨头 3 万亿美元 AI 隐性债务冰山。</td></tr>
+        <tr><td><b>Gemini Notebooks 内置 VM + Antigravity 编码智能体</b></td><td>X 热议</td><td>Google 把开发环境搬进笔记本与 IDE，coding agent 入口之争白热化。</td></tr>
+        <tr><td><b>Anthropic 合资公司完成首笔收购（Casper Studios）</b></td><td>7月成立来首单</td><td>与黑石等合资的 Ode with Anthropic 收购 AI 咨询公司，加速企业客户落地。</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== GITHUB ===== -->
+  <section id="github">
+    <div class="sec-h"><div class="n">3</div><h2>GitHub 今日热榜（Agent 基础设施主线）</h2></div>
+    <p class="sec-d">数据综合 GitHub Trending daily（2026-08-22）与多源核验，按当日 star 增量排序。</p>
+    <div class="chart">
+      <div class="row"><div class="name">mattpocock/skills</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="val">+3,368</div></div>
+      <div class="row"><div class="name">harry0703/MoneyPrinterTurbo</div><div class="track"><div class="fill" style="width:82%"></div></div><div class="val">+2,774</div></div>
+      <div class="row"><div class="name">AprilNEA/OpenLogi</div><div class="track"><div class="fill" style="width:41%"></div></div><div class="val">+1,372</div></div>
+      <div class="row"><div class="name">santifer/career-ops</div><div class="track"><div class="fill" style="width:27%"></div></div><div class="val">+918</div></div>
+      <div class="row"><div class="name">obra/superpowers</div><div class="track"><div class="fill" style="width:24%"></div></div><div class="val">+789</div></div>
+      <div class="row"><div class="name">cursor/plugins</div><div class="track"><div class="fill" style="width:12%"></div></div><div class="val">+391</div></div>
+      <div class="row"><div class="name">PostHog/posthog</div><div class="track"><div class="fill" style="width:10%"></div></div><div class="val">+335</div></div>
+      <div class="row"><div class="name">volcengine/OpenViking</div><div class="track"><div class="fill" style="width:28%"></div></div><div class="val">+950</div></div>
+      <div class="row"><div class="name">JuliusBrussee/caveman</div><div class="track"><div class="fill" style="width:8%"></div></div><div class="val">+258</div></div>
+      <div class="row"><div class="name">modular/modular (Mojo)</div><div class="track"><div class="fill" style="width:27%"></div></div><div class="val">+905</div></div>
+    </div>
+    <table class="tbl" style="margin-top:14px">
+      <thead><tr><th>项目</th><th style="width:90px">语言</th><th style="width:110px">当日增量</th><th>定位</th></tr></thead>
+      <tbody>
+        <tr><td><a href="https://github.com/mattpocock/skills">mattpocock/skills</a></td><td><span class="lang">Shell</span></td><td class="star">+3,368</td><td>面向真实工程师的 Agent Skills 集合，源自作者 .agents 目录</td></tr>
+        <tr><td><a href="https://github.com/obra/superpowers">obra/superpowers</a></td><td><span class="lang">Shell</span></td><td class="star">275k ⭐</td><td>Agentic skills 框架 + 软件开发方法论，强制规划/测试/验证</td></tr>
+        <tr><td><a href="https://github.com/AprilNEA/OpenLogi">AprilNEA/OpenLogi</a></td><td><span class="lang">Rust</span></td><td class="star">+1,372</td><td>本地优先的罗技 Options+ 替代，HID++ 重映射，无遥测</td></tr>
+        <tr><td><a href="https://github.com/harry0703/MoneyPrinterTurbo">harry0703/MoneyPrinterTurbo</a></td><td><span class="lang">Python</span></td><td class="star">+2,774</td><td>AI 一键生成高清短视频，长期霸榜的 workflow 工具</td></tr>
+        <tr><td><a href="https://github.com/cursor/plugins">cursor/plugins</a></td><td><span class="lang">TS</span></td><td class="star">+391</td><td>Cursor 官方插件规范，能力分发进入"插件化"阶段</td></tr>
+        <tr><td><a href="https://github.com/santifer/career-ops">santifer/career-ops</a></td><td><span class="lang">JS</span></td><td class="star">+918</td><td>开源 AI 求职：扫描岗位、A-F 评分、定制简历、追踪进度</td></tr>
+        <tr><td><a href="https://github.com/PostHog/posthog">PostHog/posthog</a></td><td><span class="lang">Python</span></td><td class="star">+335</td><td>自驱动产品平台，AI 可观测性 + 分析 + 会话回放</td></tr>
+        <tr><td><a href="https://github.com/volcengine/OpenViking">volcengine/OpenViking</a></td><td><span class="lang">Python</span></td><td class="star">+950</td><td>AI Agent 自进化上下文数据库，统一记忆/RAG/Skills</td></tr>
+        <tr><td><a href="https://github.com/JuliusBrussee/caveman">JuliusBrussee/caveman</a></td><td><span class="lang">Go</span></td><td class="star">+258</td><td>Claude Code 技能，像"穴居人"说话省 65% token</td></tr>
+        <tr><td><a href="https://github.com/agent-substrate/substrate">agent-substrate/substrate</a></td><td><span class="lang">Go</span></td><td class="star">+22</td><td>Agent Substrate 核心系统，把基础设施推向"安全沙箱"底层</td></tr>
+        <tr><td><a href="https://github.com/modular/modular">modular/modular (Mojo)</a></td><td><span class="lang">Mojo</span></td><td class="star">+905</td><td>Modular 平台（MAX & Mojo），Mojo 1.0 讨论重新升温</td></tr>
+      </tbody>
+    </table>
+    <p class="sec-d" style="margin-top:10px">榜单解读：五线并行 —— <b>① 调度/技能层（skills、superpowers、cursor/plugins）② 记忆上下文（OpenViking、ai-memory）③ 自验证/安全沙箱（substrate、Tencent/AI-Infra-Guard）④ 省 token 可计费（caveman、ECC）⑤ 本地优先数据可控（OpenLogi、PostHog）</b>。Agent 完成"演示→生产"一跃，瓶颈转移到调度/检索/吞吐/成本四线。</p>
+  </section>
+
+  <!-- ===== VC ===== -->
+  <section id="vc">
+    <div class="sec-h"><div class="n">4</div><h2>创投与硬件动态</h2></div>
+    <p class="sec-d">资本继续涌向算力、具身智能与 Agent 基础设施。</p>
+    <table class="tbl">
+      <thead><tr><th style="width:26%">主体</th><th style="width:16%">金额</th><th>动态</th></tr></thead>
+      <tbody>
+        <tr><td><b>英伟达 × Poolside</b></td><td>$60 亿授权 + $10 亿</td><td>模型许可 + 战略投资，投前估值 $120 亿，109 名员工转入</td></tr>
+        <tr><td><b>博通 SPV 债务融资</b></td><td>$700–1000 亿</td><td>服务 Anthropic 等 AI 公司芯片采购，CDS 狂飙破纪录</td></tr>
+        <tr><td><b>清雁科技</b></td><td>数亿元 A 轮</td><td>微分几何物理 AI 框架，破解泛化/可靠/持续学习三痛点</td></tr>
+        <tr><td><b>具身智能赛道（上半年）</b></td><td>935 亿元</td><td>融资 322 笔同比 +137%，7 家百亿估值独角兽</td></tr>
+        <tr><td><b>Current Robotics</b></td><td>数亿人民币</td><td>具身智能动作捕捉设备及数据服务，BV 百度风投等参投</td></tr>
+        <tr><td><b>觅蜂科技</b></td><td>数亿人民币</td><td>具身智能数据服务，中国电信、红杉中国、张江集团参投</td></tr>
+        <tr><td><b>Rillet</b></td><td>$100M C 轮</td><td>估值 $1B（Iconiq、Sequoia 等），AI 财务软件</td></tr>
+        <tr><td><b>Starcloud</b></td><td>$250M</td><td>太空数据中心方向获投（TechCrunch 核实）</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ===== TRENDS ===== -->
+  <section id="trends">
+    <div class="sec-h"><div class="n">5</div><h2>趋势判断（5 条）</h2></div>
+    <div class="grid">
+      <div class="tcard"><div class="tt"><span class="dot"></span>① harness 成为新护城河</div><p>AVO 满分 vs 模型裸跑 30%，OpenAI/DeepSeek 开源 Harness，行业共识：Agent 竞争力从模型能力转移到运行时架构、工具编排与上下文管理。</p></div>
+      <div class="tcard"><div class="tt"><span class="dot"></span>② 价格战烧到旗舰层</div><p>GPT-5.6 Sol 首次降价，中国开源模型与国际竞品用更低单价抢企业 API 份额，前沿模型溢价开始松动。</p></div>
+      <div class="tcard"><div class="tt"><span class="dot"></span>③ IPO 竞速进入业绩兑现期</div><p>Anthropic(2 万亿预期) 逼 OpenAI(2027)。但部分估值支撑来自信贷结构（博通 SPV、英伟达担保），循环融资质疑仍在。</p></div>
+      <div class="tcard"><div class="tt"><span class="dot"></span>④ 算力全面金融化</div><p>许可费+股权+人才、表外债务、太空/电力/散热全链条资产化——"卖水人"逻辑外溢到每一个环节。</p></div>
+      <div class="tcard"><div class="tt"><span class="dot"></span>⑤ 具身智能从炫技到上岗</div><p>宇树 IPO +460%、935 亿融资、工厂真实部署；但六成设备仍在非生产岗，规模化商用仍是核心考验。</p></div>
+      <div class="tcard"><div class="tt"><span class="dot"></span>⑥ 安全成本计入推理账单</div><p>水印攻防、沙箱扫描、私有云安全系统同日升温；合规正把可追溯成本硬塞进产品体验。</p></div>
+    </div>
+  </section>
+
+  <!-- ===== SOURCES ===== -->
+  <section id="sources">
+    <div class="sec-h"><div class="n">6</div><h2>原文链接与来源</h2></div>
+    <p class="sec-d">以下为各头条真实可点击来源（官方博客 / 原始报道 / 项目主页 / GitHub）。</p>
+
+    <div class="src-group">
+      <h4>① 英伟达 $60 亿绑定 Poolside</h4>
+      <ul class="src-list">
+        <li><span class="t">网易 · 格隆汇报道</span><a class="u" href="https://www.163.com/dy/article/L4SLGSQ405566WVY.html">https://www.163.com/dy/article/L4SLGSQ405566WVY.html</a></li>
+        <li><span class="t">i6eal.de · 交易详析</span><a class="u" href="https://www.i6eal.de/en/newsroom/poolside-ai-nvidia-sechs-milliarden-deal/">https://www.i6eal.de/en/newsroom/poolside-ai-nvidia-sechs-milliarden-deal/</a></li>
+        <li><span class="t">腾讯新闻 · 英伟达动态汇总</span><a class="u" href="https://new.qq.com/rain/a/20260822A0238B00?refer=cp_1009">https://new.qq.com/rain/a/20260822A0238B00</a></li>
+      </ul>
+    </div>
+
+    <div class="src-group">
+      <h4>② OpenAI GPT-5.6 Sol 降价</h4>
+      <ul class="src-list">
+        <li><span class="t">OpenAI 官方公告</span><a class="u" href="https://community.openai.com/t/20-price-reduction-for-gpt-5-6-sol-api-codex-credits-and-chatgpt-work/1391726">community.openai.com/t/20-price-reduction-for-gpt-5-6-sol...</a></li>
+        <li><span class="t">Reuters / The Star</span><a class="u" href="https://www.thestar.com.my/tech/tech-news/2026/08/22/openai-cuts-developer-pricing-for-frontier-gpt-56-sol-model-by-more-than-20">thestar.com.my/.../openai-cuts-developer-pricing...</a></li>
+        <li><span class="t">RuntimeWire 明细</span><a class="u" href="https://runtimewire.com/article/openai-cuts-gpt-5-6-sol-api-pricing-three-months">runtimewire.com/article/openai-cuts-gpt-5-6-sol-api-pricing-three-months</a></li>
+      </ul>
+    </div>
+
+    <div class="src-group">
+      <h4>③ Anthropic IPO / 自托管 / 芯片</h4>
+      <ul class="src-list">
+        <li><span class="t">网易 · 机器之心 Pro</span><a class="u" href="https://www.163.com/dy/article/L4RO1RH90511AQHO.html">https://www.163.com/dy/article/L4RO1RH90511AQHO.html</a></li>
+        <li><span class="t">新浪 · 格隆汇</span><a class="u" href="https://k.sina.com.cn/article_5952915720_162d2490806704pnv6.html">k.sina.com.cn/article_5952915720_162d2490806704pnv6.html</a></li>
+        <li><span class="t">网易 · 独角兽早知道</span><a class="u" href="https://www.163.com/dy/article/L4RRAVMI0519VPHD.html">https://www.163.com/dy/article/L4RRAVMI0519VPHD.html</a></li>
+        <li><span class="t">腾讯网 · 2 万亿深度</span><a class="u" href="https://new.qq.com/rain/a/20260821A04Y9K00">https://new.qq.com/rain/a/20260821A04Y9K00</a></li>
+        <li><span class="t">腾讯 · Claude 动态汇总(水印/安全/收购)</span><a class="u" href="https://new.qq.com/rain/a/20260822A028QB00?refer=cp_1009">https://new.qq.com/rain/a/20260822A028QB00</a></li>
+        <li><span class="t">财联社 · 挖谷歌 TPU 老将</span><a class="u" href="https://so.html5.qq.com/page/real/search_news?docid=70000021_5976a88c13c30652">so.html5.qq.com/.../70000021_5976a88c13c30652</a></li>
+      </ul>
+    </div>
+
+    <div class="src-group">
+      <h4>④ NVIDIA AVO · ARC-AGI-3 满分</h4>
+      <ul class="src-list">
+        <li><span class="t">WCCFtech 报道</span><a class="u" href="https://wccftech.com/nvidia-built-its-avo-coding-agent-to-optimize-cuda-gpu-kernels-and-it-just-achieved-a-100-score-on-a-public-test-without-receiving-any-prior-instruction/">wccftech.com/.../nvidia-built-its-avo-coding-agent...</a></li>
+        <li><span class="t">RuntimeWire 技术文</span><a class="u" href="https://runtimewire.com/article/nvidia-avo-arc-agi-3-perfect-public-score">runtimewire.com/article/nvidia-avo-arc-agi-3-perfect-public-score</a></li>
+        <li><span class="t">腾讯新闻 · 中文解读</span><a class="u" href="https://new.qq.com/rain/a/20260822A0014J00?refer=cp_1009">https://new.qq.com/rain/a/20260822A0014J00</a></li>
+        <li><span class="t">博客园 · AI 技术日报</span><a class="u" href="https://www.cnblogs.com/itech/p/22626184">https://www.cnblogs.com/itech/p/22626184</a></li>
+      </ul>
+    </div>
+
+    <div class="src-group">
+      <h4>⑤ / ⑥ OpenAI 动态 & GitHub 热榜</h4>
+      <ul class="src-list">
+        <li><span class="t">腾讯 · OpenAI 每日动态</span><a class="u" href="https://new.qq.com/rain/a/20260822A01Z6100?refer=cp_1009">https://new.qq.com/rain/a/20260822A01Z6100</a></li>
+        <li><span class="t">腾讯 · AI 大模型动态</span><a class="u" href="https://new.qq.com/rain/a/20260822A022HA00?refer=cp_1009">https://new.qq.com/rain/a/20260822A022HA00</a></li>
+        <li><span class="t">Smartotics · AI Daily 2026-08-22</span><a class="u" href="https://smartotics.com/2026/08/2026-08-22-ai-daily-2026-08-22.html">smartotics.com/2026/08/2026-08-22-ai-daily-2026-08-22.html</a></li>
+        <li><span class="t">OrangeBot · GitHub Trends 08-22</span><a class="u" href="http://orangebot.ai/">http://orangebot.ai/</a></li>
+        <li><span class="t">git-trending-rank · 08-21 榜单</span><a class="u" href="https://git-trending-rank.github.io/post/trending-daily-2026-08-21">git-trending-rank.github.io/post/trending-daily-2026-08-21</a></li>
+        <li><span class="t">CSDN · GitHub 今日热榜 08-21</span><a class="u" href="https://aicoding.csdn.net/6a87af87662f9a54cb9f0fe1.html">aicoding.csdn.net/6a87af87662f9a54cb9f0fe1.html</a></li>
+      </ul>
+    </div>
+
+    <div class="src-group">
+      <h4>⑦ 机器人大会 / 具身智能</h4>
+      <ul class="src-list">
+        <li><span class="t">今日头条 · 读创(935 亿/宇树 IPO)</span><a class="u" href="https://www.toutiao.com/article/7676645880245551650/">https://www.toutiao.com/article/7676645880245551650/</a></li>
+        <li><span class="t">大众网 · 7 家百亿独角兽</span><a class="u" href="http://gzylhyzx.com/detail.html?cpid=T17&newsId=29764320">gzylhyzx.com/detail.html?newsId=29764320</a></li>
+        <li><span class="t">网易 · 清雁科技 A 轮</span><a class="u" href="https://www.163.com/dy/article/L4T5HC0F053469RG.html">https://www.163.com/dy/article/L4T5HC0F053469RG.html</a></li>
+        <li><span class="t">腾讯 · 融资周报</span><a class="u" href="https://gu.qq.com/resources/shy/news/detail-v2/index.html?t=1#/index?_tentrees_trans=0&id=SN2026082121024294e2953c">gu.qq.com/.../SN2026082121024294e2953c</a></li>
+      </ul>
+    </div>
+
+    <div class="src-group">
+      <h4>⑧ 其他热点来源</h4>
+      <ul class="src-list">
+        <li><span class="t">HuggingFace · Qwen3.8-27B</span><a class="u" href="https://huggingface.co/Qwen/Qwen3.8-27B">https://huggingface.co/Qwen/Qwen3.8-27B</a></li>
+        <li><span class="t">DeepSeek · v4-flash-vision</span><a class="u" href="https://api-docs.deepseek.com/guides/vision/">https://api-docs.deepseek.com/guides/vision/</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    AI 与 GitHub 热门事件速报 · 2026-08-22 · 浅色亮色主题单文件 HTML<br>
+    内容由 WebSearch 多源并行聚合生成，覆盖窗口 2026-08-21 → 08-22；链接均指向检索实际命中的来源，未作编造。
+  </footer>
+</div>
+
+<script>
+  // scroll progress
+  const p=document.getElementById('progress');
+  window.addEventListener('scroll',()=>{
+    const h=document.documentElement;
+    const sc=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    p.style.width=sc+'%';
+  });
+</script>
+</body>
+</html>

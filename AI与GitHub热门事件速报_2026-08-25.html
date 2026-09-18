@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 与 GitHub 热门事件速报 · 2026-08-25</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --surface:#ffffff; --surface-2:#fbfcfd; --accent:#2f5fd8;
+    --accent-soft:#eaf0ff; --ink:#1a1d23; --ink-2:#5a606b; --ink-3:#8a909c;
+    --line:#e7e9ee; --line-2:#eef0f4; --ok:#1f9d62; --warn:#d98a13; --hot:#e0533d;
+    --chip:#eef1f6; --c1:#2f5fd8; --c2:#1f9d62; --c3:#a855f7; --c4:#e0533d; --c5:#0ea5a4; --c6:#d98a13; --c7:#3b82f6; --c8:#db2777;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),#6f9bff);z-index:99;transition:width .1s linear;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px;}
+  header.hero{background:linear-gradient(135deg,#ffffff 0%,#eef3ff 100%);border-bottom:1px solid var(--line);padding:34px 0 26px;}
+  .hero-inner{max-width:1080px;margin:0 auto;padding:0 20px;}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--accent);background:var(--accent-soft);padding:5px 12px;border-radius:999px;font-weight:600;}
+  h1{font-size:30px;line-height:1.25;margin:14px 0 8px;letter-spacing:-.3px;}
+  .sub{color:var(--ink-2);font-size:15px;margin:0;}
+  .meta-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+  .meta-chips span{font-size:12.5px;color:var(--ink-2);background:var(--chip);border:1px solid var(--line);padding:4px 11px;border-radius:8px;}
+  nav.toc{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav.toc .toc-inner{max-width:1080px;margin:0 auto;padding:10px 20px;display:flex;gap:6px;flex-wrap:wrap;}
+  nav.toc a{font-size:13px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);padding:6px 12px;border-radius:999px;white-space:nowrap;}
+  nav.toc a:hover{color:var(--accent);border-color:var(--accent);text-decoration:none;}
+  section{margin-top:46px;}
+  .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .sec-head .num{font-size:13px;font-weight:700;color:#fff;background:var(--accent);width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+  .sec-head h2{font-size:21px;margin:0;letter-spacing:-.2px;}
+  .sec-head .en{color:var(--ink-3);font-size:13px;margin-left:auto;font-weight:500;}
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 16px 14px;position:relative;overflow:hidden;}
+  .kpi .bar{position:absolute;left:0;top:0;bottom:0;width:4px;}
+  .kpi .label{font-size:12.5px;color:var(--ink-2);}
+  .kpi .val{font-size:26px;font-weight:800;letter-spacing:-.5px;margin:6px 0 2px;}
+  .kpi .note{font-size:12px;color:var(--ink-3);}
+  /* headline cards */
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin-bottom:16px;position:relative;overflow:hidden;}
+  .card .stripe{position:absolute;left:0;top:0;bottom:0;width:5px;}
+  .card-top{display:flex;align-items:flex-start;gap:12px;}
+  .rank{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--ink);color:#fff;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;}
+  .card h3{margin:2px 0 6px;font-size:18.5px;line-height:1.35;}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 0;}
+  .tag{font-size:11.5px;color:var(--ink-2);background:var(--chip);border:1px solid var(--line);padding:2px 9px;border-radius:6px;}
+  .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0 4px;}
+  .fact{background:var(--surface-2);border:1px solid var(--line-2);border-radius:10px;padding:10px 12px;}
+  .fact .k{font-size:11.5px;color:var(--ink-3);}
+  .fact .v{font-size:14.5px;font-weight:700;margin-top:2px;}
+  .why{margin-top:12px;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:11px 14px;font-size:14px;color:#27325c;}
+  .why b{color:var(--accent);}
+  /* tables */
+  .tbl-wrap{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  thead th{background:var(--surface-2);color:var(--ink-2);text-align:left;font-weight:600;padding:11px 14px;border-bottom:1px solid var(--line);font-size:12.5px;white-space:nowrap;}
+  tbody td{padding:11px 14px;border-bottom:1px solid var(--line-2);vertical-align:top;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#fafbfc;}
+  td .ev{font-weight:600;color:var(--ink);}
+  td .src a{font-size:12.5px;}
+  .pill{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2);background:var(--surface-2);margin-right:4px;}
+  .pill.hot{color:var(--hot);border-color:#f4c4ba;background:#fdeeeb;}
+  .pill.ok{color:var(--ok);border-color:#bfe6cf;background:#ecf8f1;}
+  /* github bars */
+  .gh-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--line-2);}
+  .gh-row:last-child{border-bottom:none;}
+  .gh-name{flex:0 0 230px;font-size:14px;font-weight:600;}
+  .gh-name small{color:var(--ink-3);font-weight:500;display:block;font-size:11.5px;}
+  .gh-track{flex:1;background:var(--surface-2);border-radius:8px;height:22px;overflow:hidden;border:1px solid var(--line-2);}
+  .gh-fill{height:100%;background:linear-gradient(90deg,#cfe0ff,#2f5fd8);border-radius:8px 0 0 8px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:11.5px;font-weight:700;min-width:34px;}
+  .gh-delta{flex:0 0 90px;text-align:right;font-size:12.5px;color:var(--ok);font-weight:600;}
+  /* trends */
+  .trends{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .trend{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 17px;display:flex;gap:12px;align-items:flex-start;}
+  .trend .ix{flex:0 0 26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:13px;}
+  .trend p{margin:0;font-size:14px;color:var(--ink);}
+  .trend p b{color:var(--ink);}
+  /* sources */
+  .src-group{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:15px 18px;margin-bottom:13px;}
+  .src-group h4{margin:0 0 9px;font-size:15px;display:flex;align-items:center;gap:8px;}
+  .src-group h4 .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .src-list{display:flex;flex-direction:column;gap:6px;}
+  .src-list a{font-size:13.5px;word-break:break-all;line-height:1.5;}
+  .src-list a::before{content:"↗";color:var(--ink-3);margin-right:6px;font-size:12px;}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12.5px;text-align:center;}
+  @media (max-width:860px){
+    .kpis{grid-template-columns:repeat(2,1fr);}
+    .trends{grid-template-columns:1fr;}
+    .gh-name{flex-basis:140px;}
+    .gh-delta{flex-basis:64px;}
+    h1{font-size:24px;}
+  }
+  @media print{
+    #progress,nav.toc{display:none;}
+    body{background:#fff;}
+    .card,.kpi,.src-group,.trend,.tbl-wrap{break-inside:avoid;box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="kicker">📡 每日 AI × GitHub 速报</span>
+    <h1>AI 与 GitHub 热门事件速报</h1>
+    <p class="sub">聚合近 48 小时全球 AI 与开源社区高热度事件 · 聚焦「热度高、关注多」</p>
+    <div class="meta-chips">
+      <span>📅 2026-08-25（周一）</span>
+      <span>🗓 覆盖窗口：08-23 ~ 08-25</span>
+      <span>🧭 浅色亮色主题</span>
+      <span>🔗 文末附真实原文链接</span>
+      <span>👤 由自动化任务 automation-1786442828712 生成</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="toc-inner">
+    <a href="#kpi">概览</a>
+    <a href="#top">头条 TOP 8</a>
+    <a href="#events">重要事件</a>
+    <a href="#github">GitHub 热榜</a>
+    <a href="#capital">资本动态</a>
+    <a href="#trends">趋势判断</a>
+    <a href="#sources">原文链接</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- KPI -->
+  <section id="kpi">
+    <div class="sec-head"><div class="num">·</div><h2>今日概览</h2><span class="en">AT A GLANCE</span></div>
+    <div class="kpis">
+      <div class="kpi"><div class="bar" style="background:var(--c1)"></div><div class="label">阿里 AI 配股规模</div><div class="val">≈$102 亿</div><div class="note">800 亿港元 · 港股史上最大后续发行</div></div>
+      <div class="kpi"><div class="bar" style="background:var(--c2)"></div><div class="label">Hugging Face 估值</div><div class="val">$130 亿+</div><div class="note">"AI 界 GitHub" 寻求出售</div></div>
+      <div class="kpi"><div class="bar" style="background:var(--c3)"></div><div class="label">小鹏机器人估值</div><div class="val">$63 亿+</div><div class="note">首轮融资超 $9 亿 · IDG 领投</div></div>
+      <div class="kpi"><div class="bar" style="background:var(--c4)"></div><div class="label">GitHub 热榜主线</div><div class="val">Agent 基建</div><div class="note">编程/Skills/安全类项目霸榜</div></div>
+    </div>
+  </section>
+
+  <!-- TOP 8 -->
+  <section id="top">
+    <div class="sec-head"><div class="num">1</div><h2>头条 TOP 8</h2><span class="en">HEADLINES</span></div>
+
+    <div class="card"><div class="stripe" style="background:var(--c1)"></div>
+      <div class="card-top"><div class="rank">1</div><div><h3>阿里 800 亿港元配股全投 AI —— 港股史上最大后续发行</h3>
+        <div class="tags"><span class="tag">资本市场</span><span class="tag">阿里</span><span class="tag">AI 基建</span></div></div></div>
+      <div class="facts">
+        <div class="fact"><div class="k">募资规模</div><div class="v">800 亿港元</div></div>
+        <div class="fact"><div class="k">折让 / 股数</div><div class="v">-3.6% · 7.1 亿股</div></div>
+        <div class="fact"><div class="k">认购速度</div><div class="v">1 小时超额</div></div>
+        <div class="fact"><div class="k">资方</div><div class="v">中东/欧/亚主权基金</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>募资净额全部用于 AI 算力与云基建，蔡崇信/吴泳铭同步增持 1.2 亿港元，释放"云厂商亲自下场重资产投 AI"的强信号，AI 军备从模型层下沉到电力与芯片层。</div>
+    </div>
+
+    <div class="card"><div class="stripe" style="background:var(--c2)"></div>
+      <div class="card-top"><div class="rank">2</div><div><h3>Hugging Face 寻求出售，估值超 130 亿美元</h3>
+        <div class="tags"><span class="tag">开源生态</span><span class="tag">并购</span><span class="tag">HF</span></div></div></div>
+      <div class="facts">
+        <div class="fact"><div class="k">估值</div><div class="v">$130 亿+</div></div>
+        <div class="fact"><div class="k">托管模型</div><div class="v">300 万+</div></div>
+        <div class="fact"><div class="k">潜在买家</div><div class="v">Google/Amazon/Nvidia</div></div>
+        <div class="fact"><div class="k">历史</div><div class="v">曾拒英伟达 $5 亿</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>"AI 界 GitHub"若被科技巨头吞并，开源模型的中立分发枢纽将易主，模型托管、数据集与社区流量或被重新定价，对依赖 HF 的创业公司与研究者影响深远。</div>
+    </div>
+
+    <div class="card"><div class="stripe" style="background:var(--c5)"></div>
+      <div class="card-top"><div class="rank">3</div><div><h3>Cloudflare 连发 Kitesurf · Wallets · x402 —— 为 Agent 造"浏览器 + 钱包 + 支付"</h3>
+        <div class="tags"><span class="tag">Agent 基础设施</span><span class="tag">Cloudflare</span><span class="tag">支付</span></div></div></div>
+      <div class="facts">
+        <div class="fact"><div class="k">Kitesurf</div><div class="v">Rust/WASM 浏览器</div></div>
+        <div class="fact"><div class="k">省资源</div><div class="v">3–7× CPU/内存</div></div>
+        <div class="fact"><div class="k">x402</div><div class="v">按请求付费</div></div>
+        <div class="fact"><div class="k">接入方</div><div class="v">20+ 公司</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>无 Chromium 的轻量浏览器（通过 23.5 万 WPT 子测试）+ 可编程稳定币钱包 + 微支付协议，补齐了 Agent 自主"上网冲浪、下单付费"的最后一公里，Agent 经济闭环开始有底层设施。</div>
+    </div>
+
+    <div class="card"><div class="stripe" style="background:var(--c4)"></div>
+      <div class="card-top"><div class="rank">4</div><div><h3>Anthropic 挖角 Google TPU 之父 Amir Salek，组自研芯片团队</h3>
+        <div class="tags"><span class="tag">算力自研</span><span class="tag">Anthropic</span><span class="tag">去英伟达化</span></div></div></div>
+      <div class="facts">
+        <div class="fact"><div class="k">目标</div><div class="v">冲刺 $2 万亿 IPO</div></div>
+        <div class="fact"><div class="k">锁单</div><div class="v">2027 年 3.5GW TPU</div></div>
+        <div class="fact"><div class="k">合作</div><div class="v">三星 2nm 洽谈</div></div>
+        <div class="fact"><div class="k">动作</div><div class="v">"去英伟达化"</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>继 OpenAI、Meta、亚马逊后，Anthropic 也伸手自建芯片能力，前沿实验室正集体摆脱对英伟达的算力依赖，垂直整合从"买卡"走向"定义卡"。</div>
+    </div>
+
+    <div class="card"><div class="stripe" style="background:var(--c3)"></div>
+      <div class="card-top"><div class="rank">5</div><div><h3>小鹏机器人首轮融资超 9 亿美元，估值破 63 亿美元</h3>
+        <div class="tags"><span class="tag">具身智能</span><span class="tag">融资</span><span class="tag">人形机器人</span></div></div></div>
+      <div class="facts">
+        <div class="fact"><div class="k">融资额</div><div class="v">>$9 亿</div></div>
+        <div class="fact"><div class="k">估值</div><div class="v">>$63 亿</div></div>
+        <div class="fact"><div class="k">领投</div><div class="v">IDG</div></div>
+        <div class="fact"><div class="k">产业方</div><div class="v">腾讯 / 阿里战略投资</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>IRON 人形机器人计划 2026 年底量产、搭载 3 颗图灵芯片达 2250 TOPS，具身智能从 Demo 进入"量产 + 大厂战投"阶段，资本热度向硬件侧集中。</div>
+    </div>
+
+    <div class="card"><div class="stripe" style="background:var(--c6)"></div>
+      <div class="card-top"><div class="rank">6</div><div><h3>英伟达 Groq 3 LPX 全面投产 + Vera Rubin NVL72</h3>
+        <div class="tags"><span class="tag">算力</span><span class="tag">英伟达</span><span class="tag">Agent 负载</span></div></div></div>
+      <div class="facts">
+        <div class="fact"><div class="k">AgentX 吞吐</div><div class="v">每 MW 30×</div></div>
+        <div class="fact"><div class="k">每 Token 成本</div><div class="v">-35×</div></div>
+        <div class="fact"><div class="k">新平台</div><div class="v">Vera Rubin NVL72</div></div>
+        <div class="fact"><div class="k">延伸</div><div class="v">SpaceXAI 太空 AI 卫星</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>面向 Agent 长上下文/高并发负载的新一代算力平台把单位成本打到 1/35，推理经济性再次跃迁，直接压低下游应用与模型的毛利门槛。</div>
+    </div>
+
+    <div class="card"><div class="stripe" style="background:var(--c1)"></div>
+      <div class="card-top"><div class="rank">7</div><div><h3>OpenAI GPT-5.6 Sol 降价 20%+，Codex 额度全量重置补偿</h3>
+        <div class="tags"><span class="tag">定价</span><span class="tag">OpenAI</span><span class="tag">价格战</span></div></div></div>
+      <div class="facts">
+        <div class="fact"><div class="k">输入价</div><div class="v">$5 → $4</div></div>
+        <div class="fact"><div class="k">输出价</div><div class="v">$30 → $20</div></div>
+        <div class="fact"><div class="k">有效期</div><div class="v">至 11/21</div></div>
+        <div class="fact"><div class="k">Codex</div><div class="v">周活破 500 万</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>旗舰模型降价烧到顶层，配合 Codex 全量重置补偿（应对额度争议），OpenAI 用"降价 + 安抚"双拳守住开发者入口，价格战进入旗舰层。</div>
+    </div>
+
+    <div class="card"><div class="stripe" style="background:var(--c7)"></div>
+      <div class="card-top"><div class="rank">8</div><div><h3>微软 Agent Lightning v1.0 开源 —— 零代码改造 RL 训练 Agent</h3>
+        <div class="tags"><span class="tag">开源</span><span class="tag">微软</span><span class="tag">强化学习</span></div></div></div>
+      <div class="facts">
+        <div class="fact"><div class="k">Star</div><div class="v">1.76 万</div></div>
+        <div class="fact"><div class="k">改造方式</div><div class="v">零代码侵入</div></div>
+        <div class="fact"><div class="k">SWE-bench</div><div class="v">41.8% → 56.4%</div></div>
+        <div class="fact"><div class="k">提升</div><div class="v">+14.6pp</div></div>
+      </div>
+      <div class="why"><b>为什么重要：</b>把 RL 训练从"重改写"变成"即插即用"，Qwen3.5-9B 经 Agent Lightning 后 SWE-bench 提升 14.6 个百分点，降低中小团队训练强 Agent 的门槛，强化学习成 Agent 演化的新杠杆。</div>
+    </div>
+  </section>
+
+  <!-- 重要事件 -->
+  <section id="events">
+    <div class="sec-head"><div class="num">2</div><h2>重要事件速览</h2><span class="en">MORE EVENTS</span></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th style="width:30px">#</th><th>事件</th><th style="width:130px">标签</th><th style="width:170px">信号 / 数据</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><span class="ev">Anthropic 上线 Claude 插件市场</span>（claude-plugins-community，官方只读镜像社区插件，VoltAgent 已收录 1000+ Agent Skills）</td><td><span class="pill">Agent Skills</span></td><td>"技能经济"生态成型</td></tr>
+          <tr><td>2</td><td><span class="ev">Meta 推 HATCH（OpenClaw 消费版）+ Watermelon 模型（10 月）</span>，最高月费 $199.99，接 DoorDash/Etsy/Reddit</td><td><span class="pill hot">消费 Agent</span></td><td>月费上限 $199.99</td></tr>
+          <tr><td>3</td><td><span class="ev">DeepSeek V4-Flash-Vision-Exp</span> 多模态版上线 + 开放 Files API</td><td><span class="pill">多模态</span></td><td>新增文件接口</td></tr>
+          <tr><td>4</td><td><span class="ev">智谱 GLM-5.3</span> 持续迭代，CyberGym 84.5% 居开源前列</td><td><span class="pill">国产模型</span></td><td>权重待开源</td></tr>
+          <tr><td>5</td><td><span class="ev">阿里 Wan3.0 视频模型</span> 发布，强化视频生成矩阵</td><td><span class="pill">视频生成</span></td><td>多模态延展</td></tr>
+          <tr><td>6</td><td><span class="ev">LongCat-2.0 开源（Go 版）</span>：1.6T 总参 / 48B 激活 / 百万上下文</td><td><span class="pill ok">开源</span></td><td>百万 token 上下文</td></tr>
+          <tr><td>7</td><td><span class="ev">安全告警：恶意 LLM 利用推理引擎漏洞夺权</span>（vLLM CVE-2025-9141）</td><td><span class="pill hot">安全</span></td><td>供应链风险显性化</td></tr>
+          <tr><td>8</td><td><span class="ev">Kimi K3 全球排名第 6</span>，中国大模型周调用量 40.48 万亿 Token，连续十七周超美国</td><td><span class="pill">国产模型</span></td><td>调用量反超美国</td></tr>
+          <tr><td>9</td><td><span class="ev">英伟达拟 2027 初涨价超 15%</span>，算力定价继续上探</td><td><span class="pill">算力</span></td><td>涨价 >15%</td></tr>
+          <tr><td>10</td><td><span class="ev">世界机器人大会</span> 300+ 企业参展，具身智能产业化加速</td><td><span class="pill">具身智能</span></td><td>300+ 企业</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- GitHub 热榜 -->
+  <section id="github">
+    <div class="sec-head"><div class="num">3</div><h2>GitHub 今日热榜 · Agent 工程霸榜</h2><span class="en">GITHUB TRENDING</span></div>
+    <div class="tbl-wrap" style="padding:8px 16px 4px">
+      <div class="gh-row"><div class="gh-name">openai/codex<small>编码 Agent 运行层</small></div><div class="gh-track"><div class="gh-fill" style="width:100%">+1990 · 117k</div></div><div class="gh-delta">▲ 登顶</div></div>
+      <div class="gh-row"><div class="gh-name">free-claude-code<small>开源 Claude Code 替代</small></div><div class="gh-track"><div class="gh-fill" style="width:42%">+889 · 48.9k</div></div><div class="gh-delta">▲ #1 新晋</div></div>
+      <div class="gh-row"><div class="gh-name">NousResearch/hermes-agent<small>Agent 框架</small></div><div class="gh-track"><div class="gh-fill" style="width:78%">235k</div></div><div class="gh-delta">高位</div></div>
+      <div class="gh-row"><div class="gh-name">andrej-karpathy-skills<small>Karpathy 技能集</small></div><div class="gh-track"><div class="gh-fill" style="width:69%">206k</div></div><div class="gh-delta">高位</div></div>
+      <div class="gh-row"><div class="gh-name">ai-job-search<small>AI 求职 Agent</small></div><div class="gh-track"><div class="gh-fill" style="width:11%">34k</div></div><div class="gh-delta">新晋</div></div>
+      <div class="gh-row"><div class="gh-name">claude-plugins-community<small>Claude 插件社区</small></div><div class="gh-track"><div class="gh-fill" style="width:9%">热榜</div></div><div class="gh-delta">新晋</div></div>
+      <div class="gh-row"><div class="gh-name">OpenLogi<small>Agent 记忆/上下文</small></div><div class="gh-track"><div class="gh-fill" style="width:14%">持续</div></div><div class="gh-delta">常驻</div></div>
+      <div class="gh-row"><div class="gh-name">apache/maka<small>Apache Agent 项目</small></div><div class="gh-track"><div class="gh-fill" style="width:9%">热榜</div></div><div class="gh-delta">新晋</div></div>
+      <div class="gh-row"><div class="gh-name">posthog<small>产品分析 + Agent</small></div><div class="gh-track"><div class="gh-fill" style="width:9%">热榜</div></div><div class="gh-delta">常驻</div></div>
+    </div>
+    <p style="font-size:12.5px;color:var(--ink-3);margin:10px 2px 0">条形图按单日新增 Star 相对值呈现（不同站点口径略有差异）；主线仍为「编码 Agent + Skills/记忆 + 安全沙箱」三线并行。来源见文末区。</p>
+  </section>
+
+  <!-- 资本动态 -->
+  <section id="capital">
+    <div class="sec-head"><div class="num">4</div><h2>资本与硬件动态</h2><span class="en">CAPITAL</span></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>方向</th><th>关键动态</th><th style="width:120px">量级 / 信号</th></tr></thead>
+        <tbody>
+          <tr><td><span class="ev">阿里 AI 配股</span></td><td>港股史上最大后续发行，净额全投 AI 算力与云</td><td>800 亿港元</td></tr>
+          <tr><td><span class="ev">Hugging Face</span></td><td>寻求出售，潜在买家含 Google/Amazon/Nvidia</td><td>估值 $130 亿+</td></tr>
+          <tr><td><span class="ev">小鹏机器人</span></td><td>首轮融资，IDG 领投，腾讯/阿里战投</td><td>>$9 亿 / $63 亿+</td></tr>
+          <tr><td><span class="ev">Anthropic</span></td><td>冲刺史上最大 IPO（目标 $2 万亿），挖角 TPU 老将自建芯片</td><td>IPO 竞速</td></tr>
+          <tr><td><span class="ev">英伟达</span></td><td>Groq 3 LPX 投产 + Vera Rubin；拟 2027 初涨价 >15%</td><td>算力定价上探</td></tr>
+          <tr><td><span class="ev">具身智能</span></td><td>世界机器人大会 300+ 企业，人形机器人量产潮</td><td>产业化加速</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 趋势判断 -->
+  <section id="trends">
+    <div class="sec-head"><div class="num">5</div><h2>趋势判断</h2><span class="en">TAKEAWAYS</span></div>
+    <div class="trends">
+      <div class="trend"><div class="ix">1</div><p><b>算力主权化：</b>OpenAI、Anthropic、Meta、亚马逊集体自研/锁单芯片，"去英伟达化"从口号走向组织动作。</p></div>
+      <div class="trend"><div class="ix">2</div><p><b>Agent 经济闭环：</b>Cloudflare 浏览器+钱包+微支付补齐"上网+付费"最后一公里，Agent 从工具变"用户"。</p></div>
+      <div class="trend"><div class="ix">3</div><p><b>价格战烧到旗舰：</b>GPT-5.6 Sol 降价 + Codex 补偿，入口之争从"谁更强"转向"谁更便宜好用"。</p></div>
+      <div class="trend"><div class="ix">4</div><p><b>开源枢纽易主风险：</b>Hugging Face 若被收购，模型分发中立性受挑战，社区流量或被重新定价。</p></div>
+      <div class="trend"><div class="ix">5</div><p><b>强化学习回潮：</b>Agent Lightning 把 RL 训练即插即用，SWE-bench 提升 14.6pp，中小团队可训练强 Agent。</p></div>
+      <div class="trend"><div class="ix">6</div><p><b>具身量产元年：</b>小鹏 IRON 年底量产 + 大厂战投，资本从"模型"明确外溢到"机器人硬件"。</p></div>
+    </div>
+  </section>
+
+  <!-- 原文链接 -->
+  <section id="sources">
+    <div class="sec-head"><div class="num">6</div><h2>原文链接与来源</h2><span class="en">SOURCES</span></div>
+    <p style="font-size:13px;color:var(--ink-2);margin:0 0 16px">以下为本次检索实际命中、可点击的原文/报道链接，按头条与事件分组。未编造占位链接；如需某条事件逐条出处可单独索取。</p>
+
+    <div class="src-group"><h4><span class="dot" style="background:var(--c1)"></span>① 阿里 800 亿港元配股全投 AI</h4>
+      <div class="src-list">
+        <a href="https://www.stcn.com/article/detail/4105896.html" target="_blank" rel="noopener">证券时报 · 阿里配股募资全投 AI</a>
+        <a href="https://www.163.com/dy/article/L54S054305199NPP.html" target="_blank" rel="noopener">网易 · 港股史上最大后续发行</a>
+        <a href="https://www.cnr.cn/jingji/ycbd/20260824/t20260824_527788471.shtml" target="_blank" rel="noopener">央广网 · 阿里配股详情</a>
+        <a href="https://www.cs.com.cn/ssgs/01/2026/08/24/detail_2026082410033455.html" target="_blank" rel="noopener">中证网 · 募资用途与认购</a>
+      </div>
+    </div>
+
+    <div class="src-group"><h4><span class="dot" style="background:var(--c2)"></span>② Hugging Face 寻求出售（估值 $130 亿+）</h4>
+      <div class="src-list">
+        <a href="https://en.sedaily.com/international/2026/08/25/hugging-face-github-of-ai-explores-sale-at-13-billion" target="_blank" rel="noopener">Sedaily(英) · HF explores sale at $13B</a>
+        <a href="https://insight.tmcnet.com/insight/hugging-face-explores-sale-at-13-billion-plus-valuation-mt7itsex" target="_blank" rel="noopener">TMCnet · $13B+ valuation</a>
+        <a href="https://xueqiu.com/7437424816/406374646" target="_blank" rel="noopener">雪球 · HF 出售解读</a>
+        <a href="https://www.163.com/dy/article/L542HISP0514R9P4.html" target="_blank" rel="noopener">网易 · "AI 界 GitHub" 寻求出售</a>
+        <a href="https://finance.sina.cn/stock/jdts/2026-08-24/detail-inipkvrw6163521.d.html" target="_blank" rel="noopener">新浪财经 · 潜在买家与影响</a>
+      </div>
+    </div>
+
+    <div class="src-group"><h4><span class="dot" style="background:var(--c5)"></span>③ Cloudflare Kitesurf · Wallets · x402</h4>
+      <div class="src-list">
+        <a href="https://aitoolsrecap.com/Blog/cloudflare-kitesurf-x402-agent-web-2026" target="_blank" rel="noopener">AIToolsRecap · Kitesurf + x402 Agent Web</a>
+        <a href="https://payspacemagazine.com/news/cloudflare-kitesurf-x402-protocol-tools-fast-track-agentic-ai-checkout" target="_blank" rel="noopener">Payspace · x402 协议加速 Agent 结账</a>
+        <a href="https://miraflow.ai/blog/cloudflare-kitesurf-ai-agent-browser-explained-2026" target="_blank" rel="noopener">Miraflow · Kitesurf Agent 浏览器解析</a>
+      </div>
+    </div>
+
+    <div class="src-group"><h4><span class="dot" style="background:var(--c4)"></span>④ Anthropic 挖角 TPU 之父 / 自建芯片</h4>
+      <div class="src-list">
+        <a href="https://anuenews.cnyes.com/news/id/6584253" target="_blank" rel="noopener">非凡新闻 · Anthropic 组自研芯片团队</a>
+        <a href="https://www.dramx.com/News/AI/20260824-41026.html" target="_blank" rel="noopener">DRAMeXchange · 锁单 2027 TPU</a>
+        <a href="https://weibo.com/ttarticle/p/show?id=2309405335060785266860" target="_blank" rel="noopener">微博 · 去英伟达化分析</a>
+        <a href="https://www.toutiao.com/article/7677103739081982502/" target="_blank" rel="noopener">今日头条 · Amir Salek 加盟</a>
+      </div>
+    </div>
+
+    <div class="src-group"><h4><span class="dot" style="background:var(--c3)"></span>⑤ 小鹏机器人融资 / 估值</h4>
+      <div class="src-list">
+        <a href="https://jnzstatic.cs.com.cn/zzb/htmlInfo/131050.html" target="_blank" rel="noopener">中证网 · 小鹏机器人融资</a>
+        <a href="https://new.qq.com/rain/a/20260825A02EY200" target="_blank" rel="noopener">腾讯新闻 · IDG 领投详情</a>
+        <a href="https://xueqiu.com/4198399524/406423015" target="_blank" rel="noopener">雪球 · 估值与量产计划</a>
+      </div>
+    </div>
+
+    <div class="src-group"><h4><span class="dot" style="background:var(--c6)"></span>⑥ 英伟达 Groq 3 LPX / Vera Rubin</h4>
+      <div class="src-list">
+        <a href="https://cd.nbd.com.cn/articles/2026-08-25/4554472.html" target="_blank" rel="noopener">每日经济新闻 · Groq 3 LPX 投产</a>
+        <a href="https://www.163.com/dy/article/L54VBO1E05198NMR.html" target="_blank" rel="noopener">网易 · AgentX 吞吐 30×</a>
+      </div>
+    </div>
+
+    <div class="src-group"><h4><span class="dot" style="background:var(--c1)"></span>⑦ OpenAI GPT-5.6 Sol 降价 + Codex</h4>
+      <div class="src-list">
+        <a href="https://www.163.com/dy/article/L55ILGD70514R9OJ.html" target="_blank" rel="noopener">网易 · GPT-5.6 Sol 降价 20%+</a>
+        <a href="https://new.qq.com/rain/a/20260825A0280T00" target="_blank" rel="noopener">腾讯新闻 · Codex 额度重置补偿</a>
+        <a href="https://www.laojinchuhai.com/en/insights/frontier-daily-2026-08-25" target="_blank" rel="noopener">老金出海 · Frontier Daily 8/25</a>
+      </div>
+    </div>
+
+    <div class="src-group"><h4><span class="dot" style="background:var(--c7)"></span>⑧ 微软 Agent Lightning v1.0 开源</h4>
+      <div class="src-list">
+        <a href="https://www.cnblogs.com/itech/p/22667102" target="_blank" rel="noopener">博客园 · Agent Lightning 解读</a>
+        <a href="https://github.com/microsoft/agent-lightning/releases/tag/v1.0.1" target="_blank" rel="noopener">GitHub · microsoft/agent-lightning v1.0.1</a>
+      </div>
+    </div>
+
+    <div class="src-group"><h4><span class="dot" style="background:var(--ink-3)"></span>补充事件 / 热榜来源</h4>
+      <div class="src-list">
+        <a href="https://www.cnblogs.com/itech/p/22646871" target="_blank" rel="noopener">博客园 · Claude 插件市场</a>
+        <a href="https://segmentfault.com/a/1190000048192661" target="_blank" rel="noopener">SegmentFault · claude-plugins-community</a>
+        <a href="https://www.guandian.cn/article/20260825/590487.html" target="_blank" rel="noopener">观点网 · Meta HATCH / Watermelon</a>
+        <a href="https://finance.sina.cn/2026-08-25/detail-inipnpyw9738511.d.html" target="_blank" rel="noopener">新浪财经 · Meta 消费 Agent</a>
+        <a href="https://www.cls.cn/detail/2462984" target="_blank" rel="noopener">财联社 · Meta HATCH 月费</a>
+        <a href="https://finance.eastmoney.com/a/202608253851928143.html" target="_blank" rel="noopener">东方财富 · Watermelon 模型</a>
+        <a href="https://www.toutiao.com/article/7677755092367360547" target="_blank" rel="noopener">今日头条 · DeepSeek V4-Flash-Vision-Exp</a>
+        <a href="https://www.163.com/dy/article/L54SF4PP05561FZK.html" target="_blank" rel="noopener">网易 · LongCat-2.0 开源</a>
+        <a href="https://juejin.cn/post/7677432175924510760" target="_blank" rel="noopener">掘金 · GitHub 今日热榜 8/25</a>
+        <a href="http://orangebot.ai/" target="_blank" rel="noopener">OrangeBot · AI Daily Trending</a>
+        <a href="https://smartotics.com/2026/08/2026-08-25-ai-daily-2026-08-25.html" target="_blank" rel="noopener">Smartotics · 2026-08-25 AI Daily</a>
+        <a href="https://tools.cooconsbit.com/en/intelligence/daily-intel-2026-08-25-en" target="_blank" rel="noopener">CooconsBit · Daily Intel 8/25</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    AI 与 GitHub 热门事件速报 · 2026-08-25 · 由自动化任务生成 · 浅色主题单文件 HTML · 链接均为检索实际命中来源<br>
+    覆盖窗口 08-23 ~ 08-25 · 下次执行：每日 09:00（automation-1786442828712）
+  </footer>
+</div>
+
+<script>
+  // 滚动进度条
+  var bar=document.getElementById('progress');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    var p=max>0?(h.scrollTop/max*100):0;
+    bar.style.width=p+'%';
+  }
+  document.addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+</script>
+</body>
+</html>

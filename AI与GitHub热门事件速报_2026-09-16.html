@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 与 GitHub 热门事件速报 · 2026-09-16</title>
+<style>
+  :root{
+    --bg:#f6f7f9;
+    --surface:#ffffff;
+    --surface-2:#f0f3f7;
+    --text:#1a1d23;
+    --muted:#5b6472;
+    --border:#e3e8ef;
+    --accent:#2563eb;
+    --accent-soft:#e8f0fe;
+    --gh:#1f6f43;
+    --gh-soft:#e6f4ec;
+    --warn:#b45309;
+    --warn-soft:#fdf2e3;
+    --cap:#7c3aed;
+    --cap-soft:#f1ebfd;
+    --shadow:0 1px 3px rgba(16,24,40,.06),0 1px 2px rgba(16,24,40,.04);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px;}
+
+  /* Top bar */
+  .topbar{
+    position:sticky;top:0;z-index:20;
+    background:rgba(246,247,249,.86);
+    backdrop-filter:saturate(140%) blur(8px);
+    border-bottom:1px solid var(--border);
+    margin:-28px -20px 28px;padding:14px 20px;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);}
+  .tag{font-size:12px;font-weight:600;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:3px 10px;border-radius:999px;}
+
+  /* Hero */
+  .hero{
+    background:linear-gradient(135deg,#ffffff 0%,#eef4ff 100%);
+    border:1px solid var(--border);border-radius:16px;padding:26px 28px;margin-bottom:22px;box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 6px;font-size:26px;letter-spacing:.3px;}
+  .hero .meta{color:var(--muted);font-size:13px;margin-bottom:14px;}
+  .hero p{margin:0;color:#2a2f3a;font-size:15px;}
+
+  /* KPI */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);}
+  .kpi .n{font-size:24px;font-weight:800;color:var(--accent);line-height:1.1;}
+  .kpi .l{font-size:12.5px;color:var(--muted);margin-top:6px;}
+  .kpi.gh .n{color:var(--gh);}
+  .kpi.cap .n{color:var(--cap);}
+  .kpi.warn .n{color:var(--warn);}
+
+  /* Section */
+  .sec{margin-bottom:30px;}
+  .sec-head{display:flex;align-items:center;gap:10px;margin:0 0 14px;}
+  .sec-head .bar{width:5px;height:20px;border-radius:3px;background:var(--accent);}
+  .sec-head h2{font-size:19px;margin:0;}
+  .sec-head .cnt{font-size:12px;color:var(--muted);background:var(--surface-2);padding:2px 9px;border-radius:999px;margin-left:4px;}
+  .sec.model .bar{background:var(--accent);}
+  .sec.gov .bar{background:var(--warn);}
+  .sec.cap .bar{background:var(--cap);}
+  .sec.gh .bar{background:var(--gh);}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:16px 18px;
+    box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;transition:transform .12s ease,border-color .12s ease;
+  }
+  .card:hover{transform:translateY(-2px);border-color:#c9d6ea;}
+  .card .h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .card .t{font-weight:700;font-size:15.5px;line-height:1.35;}
+  .card .d{font-size:11.5px;color:var(--muted);background:var(--surface-2);padding:2px 8px;border-radius:6px;white-space:nowrap;}
+  .card .src{font-size:11.5px;color:var(--muted);}
+  .card .desc{font-size:13.5px;color:#333a47;margin:0;}
+  .card .more{margin-top:auto;font-size:12.5px;font-weight:600;}
+
+  .badge{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:5px;margin-left:6px;vertical-align:middle;}
+  .b-new{background:var(--gh-soft);color:var(--gh);}
+  .b-hot{background:var(--warn-soft);color:var(--warn);}
+
+  /* Links */
+  .links{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);}
+  .links h2{margin:0 0 4px;font-size:19px;}
+  .links .sub{color:var(--muted);font-size:13px;margin:0 0 16px;}
+  .lg{margin-bottom:16px;}
+  .lg h3{font-size:14px;margin:0 0 8px;color:var(--accent);display:flex;align-items:center;gap:7px;}
+  .lg h3::before{content:"";width:7px;height:7px;border-radius:2px;background:var(--accent);}
+  .lg.gh h3{color:var(--gh);} .lg.gh h3::before{background:var(--gh);}
+  .lg.cap h3{color:var(--cap);} .lg.cap h3::before{background:var(--cap);}
+  .lg.gov h3{color:var(--warn);} .lg.gov h3::before{background:var(--warn);}
+  .lg ul{margin:0;padding-left:0;list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:6px 22px;}
+  .lg li{font-size:13px;padding:3px 0;border-bottom:1px dashed var(--border);}
+  .lg li span{color:var(--muted);}
+
+  footer{margin-top:34px;text-align:center;color:var(--muted);font-size:12px;}
+  .note{font-size:11.5px;color:var(--muted);margin-top:8px;}
+
+  @media(max-width:760px){
+    .kpis{grid-template-columns:repeat(2,1fr);}
+    .grid{grid-template-columns:1fr;}
+    .lg ul{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span>AI 与 GitHub 热门事件速报</div>
+    <div class="tag">每日更新 · 浅色版 · 2026-09-16</div>
+  </div>
+
+  <div class="hero">
+    <h1>AI 与 GitHub 热门事件速报</h1>
+    <div class="meta">覆盖区间：2026-09-01 ~ 2026-09-16 ｜ 生成时间：2026-09-16 12:30（当日刷新版）｜ 共 28 条高关注事件</div>
+    <p><strong>本期焦点：</strong>9 月大模型"军备竞赛"白热化——四大实验室 72 小时内连发 GPT-6 Astra、Claude Fable 5.1/Mythos 5.1、Gemini 3.8、Grok 4.7、DeepSeek V4.1-Flash 等旗舰；<strong>9/16 凌晨 Google 再推 Gemini 3.8 Live 实时语音模型</strong>，同日 OpenAI、Anthropic、Google DeepMind 罕见就 AI 安全协同标准磋商数周（Bloomberg / Reuters / TechCrunch），行业从"单纯竞争"转向"安全协作"。</p>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n">5+</div><div class="l">9 月前沿旗舰模型发布</div></div>
+    <div class="kpi gh"><div class="n">32k⭐</div><div class="l">GitHub 单日增长之星 colibri</div></div>
+    <div class="kpi cap"><div class="n">$12.93B</div><div class="l">英伟达收购 Hugging Face</div></div>
+    <div class="kpi warn"><div class="n">30+</div><div class="l">欧盟 AI 法案执法调查企业</div></div>
+  </div>
+
+  <!-- 1. 大模型 -->
+  <div class="sec model">
+    <div class="sec-head"><span class="bar"></span><h2>一、大模型密集上新</h2><span class="cnt">8 条</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="h"><div class="t">GPT-6 Astra<span class="badge b-hot">最热</span></div><div class="d">OpenAI · 9/3</div></div>
+        <div class="src">来源：The CODEW / ForkLog</div>
+        <p class="desc">OpenAI 定位"AGI 级"自主执行模型，使用超 10 万块 GPU 训练；定价 $10/$50 每百万 token，已触发关键网络防御阈值。经 Azure、AWS Bedrock 开放。</p>
+        <a class="more" href="https://www.thecodew.com/2026/09/ai-watch-september-14-2026-from-ai-models-to-infrastructure.html" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">Claude Fable 5.1 / Mythos 5.1</div><div class="d">Anthropic · 9/1</div></div>
+        <div class="src">来源：The CODEW / AI-Jarvis</div>
+        <p class="desc">性能翻倍、成本大降，主打企业数据合规（数据可留在客户自有云）；缓存读取价砍 75%。Mythos 面向可信安全/生命科学人员放宽护栏。</p>
+        <a class="more" href="https://www.ai-jarvis.eu/agentic-ai-arrived-month-and-europes-enforcement-powers-are-already-live" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">Claude Opus 5.2 灰度上线<span class="badge b-new">最新</span></div><div class="d">Anthropic · 9/16</div></div>
+        <div class="src">来源：腾讯研究院 AI 速递（搜狐）</div>
+        <p class="desc">开发者抓包发现 Claude Code 已路由至 Opus 5.2，跳过 5.1 直接灰度；实测生成更快、输出更精简，进入"持续自我迭代"循环。内部报告称 RSI 模型可替代研究团队 85% 工作。</p>
+        <a class="more" href="https://www.sohu.com/a/1076523476_455313" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">Gemini 3.8 Flash + Live<span class="badge b-new">最新</span></div><div class="d">Google · 9/2 + 9/16</div></div>
+        <div class="src">来源：今日头条 / Communeify / AI Museum</div>
+        <p class="desc">9/2 发 Flash 与 Flash Cyber；<strong>9/16 凌晨再推 Gemini 3.8 Live 与 Live Extended Thinking</strong> 原生语音模型，语音质量与代理语音榜双冠，支持后台推理与 97 种语言。</p>
+        <a class="more" href="https://www.toutiao.com/article/7685920558021624346/" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">Grok 4.7</div><div class="d">xAI · 9/12</div></div>
+        <div class="src">来源：今日头条（央广网）</div>
+        <p class="desc">参数规模达 2.1 万亿，较 Grok 4.6 的 1.5 万亿增长约 40%；马斯克称其在性能与效率上全面超越同类产品。</p>
+        <a class="more" href="https://www.toutiao.com/article/7685804642562851380/" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">DeepSeek V4.1-Flash</div><div class="d">DeepSeek · 9/10</div></div>
+        <div class="src">来源：今日头条（央广网）</div>
+        <p class="desc">依托全新 Causal Encoder–Decoder 架构，推理效率大幅提升；峰值 $0.30/$1.20 每百万 token，非峰值时再减半，开源路线延续。</p>
+        <a class="more" href="https://www.toutiao.com/article/7685804642562851380/" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">阶跃 StepAudio 3 / 生数 Vidu S2</div><div class="d">国产 · 9/15–16</div></div>
+        <div class="src">来源：腾讯研究院 AI 速递（搜狐）</div>
+        <p class="desc">阶跃 StepAudio 3 含 Realtime/ASR/TTS/Gen/Music 五模型，语音推理准确率 99.7% 全球第一；生数 Vidu S2 支持视频流实时换装/换背景，720P 实时输出。</p>
+        <a class="more" href="https://www.sohu.com/a/1076523476_455313" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">智象 HiDream-O1-Video-1.0</div><div class="d">智象未来 · 9/15</div></div>
+        <div class="src">来源：今日头条（钱江晚报）</div>
+        <p class="desc">首个原生全模态视频生成模型，工业级画质与长叙事领先；公司刚完成 15 亿元 C 轮，近三月累计融资超 21 亿元，跻身独角兽。</p>
+        <a class="more" href="https://www.toutiao.com/article/7685920558021624346/" target="_blank">阅读原文 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 安全治理 -->
+  <div class="sec gov">
+    <div class="sec-head"><span class="bar"></span><h2>二、安全与治理</h2><span class="cnt">5 条</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="h"><div class="t">三巨头罕见联手谈安全<span class="badge b-new">最新</span></div><div class="d">9/16</div></div>
+        <div class="src">来源：鉅亨网 / AI Museum</div>
+        <p class="desc">OpenAI 全球政策主管确认已与 Anthropic、Google DeepMind 就 AI 安全标准磋商数周，认为无需反垄断豁免；并支持跨党派独立验证先进模型的立法。</p>
+        <a class="more" href="https://news.cnyes.com/news/id/6607406" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">"踩刹车"呼声升温</div><div class="d">9 月</div></div>
+        <div class="src">来源：今日头条 / ForkLog</div>
+        <p class="desc">Anthropic CEO Dario Amodei 公开呼吁放慢提升模型能力速度；25 位菲尔兹奖得主联署表达对前沿模型风险的担忧，行业分歧明显。</p>
+        <a class="more" href="https://www.toutiao.com/article/7685804642562851380/" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">英伟达/Palantir 限制 Claude</div><div class="d">9 月</div></div>
+        <div class="src">来源：腾讯研究院 AI 速递（搜狐）</div>
+        <p class="desc">据 The Information，英伟达、Palantir、博思艾伦限制部分 Anthropic 模型使用，Palantir 要求"不可撤销的零数据留存"承诺，争议源于前沿模型默认保留 30 天数据。</p>
+        <a class="more" href="https://www.sohu.com/a/1076523476_455313" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">欧盟 AI 法案直接执法</div><div class="d">8/2 起</div></div>
+        <div class="src">来源：AI-Jarvis / The CODEW</div>
+        <p class="desc">欧洲 AI 办公室自 8/2 起停止依赖自愿准则、转为直接执法；9 月已对 30+ AI 企业启动安全与版权合规调查。</p>
+        <a class="more" href="https://www.ai-jarvis.eu/agentic-ai-arrived-month-and-europes-enforcement-powers-are-already-live" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">微软《Humanist AI 行为准则》</div><div class="d">9/16</div></div>
+        <div class="src">来源：AI Museum</div>
+        <p class="desc">微软 AI 发布征求意见稿，强调"人比 AI 重要"、模型须受人类控制；绝对禁止协助网络攻击、武器、深度伪造或规避监管。将指导后续 MAI 训练。</p>
+        <a class="more" href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank">阅读原文 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 资本 -->
+  <div class="sec cap">
+    <div class="sec-head"><span class="bar"></span><h2>三、资本与并购</h2><span class="cnt">7 条</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="h"><div class="t">英伟达 $12.93B 收购 Hugging Face</div><div class="d">9/11</div></div>
+        <div class="src">来源：The CODEW / BuildEZ</div>
+        <p class="desc">英伟达史上最大收购，将开源权重生态直接并入硬件巨头，重塑 AI 开发底座；PwC 预测至 2050 年全球 AI 基建资本开支达 $31.6 万亿。</p>
+        <a class="more" href="https://buildez.ai/blog/ai-trends-september-2026-shift" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">OpenAI $300M+ 收购 Glass Imaging</div><div class="d">9/14</div></div>
+        <div class="src">来源：The CODEW（Tech M&A）</div>
+        <p class="desc">WSJ 报道 OpenAI 收购由前 Apple Portrait Mode 工程师创办的视觉公司，加速消费设备计划（预计 2027 IPO）；相机成为设备理解物理世界的主输入。</p>
+        <a class="more" href="https://www.thecodew.com/2026/09/tech-ma-watch-september-15-2026-openai-glass-imaging.html" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">Anthropic IPO 拟募最高 $1000B</div><div class="d">9 月</div></div>
+        <div class="src">来源：今日头条 / Matterfact</div>
+        <p class="desc">Anthropic 计划 11 月前完成上市、估值约 $2 万亿；英伟达拟作为基石投资者投最多 $100 亿。另：OpenAI 因安全担忧宣布 2026 年不上市。</p>
+        <a class="more" href="https://www.toutiao.com/article/7685178733275185710/" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">智谱约 $5B 融资落定</div><div class="d">9/13</div></div>
+        <div class="src">来源：今日头条（界面新闻）</div>
+        <p class="desc">智谱完成约 50 亿美元融资，投入下一代 GLM 基础模型、完全自训练体系与算力基建；强调"递归式自我改进循环"与国产芯片适配。</p>
+        <a class="more" href="https://www.toutiao.com/article/7685178733275185710/" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">Mistral €3B / Cognition $2B@$48B</div><div class="d">9 月</div></div>
+        <div class="src">来源：Daily AI Brief / Matterfact</div>
+        <p class="desc">Mistral 融资约 30 亿欧元成欧洲最具价值 AI 初创；Cognition（Devin）以 $48B 估值完成 $2B 融资，年化收入近 $9 亿。</p>
+        <a class="more" href="https://dailyaibrief.com/newsletters/ai-funding-brief/2026-09-15-anthropic-drops-decart-deal-mistral-raises-3-billion-and-more-ai-funding-brief-82" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">ADI $1.35B 收购 Alif（端侧 AI）</div><div class="d">9/9–10</div></div>
+        <div class="src">来源：The CODEW（Tech M&A）</div>
+        <p class="desc">Analog Devices 以 13.5 亿美元（含 2 亿里程碑）收购边缘 AI 处理器公司 Alif，押注"AI 离开数据中心、进入物理系统"的端侧趋势。</p>
+        <a class="more" href="https://www.thecodew.com/2026/09/tech-ma-watch-september-15-2026-openai-glass-imaging.html" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">Temporal $550M@$12.6B</div><div class="d">9 月</div></div>
+        <div class="src">来源：The CODEW（Tech M&A）</div>
+        <p class="desc">Temporal 完成 5.5 亿美元融资，其开源软件帮助 AI Agent 从故障中恢复，已被 Cursor、Lovable 等采用——Agent 可靠性成为新基础设施热点。</p>
+        <a class="more" href="https://www.thecodew.com/2026/09/tech-ma-watch-september-15-2026-openai-glass-imaging.html" target="_blank">阅读原文 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. GitHub -->
+  <div class="sec gh">
+    <div class="sec-head"><span class="bar"></span><h2>四、GitHub 开源热点</h2><span class="cnt">8 条</span></div>
+    <div class="grid">
+      <div class="card">
+        <div class="h"><div class="t">colibri<span class="badge b-hot">日增 3.4k⭐</span></div><div class="d">C · ~32k⭐</div></div>
+        <div class="src">来源：Git Trending（9/15）</div>
+        <p class="desc">纯 C、零依赖引擎，把前沿 MoE 大模型流式从磁盘加载到消费级硬件运行——"小引擎，大模型"，本地推理需求爆发。</p>
+        <a class="more" href="https://git-trending-rank.github.io/post/trending-daily-2026-09-15" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">OpenMontage</div><div class="d">AI 视频 · ~32k⭐</div></div>
+        <div class="src">来源：尧图网络 Github 周刊</div>
+        <p class="desc">开源智能体视频制作系统，编排调研/脚本/素材/剪辑流水线，把 AI 编程助手变成完整视频工作室，本周霸榜。</p>
+        <a class="more" href="http://www.nshx.cn/news/9305" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">codebase-memory-mcp</div><div class="d">C · ~26k⭐</div></div>
+        <div class="src">来源：尧图网络 Github 周刊</div>
+        <p class="desc">高性能 MCP 服务器，用 tree-sitter AST 在 158 种语言中构建代码库持久知识图谱，亚毫秒查询，token 消耗降 99%。</p>
+        <a class="more" href="http://www.nshx.cn/news/9305" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">Tencent WeKnora / teamai-cli</div><div class="d">TS · ~37k⭐</div></div>
+        <div class="src">来源：Git Trending / GitTrend</div>
+        <p class="desc">WeKnora 开源 LLM 知识平台（RAG+自主推理 Agent+自维护 Wiki）；teamai-cli 让团队"AI 原生化"的命令行工具，腾讯双线入榜。</p>
+        <a class="more" href="https://git-trending-rank.github.io/post/trending-weekly-2026%E5%B9%B4%E7%AC%AC38%E5%91%A8" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">github/spec-kit</div><div class="d">JS · 新晋</div></div>
+        <div class="src">来源：Git Trending（第 38 周）</div>
+        <p class="desc">GitHub 官方工具包，帮助开发者快速上手 Spec-Driven Development（规格驱动开发），本周强势进入趋势榜。</p>
+        <a class="more" href="https://git-trending-rank.github.io/post/trending-weekly-2026%E5%B9%B4%E7%AC%AC38%E5%91%A8" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">no-ai-slop</div><div class="d">Python · ~2.4k⭐</div></div>
+        <div class="src">来源：Git Trending（第 38 周）</div>
+        <p class="desc">一键移除任意文本中 20+ 种 AI 套路写法，反映开发者对"AI 味"的集体反感，反 AI 生成文风工具走红。</p>
+        <a class="more" href="https://git-trending-rank.github.io/post/trending-weekly-2026%E5%B9%B4%E7%AC%AC38%E5%91%A8" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">TradingAgents</div><div class="d">Python · ~106k⭐</div></div>
+        <div class="src">来源：Git Trending（第 38 周）</div>
+        <p class="desc">多智能体 LLM 金融交易框架，本周新增近 3.4k⭐，多 Agent 协作做量化/交易决策成为热门方向。</p>
+        <a class="more" href="https://git-trending-rank.github.io/post/trending-weekly-2026%E5%B9%B4%E7%AC%AC38%E5%91%A8" target="_blank">阅读原文 →</a>
+      </div>
+      <div class="card">
+        <div class="h"><div class="t">alibaba/open-code-review</div><div class="d">Go · 日增 1.6k⭐</div></div>
+        <div class="src">来源：Git Trending（9/15）</div>
+        <p class="desc">阿里大规模验证的混合架构代码审查工具：确定性流水线 + LLM Agent，逐行精准评论，内置多语言规则集（NPE/线程安全/XSS/SQL 注入）。</p>
+        <a class="more" href="https://git-trending-rank.github.io/post/trending-daily-2026-09-15" target="_blank">阅读原文 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Links -->
+  <div class="links">
+    <h2>原文链接汇总</h2>
+    <p class="sub">以下均为检索实际命中的真实来源，按主题分组，可点击直达。</p>
+
+    <div class="lg model">
+      <h3>大模型上新</h3>
+      <ul>
+        <li><a href="https://www.thecodew.com/2026/09/ai-watch-september-14-2026-from-ai-models-to-infrastructure.html" target="_blank">The CODEW · AI Watch 9/14</a> <span>— GPT-6 Astra 等</span></li>
+        <li><a href="https://www.ai-jarvis.eu/agentic-ai-arrived-month-and-europes-enforcement-powers-are-already-live" target="_blank">AI-Jarvis · Agentic AI 月度观察</a> <span>— 四大模型价格战</span></li>
+        <li><a href="https://www.toutiao.com/article/7685920558021624346/" target="_blank">今日头条 · 谷歌推 Gemini 3.8</a> <span>— 9/16 实时语音</span></li>
+        <li><a href="https://www.sohu.com/a/1076523476_455313" target="_blank">搜狐 · 腾讯研究院 AI 速递 9/16</a> <span>— Opus 5.2 / 阶跃 / 生数</span></li>
+        <li><a href="https://www.toutiao.com/article/7685804642562851380/" target="_blank">今日头条 · 大模型十万卡时代</a> <span>— Grok 4.7 / DeepSeek</span></li>
+        <li><a href="https://www.communeify.com/tw/blog/ai-daily-latest/" target="_blank">Communeify · AI 日报 9/16</a> <span>— Gemini 3.8 Live / K2 / Jev</span></li>
+        <li><a href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank">AI Museum · AI news 9/16</a> <span>— 当日综合</span></li>
+        <li><a href="https://forklog.com/en/why-frontier-ai-models-no-longer-impress/" target="_blank">ForkLog · 前沿模型为何不再惊艳</a> <span>— 行业反思</span></li>
+      </ul>
+    </div>
+
+    <div class="lg gov">
+      <h3>安全与治理</h3>
+      <ul>
+        <li><a href="https://news.cnyes.com/news/id/6607406" target="_blank">鉅亨网 · 三巨头安全协作</a> <span>— OpenAI+Anthropic+Google</span></li>
+        <li><a href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank">AI Museum · 9/16 安全动态</a> <span>— 微软准则 / Meta One</span></li>
+        <li><a href="https://www.ai-jarvis.eu/agentic-ai-arrived-month-and-europes-enforcement-powers-are-already-live" target="_blank">AI-Jarvis · 欧盟执法</a> <span>— AI 法案落地</span></li>
+        <li><a href="https://www.infotech.com/software-reviews/vendor-technology-notes/big-5-ai-vendor-roundup-week-of-september-7-2026" target="_blank">Info-Tech · Big 5 周报</a> <span>— Anthropic 事件与监管</span></li>
+        <li><a href="https://www.toutiao.com/article/7685178733275185710/" target="_blank">今日头条 · AI 早报 9/14</a> <span>— Anthropic 放缓 / OpenAI 不上市</span></li>
+      </ul>
+    </div>
+
+    <div class="lg cap">
+      <h3>资本与并购</h3>
+      <ul>
+        <li><a href="https://www.thecodew.com/2026/09/tech-ma-watch-september-15-2026-openai-glass-imaging.html" target="_blank">The CODEW · Tech M&A 9/15</a> <span>— Glass Imaging / ADI / Temporal</span></li>
+        <li><a href="https://buildez.ai/blog/ai-trends-september-2026-shift" target="_blank">BuildEZ · 9 月 AI 趋势</a> <span>— 英伟达收购 HF</span></li>
+        <li><a href="https://dailyaibrief.com/newsletters/ai-funding-brief/2026-09-15-anthropic-drops-decart-deal-mistral-raises-3-billion-and-more-ai-funding-brief-82" target="_blank">Daily AI Brief · Funding #82</a> <span>— Mistral / Cognition</span></li>
+        <li><a href="https://www.matterfact.com/newsletter/2026-09-14-the-raise-reactors-tunnels-europe" target="_blank">Matterfact · The Raise 9/14</a> <span>— Anthropic IPO / Decart 告吹</span></li>
+        <li><a href="https://www.toutiao.com/article/7685178733275185710/" target="_blank">今日头条 · AI 早报 9/14</a> <span>— 智谱 $5B / Anthropic IPO</span></li>
+      </ul>
+    </div>
+
+    <div class="lg gh">
+      <h3>GitHub 开源热点</h3>
+      <ul>
+        <li><a href="https://git-trending-rank.github.io/post/trending-weekly-2026%E5%B9%B4%E7%AC%AC38%E5%91%A8" target="_blank">Git Trending Rank · 第 38 周</a> <span>— 周榜总览</span></li>
+        <li><a href="https://git-trending-rank.github.io/post/trending-daily-2026-09-15" target="_blank">Git Trending Rank · 9/15 日榜</a> <span>— colibri / 阿里等</span></li>
+        <li><a href="http://www.nshx.cn/news/9305" target="_blank">尧图网络 · Github 周刊 W27</a> <span>— OpenMontage / MCP</span></li>
+        <li><a href="https://gittrend.top/blogs/weekly-ai-agents-and-development-tools-dominate-new-entries-week-of-september-14-2026" target="_blank">GitTrend · 9/14 周报</a> <span>— Agent 工具主导</span></li>
+        <li><a href="https://www.vgover.com/news/235658" target="_blank">电玩帮 · 本周最火 5 项目</a> <span>— i-have-adhd 等</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div>AI 与 GitHub 热门事件速报 · 自动化生成 · 2026-09-16（当日刷新版，含 9/16 最新实时语音模型与三巨头安全协作）</div>
+    <div class="note">说明：事件热度与关注度依据多源公开报道与 GitHub Trending 综合判断；链接均为检索实际命中来源，未使用占位或编造 URL。</div>
+  </footer>
+
+</div>
+</body>
+</html>

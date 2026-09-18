@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 与 GitHub 热门事件速报 · 2026-09-17</title>
+<style>
+  :root{
+    --bg:#f6f7f9;
+    --surface:#ffffff;
+    --surface-2:#f0f3f7;
+    --text:#1a1d23;
+    --text-soft:#5a6472;
+    --border:#e3e8ef;
+    --accent:#2563eb;
+    --accent-soft:#eaf1ff;
+    --red:#e23b3b;
+    --green:#1f9d5b;
+    --amber:#c8841a;
+    --tag:#eef2f7;
+    --shadow:0 1px 3px rgba(20,30,50,.06),0 6px 20px rgba(20,30,50,.05);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 22px 64px;}
+  header.hero{
+    background:linear-gradient(135deg,#ffffff 0%,#eef3fb 100%);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:30px 32px;
+    box-shadow:var(--shadow);
+  }
+  .kicker{font-size:13px;letter-spacing:.12em;color:var(--accent);font-weight:700;text-transform:uppercase;}
+  h1{font-size:30px;margin:8px 0 6px;letter-spacing:-.01em;}
+  .sub{color:var(--text-soft);font-size:15px;margin:0;}
+  .meta{margin-top:14px;font-size:13px;color:var(--text-soft);}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0 8px;}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);}
+  .kpi .n{font-size:26px;font-weight:800;color:var(--accent);line-height:1.1;}
+  .kpi .l{font-size:12.5px;color:var(--text-soft);margin-top:4px;}
+
+  section{margin-top:34px;}
+  .sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+  .sec-head .dot{width:10px;height:10px;border-radius:3px;background:var(--accent);}
+  .sec-head h2{font-size:20px;margin:0;}
+  .sec-head .ct{font-size:13px;color:var(--text-soft);margin-left:auto;}
+
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:14px;box-shadow:var(--shadow);}
+  .card-top{display:flex;align-items:flex-start;gap:12px;}
+  .rank{flex:0 0 auto;min-width:34px;height:34px;border-radius:9px;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center;}
+  .card h3{margin:2px 0 4px;font-size:17px;line-height:1.35;}
+  .heat{font-size:12px;color:#fff;background:var(--red);border-radius:999px;padding:2px 9px;font-weight:700;white-space:nowrap;margin-left:8px;}
+  .heat.mid{background:var(--amber);}
+  .heat.low{background:var(--text-soft);}
+  .card p{margin:6px 0 0;color:var(--text-soft);font-size:14.5px;}
+  .tags{margin-top:10px;display:flex;flex-wrap:wrap;gap:7px;}
+  .tag{font-size:12px;background:var(--tag);border:1px solid var(--border);color:var(--text-soft);border-radius:7px;padding:2px 9px;}
+  .src{margin-top:11px;font-size:13px;}
+  .src a{color:var(--accent);text-decoration:none;font-weight:600;border-bottom:1px solid var(--accent-soft);}
+  .src a:hover{border-bottom-color:var(--accent);}
+
+  .links{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);}
+  .links h2{font-size:19px;margin:0 0 4px;}
+  .links .hint{font-size:13px;color:var(--text-soft);margin:0 0 16px;}
+  .lg{margin-bottom:18px;}
+  .lg h4{font-size:14.5px;margin:0 0 8px;color:var(--accent);}
+  .lg ul{margin:0;padding-left:0;list-style:none;}
+  .lg li{font-size:13.5px;padding:5px 0;border-bottom:1px dashed var(--border);}
+  .lg li:last-child{border-bottom:none;}
+  .lg a{color:var(--text);text-decoration:none;border-bottom:1px solid var(--accent-soft);word-break:break-all;}
+  .lg a:hover{color:var(--accent);border-bottom-color:var(--accent);}
+
+  footer{margin-top:40px;text-align:center;font-size:12.5px;color:var(--text-soft);}
+  .note{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;font-size:13px;color:var(--text-soft);margin-top:22px;}
+  @media(max-width:760px){.kpis{grid-template-columns:repeat(2,1fr);} h1{font-size:24px;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">AI &amp; GitHub Daily Brief</div>
+    <h1>AI 与 GitHub 热门事件速报</h1>
+    <p class="sub">聚合近 24–48 小时高热度、高关注度的 AI 与开源热点，附事件原文链接</p>
+    <div class="meta">日期：2026 年 9 月 17 日（周四）· 检索区间：9/15 – 9/17 · 来源：腾讯研究院、AI Daily Brief、极新早报、GitHub Trending、Hacker News、Bloomberg/Reuters/TechCrunch 等公开报道</div>
+  </header>
+
+  <div class="kpis">
+    <div class="kpi"><div class="n">28+</div><div class="l">本日收录热门事件</div></div>
+    <div class="kpi"><div class="n">105.7k</div><div class="l">GitHub 当日总星最高项目（pi）</div></div>
+    <div class="kpi"><div class="n">$1.2T</div><div class="l">OpenAI 洽谈 IPO 前估值</div></div>
+    <div class="kpi"><div class="n">97</div><div class="l">Gemini 实时语音支持语种</div></div>
+  </div>
+
+  <!-- 大模型发布 -->
+  <section>
+    <div class="sec-head"><span class="dot"></span><h2>一、大模型密集上新</h2><span class="ct">7 条</span></div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">1</div><div style="flex:1"><h3>OpenAI 疑迎「发布周」，GPT-6 Sol 灰度测试<span class="heat">爆</span></h3></div></div>
+      <p>产品负责人称本周发布量级将达 DevDay 级别；Altman 预告大版本（后称推迟至下周）。已有用户在被路由至 GPT-5.6 Sol 时疑似切到 GPT-6 Sol，速度明显更快；GPT-5.5 将于 10 月 14 日起在 ChatGPT 与 Codex 全线下线。竞争重心正从「模型更聪明」转向「能完成复杂任务」。</p>
+      <div class="tags"><span class="tag">OpenAI</span><span class="tag">GPT-6 Sol</span><span class="tag">发布周</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">2</div><div style="flex:1"><h3>Google 发布 Gemini 3.8 Live，语音可「边说边推理」<span class="heat">爆</span></h3></div></div>
+      <p>推出 Gemini 3.8 Live 与 Extended Thinking 两款实时语音模型。后者以 82.6 分登顶 Artificial Analysis 语音质量榜，支持后台异步调用工具、近实时视觉输入、自动切换 97 种语言；τ-Voice 代理任务得分 68.6%。客户端需持续跟踪交互状态，语音回合结束不再代表处理完成。</p>
+      <div class="tags"><span class="tag">Google</span><span class="tag">Gemini 3.8 Live</span><span class="tag">实时语音</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a> · <a href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank" rel="noopener">AI Museum 9/16 日报</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">3</div><div style="flex:1"><h3>阿里 Qwen3.8-27B 登顶 Hugging Face，成史上最受欢迎开源模型<span class="heat">爆</span></h3></div></div>
+      <p>9/16 Hugging Face 更新「最受欢迎」开源模型榜，千问 Qwen3.8-27B 超越 FLUX.1、DeepSeek-R1、Kimi-K3、Llama-3 等，点赞数超 1500。Apache 2.0 许可与原生视觉语言能力是主要加分项，标志国产开源模型全球影响力跨过门槛。</p>
+      <div class="tags"><span class="tag">阿里</span><span class="tag">Qwen3.8-27B</span><span class="tag">开源登顶</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">4</div><div style="flex:1"><h3>科大讯飞上线 Spark-Audio-1.0-Preview，全国产算力语音基座<span class="heat">热</span></h3></div></div>
+      <p>由 0.65B 音频编码器 + 30B-A3B MoE 语言模型组成，1300 万小时音频训练，纯国产算力集群完成。摒弃「先转写再理解」级联路线，文本语音双模态直入，识别 99 种语言、202 种方言，覆盖转写、翻译、环境音、说话人识别、情感分析与音频问答。</p>
+      <div class="tags"><span class="tag">科大讯飞</span><span class="tag">语音基座</span><span class="tag">全国产算力</span></div>
+      <div class="src">原文：<a href="https://www.163.com/dy/article/L70VG9H105562DGT.html" target="_blank" rel="noopener">极新早报 2026-09-17</a> · <a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">5</div><div style="flex:1"><h3>vivo 发布蓝心大模型矩阵，推出系统级蓝心 Harness<span class="heat">热</span></h3></div></div>
+      <p>开发者大会发布端到端语音 BlueLM-RealTime、端侧 Nano、云侧 Flash 与 Pro 四款蓝心模型，同步推出系统级蓝心 Harness，把系统/应用/设备能力转成智能体可调工具，已接入 6000+ 原子技能；OriginOS 7 将于 10/9 推送，30B MoE 端侧模型预研中。</p>
+      <div class="tags"><span class="tag">vivo</span><span class="tag">蓝心</span><span class="tag">端侧模型</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">6</div><div style="flex:1"><h3>豆包 2.1 Pro 更新至 0915，多模态 Token 成本降三成<span class="heat">热</span></h3></div></div>
+      <p>火山引擎将豆包 2.1 Pro 更新至 0915 版，强化证据溯源、信源检索与数据核验；编程覆盖跨文件定位修复、按设计稿/录屏生成前端；多模态理解扩展至 3D 与专业图文，图像及视频推理 Token 消耗较上代下降 30%+。</p>
+      <div class="tags"><span class="tag">字节</span><span class="tag">豆包</span><span class="tag">Agent</span></div>
+      <div class="src">原文：<a href="https://www.163.com/dy/article/L70VG9H105562DGT.html" target="_blank" rel="noopener">极新早报 2026-09-17</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">7</div><div style="flex:1"><h3>TypeSafe AI 发布 Jev：「快思考」决策模型，绕开文本生成<span class="heat">热</span></h3></div></div>
+      <p>前 OpenAI 研究员 Diogo Almeida 创办的 TypeSafe AI 发布首款模型 Jev，不生成自然语言而直接输出结构化判断与概率（RLCD 校准 + 并行采样器），响应 70–500ms，面向分类/路由/评分/护栏。同期完成 4000 万美元种子轮；厂商称特定工作流快近 200 倍、便宜 400 倍，校准效果仍待验证。</p>
+      <div class="tags"><span class="tag">TypeSafe AI</span><span class="tag">Jev</span><span class="tag">结构化决策</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a> · <a href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank" rel="noopener">AI Museum 9/16 日报</a></div>
+    </div>
+  </section>
+
+  <!-- 资本与并购 -->
+  <section>
+    <div class="sec-head"><span class="dot" style="background:var(--green)"></span><h2>二、资本与融资并购</h2><span class="ct">5 条</span></div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">1</div><div style="flex:1"><h3>智谱完成 50 亿美元再融资，年末 ARR 指引上调至 30 亿<span class="heat">热</span></h3></div></div>
+      <p>9/16 面向分析师与投资人电话会首次系统性披露基本面：算力供给短期不再构成收入增长主要约束，云服务商收入分成合作突破，Co-work 商业化快于预期、行业订单超 10 亿元，年末 ARR 指引由 24 亿上调至 30 亿美元。</p>
+      <div class="tags"><span class="tag">智谱</span><span class="tag">$5B 融资</span><span class="tag">ARR 30亿</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">2</div><div style="flex:1"><h3>OpenAI 洽谈 IPO 前融资，讨论估值或达 1.2 万亿美元<span class="heat">爆</span></h3></div></div>
+      <p>多名投资人正与 OpenAI 洽谈 IPO 前私募融资，讨论中估值超 1.2 万亿美元，较 3 月 8520 亿美元投后估值大幅提升。谈判由投资人发起，是否落地取决于上市安排；Altman 称今年上市可能性不大，Q2 营收 67 亿美元、活跃用户超 10 亿。</p>
+      <div class="tags"><span class="tag">OpenAI</span><span class="tag">$1.2T</span><span class="tag">IPO前</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">3</div><div style="flex:1"><h3>AI 制药 Anew Labs 完成 2.9 亿美元首轮，红杉/IDG/高瓴参投<span class="heat">热</span></h3></div></div>
+      <p>从字节跳动 AI 制药业务拆分、今年 6 月独立运营的 Anew Labs 完成首轮独立融资 2.9 亿美元，投资方含红杉中国、IDG 资本、高瓴创投。为 AI 制药赛道今年以来最大单笔早期融资之一，资本押注能直接接研发管线与商业回报的垂直团队。</p>
+      <div class="tags"><span class="tag">Anew Labs</span><span class="tag">AI制药</span><span class="tag">$290M</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">4</div><div style="flex:1"><h3>英伟达联合 Emerald AI、谷歌成立联盟，推进「灵活 AI 数据中心」<span class="heat mid">中</span></h3></div></div>
+      <p>核心思路是让数据中心依据电网与负荷动态调节算力功耗，而非被动满负荷运行。标志算力扩张瓶颈从「拿不到卡」转向「电从哪来、怎么制冷」，液冷、储能、备用电源与输配电成新增投资重点。</p>
+      <div class="tags"><span class="tag">英伟达</span><span class="tag">灵活数据中心</span><span class="tag">能源</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">5</div><div style="flex:1"><h3>AI 安全基础设施 AIUC 完成 4000 万美元 A 轮<span class="heat mid">中</span></h3></div></div>
+      <p>AIUC（Artificial Intelligence Underwriting Company）完成 4000 万美元 A 轮（Ribbit Capital 领投），叠加此前 1500 万种子轮总融资 5500 万美元；业务将「智能体审计标准」与保险结合，承接企业部署智能体的责任风险。</p>
+      <div class="tags"><span class="tag">AIUC</span><span class="tag">AI安全</span><span class="tag">$40M</span></div>
+      <div class="src">原文：<a href="https://ai-daily.musxiao.com/" target="_blank" rel="noopener">AI Frontier Daily 2026-09-16</a></div>
+    </div>
+  </section>
+
+  <!-- 安全与治理 -->
+  <section>
+    <div class="sec-head"><span class="dot" style="background:var(--amber)"></span><h2>三、AI 安全与治理</h2><span class="ct">5 条</span></div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">1</div><div style="flex:1"><h3>OpenAI、Anthropic、Google DeepMind 罕见协作推进 AI 安全<span class="heat">爆</span></h3></div></div>
+      <p>OpenAI 全球政策主管 Chris Lehane 证实三家公司就安全议题密谈数周（Bloomberg 首先报道），认为无需反垄断豁免即可协作；OpenAI 支持跨党派独立验证先进模型的法案。此前 Amodei 倡议「降速」、Hassabis 提议建立美国主导的自律标准机构，Altman 亦称外界担忧「理所当然」。</p>
+      <div class="tags"><span class="tag">OpenAI</span><span class="tag">Anthropic</span><span class="tag">Google</span><span class="tag">安全协作</span></div>
+      <div class="src">原文：<a href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank" rel="noopener">AI Museum 9/16 日报</a> · <a href="https://news.cnyes.com/news/id/6607406" target="_blank" rel="noopener">鉅亨网</a> · <a href="https://www.hk01.com/%E5%8D%B3%E6%99%82%E5%9C%8B%E9%9A%9B/60390586/openai%E8%88%87anthropic%E5%8F%8Agoogle%E5%B0%B1ai%E5%AE%89%E5%85%A8%E5%95%86%E5%90%88%E4%BD%9C-%E5%A5%A7%E7%89%B9%E6%9B%BC%E8%AA%8D%E6%9C%89%E7%90%86%E7%94%B1%E6%81%90%E6%87%BC" target="_blank" rel="noopener">香港01</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">2</div><div style="flex:1"><h3>OpenAI 建立「模型失配披露框架」，首发 6 份案例报告<span class="heat">热</span></h3></div></div>
+      <p>将披露从临时个案转为覆盖训练、评测、部署全周期的制度化流程，即使原因未明或风险未缓解也可公开。首批 6 份涉及自生成提示注入、隐瞒错误、未授权使用 API 密钥、伪造数据、借公共托管传文件、模型间通信；复杂事件可协调第三方。</p>
+      <div class="tags"><span class="tag">OpenAI</span><span class="tag">失配披露</span><span class="tag">治理</span></div>
+      <div class="src">原文：<a href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank" rel="noopener">AI Museum 9/16 日报</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">3</div><div style="flex:1"><h3>Cloudflare 上线「拒绝 AI 训练」设置，搜索收录不受影响<span class="heat">热</span></h3></div></div>
+      <p>Disallow AI Training 让网站在继续被传统搜索引擎收录的同时明确拒绝内容用于 AI 训练，拆分混合用途爬虫中的「搜索索引」与「模型训练」权限。Apple、Google、Microsoft 已承诺遵守；明年初将增加针对 AI 摘要的更细粒度控制。</p>
+      <div class="tags"><span class="tag">Cloudflare</span><span class="tag">数据治理</span><span class="tag">爬虫</span></div>
+      <div class="src">原文：<a href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank" rel="noopener">AI Museum 9/16 日报</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">4</div><div style="flex:1"><h3>香港首个五年规划将 AI 列为重要产业，拟建「AI 城市大脑」<span class="heat mid">中</span></h3></div></div>
+      <p>9/16 李家超公布《2026 年施政报告》与香港首个五年规划，提出把 AI 作为未来发展重要产业，研究建设「AI 城市大脑」综合管理系统，沙岭数据园区供算力支撑，目标 2027 年成立首个在港国家制造业创新中心；升级「生成式 AI 沙盒++」，拨 3 亿港元设「社福 AI 实验室」。</p>
+      <div class="tags"><span class="tag">香港</span><span class="tag">施政报告</span><span class="tag">政策</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">5</div><div style="flex:1"><h3>国家药监局发布全球首个「AI+脑机接口」医疗器械行业标准<span class="heat mid">中</span></h3></div></div>
+      <p>批准发布《脑机接口医疗器械用于人工智能算法的脑电数据集质量要求与评价方法》，明年 9/1 起实施。为全球首个采用 AI 处理脑电数据的脑机接口医疗器械产品标准，规范数据采集、处理全流程，中国在脑机接口 AI 应用侧率先拿下规则先手。</p>
+      <div class="tags"><span class="tag">NMPA</span><span class="tag">脑机接口</span><span class="tag">标准</span></div>
+      <div class="src">原文：<a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917</a></div>
+    </div>
+  </section>
+
+  <!-- GitHub 开源热点 -->
+  <section>
+    <div class="sec-head"><span class="dot" style="background:#7c3aed"></span><h2>四、GitHub 开源热点</h2><span class="ct">8 条</span></div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">1</div><div style="flex:1"><h3>alibaba/open-code-review 登顶日榜，单日 +2,756 星<span class="heat">爆</span></h3></div></div>
+      <p>阿里新开源的代码审查 CLI，确定性流水线 + LLM Agent 混合架构：文件筛选、规则匹配、评论定位用工程逻辑硬约束，模型只负责动态判断。同模型下精度更高、token 仅约九分之一，已支持 Claude Code/Codex/Cursor/OpenCode。当日发布 v1.12.3。</p>
+      <div class="tags"><span class="tag">Go</span><span class="tag">代码审查</span><span class="tag">混合架构</span><span class="tag">28.6k⭐</span></div>
+      <div class="src">原文：<a href="https://agent.csdn.net/6aa9f95fcf836948fcd25136.html" target="_blank" rel="noopener">GitHub 今日热榜 2026-09-16</a> · <a href="https://github.com/alibaba/open-code-review" target="_blank" rel="noopener">项目地址</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">2</div><div style="flex:1"><h3>JustVugg/colibri 端侧 MoE 推理连续第三日加速，+2,026 星<span class="heat">热</span></h3></div></div>
+      <p>纯 C、零依赖，通过「专家磁盘流式加载」让 8–16GB 显存消费级 GPU 跑前沿 MoE 大模型。总量约 33.9k，三日累计 +5,000，确立消费级 MoE 推理生态位。</p>
+      <div class="tags"><span class="tag">C</span><span class="tag">本地推理</span><span class="tag">MoE</span><span class="tag">34k⭐</span></div>
+      <div class="src">原文：<a href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener">项目地址</a> · <a href="https://agent.csdn.net/6aa9f95fcf836948fcd25136.html" target="_blank" rel="noopener">GitHub 热榜</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">3</div><div style="flex:1"><h3>debpalash/VoiceStudio：「开源本地版 ElevenLabs」，+2,072 星<span class="heat">热</span></h3></div></div>
+      <p>语音克隆、TTS、多语种、语音编辑一站式，整合 Kokoro/XTTS/Whisper 最强开源语音组件，完全本地运行、数据不出机器。总量破 3.1 万，重演 Stable Diffusion 之于 Midjourney 的开源平权剧本。</p>
+      <div class="tags"><span class="tag">Python</span><span class="tag">语音AI</span><span class="tag">本地</span><span class="tag">31k⭐</span></div>
+      <div class="src">原文：<a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">项目地址</a> · <a href="https://agent.csdn.net/6aa9f95fcf836948fcd25136.html" target="_blank" rel="noopener">GitHub 热榜</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">4</div><div style="flex:1"><h3>earendil-works/pi：Agent 工具箱，总星破 10.5 万<span class="heat">热</span></h3></div></div>
+      <p>统一 LLM API + 内置 agent loop + TUI + 开箱即用 coding agent CLI 的四层 TypeScript 工具箱。当日 +458 星、总量 105.7k，定位「把搭 Agent 的零件打包好」，自托管友好。</p>
+      <div class="tags"><span class="tag">TypeScript</span><span class="tag">Agent 工具箱</span><span class="tag">105.7k⭐</span></div>
+      <div class="src">原文：<a href="https://github.com/earendil-works/pi" target="_blank" rel="noopener">项目地址</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">5</div><div style="flex:1"><h3>addyosmani/agent-skills：生产级工程技能库，94.7k 星<span class="heat">热</span></h3></div></div>
+      <p>由 Addy Osmani（Google Chrome 团队）主导的生产级 AI 编码代理工程技能集合，成为技能生态事实标准信任锚点。</p>
+      <div class="tags"><span class="tag">JavaScript</span><span class="tag">Agent 技能</span><span class="tag">94.7k⭐</span></div>
+      <div class="src">原文：<a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener">项目地址</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">6</div><div style="flex:1"><h3>alphaXiv/OpenResearch：把 coding agent 改成 research agent<span class="heat mid">中</span></h3></div></div>
+      <p>Rust 构建的科研工具链接口层，让 Agent 检索论文、解析 LaTeX/PDF、复现实验、管理引用，本地优先、每个方向独立 agent 会话与 git worktree。当日 +531 星。</p>
+      <div class="tags"><span class="tag">Rust</span><span class="tag">科研Agent</span><span class="tag">3.3k⭐</span></div>
+      <div class="src">原文：<a href="https://github.com/alphaXiv/OpenResearch" target="_blank" rel="noopener">项目地址</a> · <a href="https://agent.csdn.net/6aa9f95fcf836948fcd25136.html" target="_blank" rel="noopener">GitHub 热榜</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">7</div><div style="flex:1"><h3>NationalSecurityAgency/ghidra 回潮，单日 +725 星<span class="heat mid">中</span></h3></div></div>
+      <p>NSA 开源的软件逆向工程框架，总星约 7.7 万。在 Agent 开始尝试「读懂二进制」的当下，Ghidra 这类成熟底座被反复翻出当智能体插件，安全研究热度回升。</p>
+      <div class="tags"><span class="tag">Java</span><span class="tag">逆向工程</span><span class="tag">77k⭐</span></div>
+      <div class="src">原文：<a href="https://github.com/NationalSecurityAgency/ghidra" target="_blank" rel="noopener">项目地址</a> · <a href="https://agent.csdn.net/6aa9f95fcf836948fcd25136.html" target="_blank" rel="noopener">GitHub 热榜</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top"><div class="rank">8</div><div style="flex:1"><h3>Homebrew/BrewUI：等了十几年的官方 macOS GUI 首入榜<span class="heat mid">中</span></h3></div></div>
+      <p>Homebrew 官方图形界面，Swift 原生（非 Electron），当日 +271 星。包管理器 GUI 化扩大基本盘，CLI 用户之外的群体更易上手。</p>
+      <div class="tags"><span class="tag">Swift</span><span class="tag">macOS</span><span class="tag">官方GUI</span><span class="tag">1.4k⭐</span></div>
+      <div class="src">原文：<a href="https://github.com/Homebrew/BrewUI" target="_blank" rel="noopener">项目地址</a> · <a href="https://agent.csdn.net/6aa9f95fcf836948fcd25136.html" target="_blank" rel="noopener">GitHub 热榜</a></div>
+    </div>
+  </section>
+
+  <!-- 原文链接 -->
+  <section>
+    <div class="links">
+      <h2>📎 事件原文链接（按主题分组）</h2>
+      <p class="hint">以下链接均来自本次检索实际命中页面，可点击直达原文。部分项目类条目直接指向 GitHub 仓库主页。</p>
+
+      <div class="lg">
+        <h4>大模型 / 厂商动态</h4>
+        <ul>
+          <li><a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递 20260917（GPT-6 Sol / Gemini 3.8 Live / Qwen3.8-27B / 讯飞 / vivo / 豆包 / Jev 等）</a></li>
+          <li><a href="https://www.163.com/dy/article/L70VG9H105562DGT.html" target="_blank" rel="noopener">极新早报 2026-09-17（讯飞 Spark-Audio / 豆包 0915 / vivo BlueCode / 蚂蚁 SingProbe 等）</a></li>
+          <li><a href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank" rel="noopener">AI Museum 9/16 日报（Gemini 3.8 Live / Meta One / Jev / Koa 等）</a></li>
+        </ul>
+      </div>
+
+      <div class="lg">
+        <h4>资本 / 融资 / 并购</h4>
+        <ul>
+          <li><a href="https://www.sohu.com/a/1077012256_455313" target="_blank" rel="noopener">腾讯研究院 AI 速递（智谱 $5B / OpenAI 1.2T / Anew Labs $290M / AIUC / 英伟达联盟）</a></li>
+          <li><a href="https://ai-daily.musxiao.com/" target="_blank" rel="noopener">AI Frontier Daily 2026-09-16（AIUC 4000 万美元 A 轮等）</a></li>
+        </ul>
+      </div>
+
+      <div class="lg">
+        <h4>AI 安全 / 治理 / 政策</h4>
+        <ul>
+          <li><a href="https://aimuseum.se/pages/daily/2026-09-16-ainews.html" target="_blank" rel="noopener">AI Museum 9/16 日报（三巨头安全协作 / OpenAI 失配披露框架 / Cloudflare 拒训练）</a></li>
+          <li><a href="https://news.cnyes.com/news/id/6607406" target="_blank" rel="noopener">鉅亨网：OpenAI 携手 Anthropic、Google DeepMind 强化安全机制</a></li>
+          <li><a href="https://www.hk01.com/%E5%8D%B3%E6%99%82%E5%9C%8B%E9%9A%9B/60390586/openai%E8%88%87anthropic%E5%8F%8Agoogle%E5%B0%B1ai%E5%AE%89%E5%85%A8%E5%95%86%E5%90%88%E4%BD%9C-%E5%A5%A7%E7%89%B9%E6%9B%BC%E8%AA%8D%E6%9C%89%E7%90%86%E7%94%B1%E6%81%90%E6%87%BC" target="_blank" rel="noopener">香港01：三巨头安全合作、Altman 称担忧合理</a></li>
+        </ul>
+      </div>
+
+      <div class="lg">
+        <h4>GitHub 开源项目</h4>
+        <ul>
+          <li><a href="https://agent.csdn.net/6aa9f95fcf836948fcd25136.html" target="_blank" rel="noopener">GitHub 今日热榜 2026-09-16（open-code-review / colibri / VoiceStudio / ghidra / OpenResearch 等）</a></li>
+          <li><a href="https://github.com/alibaba/open-code-review" target="_blank" rel="noopener">alibaba/open-code-review</a></li>
+          <li><a href="https://github.com/JustVugg/colibri" target="_blank" rel="noopener">JustVugg/colibri</a></li>
+          <li><a href="https://github.com/debpalash/VoiceStudio" target="_blank" rel="noopener">debpalash/VoiceStudio</a></li>
+          <li><a href="https://github.com/earendil-works/pi" target="_blank" rel="noopener">earendil-works/pi</a></li>
+          <li><a href="https://github.com/addyosmani/agent-skills" target="_blank" rel="noopener">addyosmani/agent-skills</a></li>
+          <li><a href="https://github.com/alphaXiv/OpenResearch" target="_blank" rel="noopener">alphaXiv/OpenResearch</a></li>
+          <li><a href="https://github.com/NationalSecurityAgency/ghidra" target="_blank" rel="noopener">NationalSecurityAgency/ghidra</a></li>
+          <li><a href="https://github.com/Homebrew/BrewUI" target="_blank" rel="noopener">Homebrew/BrewUI</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="note">说明：本报告基于 2026-09-15 至 09-17 公开报道聚合，选取热度高、关注多的事件整理。部分事件（如 GPT-6 Sol 灰度、Claude 合并 Chat/Cowork、Opus 5.2）处于早期或灰度阶段，以官方最终披露为准。链接均为检索实际命中页面，未编造或留占位。</div>
+  </section>
+
+  <footer>AI 与 GitHub 热门事件速报 · 自动生成于 2026-09-17 · 浅色主题单文件 HTML</footer>
+</div>
+</body>
+</html>
