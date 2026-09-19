@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI 与 GitHub 热门事件速报 · 2026-09-19</title>
+<style>
+  :root{
+    --bg:#f6f7f9;
+    --surface:#ffffff;
+    --surface-2:#fbfcfe;
+    --text:#1a1d23;
+    --muted:#5b6470;
+    --border:#e6e9ef;
+    --blue:#2563eb;
+    --teal:#0d9488;
+    --orange:#ea580c;
+    --purple:#7c3aed;
+    --shadow:0 1px 3px rgba(16,24,40,.06),0 6px 18px rgba(16,24,40,.05);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.65;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:32px 22px 64px;}
+  header.hero{
+    background:linear-gradient(135deg,#ffffff 0%,#eef4ff 100%);
+    border:1px solid var(--border);border-radius:18px;padding:30px 30px 26px;
+    box-shadow:var(--shadow);
+  }
+  .hero h1{margin:0 0 6px;font-size:27px;letter-spacing:.5px;}
+  .hero .sub{color:var(--muted);font-size:14px;margin-bottom:18px;}
+  .kpi{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+  .kpi .box{
+    background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:12px 16px;min-width:108px;flex:1;text-align:center;box-shadow:var(--shadow);
+  }
+  .kpi .num{font-size:24px;font-weight:700;color:var(--blue);}
+  .kpi .lbl{font-size:12px;color:var(--muted);margin-top:2px;}
+  .meta{margin-top:14px;font-size:12.5px;color:var(--muted);}
+  section{margin-top:34px;}
+  .sec-title{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:700;margin:0 0 14px;}
+  .sec-title .dot{width:12px;height:12px;border-radius:50%;}
+  .sec-title .count{font-size:13px;color:var(--muted);font-weight:500;}
+  .card{
+    background:var(--surface);border:1px solid var(--border);border-radius:14px;
+    padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow);
+    transition:transform .12s ease,box-shadow .12s ease;
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 4px 14px rgba(16,24,40,.10);}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;}
+  .card h3{margin:0;font-size:16.5px;}
+  .tag{
+    font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap;
+  }
+  .tag.model{background:#e7f0ff;color:#1d4ed8;}
+  .tag.capital{background:#e6f7f3;color:#0f766e;}
+  .tag.safety{background:#fdeee3;color:#c2410c;}
+  .tag.github{background:#f1e9ff;color:#6d28d9;}
+  .date{font-size:12px;color:var(--muted);background:var(--surface-2);border:1px solid var(--border);
+    padding:2px 9px;border-radius:999px;white-space:nowrap;}
+  .card p{margin:9px 0 0;font-size:14px;color:#333a44;}
+  .card .src{margin-top:10px;font-size:13px;}
+  .card .src a{color:var(--blue);text-decoration:none;font-weight:600;}
+  .card .src a:hover{text-decoration:underline;}
+  .links{margin-top:36px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 24px;box-shadow:var(--shadow);}
+  .links h2{margin:0 0 4px;font-size:19px;}
+  .links .note{font-size:12.5px;color:var(--muted);margin-bottom:16px;}
+  .links h4{margin:18px 0 8px;font-size:14.5px;color:var(--text);}
+  .links ul{margin:0;padding-left:18px;}
+  .links li{margin:5px 0;font-size:13px;}
+  .links a{color:var(--blue);text-decoration:none;}
+  .links a:hover{text-decoration:underline;}
+  footer{margin-top:30px;text-align:center;font-size:12px;color:var(--muted);}
+  @media(max-width:560px){.hero h1{font-size:22px;}.kpi .box{min-width:46%;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <h1>🤖 AI 与 GitHub 热门事件速报</h1>
+    <div class="sub">每日聚合近期 AI 大模型、资本动向、安全治理与开源 GitHub 的高热度事件 · 浅色版</div>
+    <div class="kpi">
+      <div class="box"><div class="num">28</div><div class="lbl">今日收录事件</div></div>
+      <div class="box"><div class="num">10</div><div class="lbl">大模型上新</div></div>
+      <div class="box"><div class="num">8</div><div class="lbl">资本 / 融资</div></div>
+      <div class="box"><div class="num">5</div><div class="lbl">安全 / 治理</div></div>
+      <div class="box"><div class="num">9</div><div class="lbl">GitHub 开源</div></div>
+    </div>
+    <div class="meta">📅 日期：2026-09-19 ｜ 检索区间：2026-09-15 ~ 2026-09-19 ｜ 来源：多源公开报道与官方更新（链接见文末）</div>
+  </header>
+
+  <!-- 一、大模型密集上新 -->
+  <section>
+    <div class="sec-title"><span class="dot" style="background:var(--blue)"></span>大模型密集上新<span class="count">· 10 件</span></div>
+
+    <div class="card">
+      <div class="top"><h3>OpenAI GPT-6 Astra 全面铺开，登顶代码榜</h3><span class="tag model">大模型</span></div>
+      <span class="date">09-03 起 / 09-10 工作场景</span>
+      <p>OpenAI 旗舰 GPT-6 Astra 在 Code Arena:WebDev 排行榜以 1797 分登顶，领先 Claude Fable 5.1 约 35 分；成为 OpenAI 首个达到网络安全 Critical 级别的模型，并通过计算机操作、科研等前沿评测。已面向 ChatGPT Work、Codex 与 API 开放。</p>
+      <div class="src">🔗 原文：<a href="https://reconn-ai.com/llm-changelog.php" target="_blank" rel="noopener">reconn-ai · LLM Changelog</a> ｜ <a href="http://releasebot.io/updates/openai/openai" target="_blank" rel="noopener">OpenAI Updates &amp; Release Notes</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>Anthropic 发布 Claude Fable 5.1 / Mythos 5.1</h3><span class="tag model">大模型</span></div>
+      <span class="date">09-01</span>
+      <p>Fable 5.1 支持 100 万 Token 上下文，缓存读取价下调 75%，典型工作负载成本降约 25%、高智能体任务降约 45%；同步推出面向网安与生命科学的受限访问版本 Mythos 5.1，安全分类器误干预减少约 60%。</p>
+      <div class="src">🔗 原文：<a href="https://reconn-ai.com/llm-changelog.php" target="_blank" rel="noopener">reconn-ai · LLM Changelog</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>Google Gemini 3.8 Flash + 3.8 Live 语音模型</h3><span class="tag model">大模型</span></div>
+      <span class="date">09-02 GA / 09-15 Live</span>
+      <p>3.8 Flash 为「最聪明的 Flash」，主打长周期软件工程与自主智能体。9/15 推出的原生语音模型 Gemini 3.8 Live 在 Artificial Analysis 语音质量榜以 82.6 登顶，支持 97+ 语言异步工具调用与后台推理。</p>
+      <div class="src">🔗 原文：<a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener">Google AI · Gemini API 版本说明</a> ｜ <a href="https://www.thenextgentechinsider.com/pulse/google-unveils-gemini-38-live-models-for-real-time-conversational-ai" target="_blank" rel="noopener">The Next Gen Tech Insider</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>DeepSeek V4.1-Flash：552B MoE，KV 缓存降 75%</h3><span class="tag model">大模型</span></div>
+      <span class="date">09-10</span>
+      <p>采用全新 Causal Encoder-Decoder 架构，激活 8B（输入）/16B（输出）参数，支持 100 万 Token 上下文，KV 缓存占用降低 75%，API 价格同步下调，并路由全部 V4-Pro 请求。</p>
+      <div class="src">🔗 原文：<a href="https://capitalandcompute.net/ai-model-releases" target="_blank" rel="noopener">Capital &amp; Compute · 模型发布月报</a> ｜ <a href="https://www.thepaper.cn/newsDetail_forward_34102315" target="_blank" rel="noopener">澎湃 · 大模型周报</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>中电信星辰 Xing4.0-29B-A4B：全栈国产轻量智能体</h3><span class="tag model">大模型</span></div>
+      <span class="date">09-17</span>
+      <p>国内首个基于国产算力与国产框架训练、面向复杂工程任务优化的百亿参数模型，MOE 总参 29B、激活仅 4B，主打长程任务规划与自主执行，已上线 GitHub、Hugging Face、Gitee、魔搭等社区。</p>
+      <div class="src">🔗 原文：<a href="https://www.toutiao.com/article/7686829685325546007" target="_blank" rel="noopener">今日头条 · 人民邮电报</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>阿里 Qwen3.8-Omni-Flash 原生全模态发布</h3><span class="tag model">大模型</span></div>
+      <span class="date">09-18</span>
+      <p>支持文本 / 图像 / 音频 / 视频多模态输入，上下文长度达 1M，30 项评测平均得分提升超 26%，主打音视频智能体任务交付。</p>
+      <div class="src">🔗 原文：<a href="https://www.toutiao.com/a1876709223648256" target="_blank" rel="noopener">今日头条 · AI 日报 09-18</a> ｜ <a href="https://aihot.virxact.com/daily" target="_blank" rel="noopener">AI HOT · 每日大事</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>Suno v6 音乐模型：首次全授权训练数据</h3><span class="tag model">大模型</span></div>
+      <span class="date">09-09 / 09-13</span>
+      <p>推出 v6 / v6-wild / v6-mini 三版本，首次声明全部训练数据来自华纳、BMG、Believe 等授权合作；支持自然语言局部编辑、多模态（图/视频）生成种子，并内置未授权音源审查，回应长期版权诉讼。</p>
+      <div class="src">🔗 原文：<a href="https://ai2day.live/story/suno-launches-v6-ai-music-models-trained-on-licensed-songs-as-copyright-lawsuits" target="_blank" rel="noopener">AI2Day</a> ｜ <a href="http://www.mhpn.cn/news/2184571" target="_blank" rel="noopener">尧图 · Suno v6 解读</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>xAI Grok 4.7：2.1 万亿参数</h3><span class="tag model">大模型</span></div>
+      <span class="date">09-12</span>
+      <p>马斯克 xAI 推出 Grok 4.7，参数规模约 2.1 万亿（较上代 1.5 万亿涨约 40%），延续「堆规模」路线，宣称在性能与效率上全面超越同类产品。</p>
+      <div class="src">🔗 原文：<a href="https://www.sohu.com/a/1077428178_114690" target="_blank" rel="noopener">搜狐 · 九月四场发布会</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>月之暗面 Kimi K2.8 Preview：1M 上下文全量开放</h3><span class="tag model">大模型</span></div>
+      <span class="date">09 中旬</span>
+      <p>K2.8 在 Kimi Code / Kimi Work 全量上线，所有会员档位均可用 100 万上下文；背后 ARR 从 6 月 3 亿美元跃至 8 月破 10 亿美元，已秘密递交港股上市申请。</p>
+      <div class="src">🔗 原文：<a href="https://weibo.com/ttarticle/p/show?id=2309405344532102774925" target="_blank" rel="noopener">微博 · 硬核盘点 09.12-09.18</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>清华系 Naive AI 成新玩家，累计融资 4 亿美元</h3><span class="tag model">大模型</span></div>
+      <span class="date">09-18</span>
+      <p>清华副教授代季峰创办的 Naive AI 连续完成三轮融资（累计 4 亿美元），最新估值 14.2 亿美元，腾讯、IDG、HSG 已入股；首款开放权重模型 Naive 最早 9 月推出。</p>
+      <div class="src">🔗 原文：<a href="https://dy.163.com/article/L75A5NR60511D6RL.html" target="_blank" rel="noopener">网易 · 云头条</a></div>
+    </div>
+  </section>
+
+  <!-- 二、资本与融资并购 -->
+  <section>
+    <div class="sec-title"><span class="dot" style="background:var(--teal)"></span>资本与融资并购<span class="count">· 8 件</span></div>
+
+    <div class="card">
+      <div class="top"><h3>Manus 拟融资 5 亿美元，估值翻倍至 40 亿</h3><span class="tag capital">资本</span></div>
+      <span class="date">09-17</span>
+      <p>独立运营仅 17 天后，AI 智能体公司 Manus 据彭博/WSJ 报道拟以 40 亿美元估值融资 5 亿美元，并探讨赴港上市；若完成将成为中国估值最高的 AI Agent 创企。现有股东腾讯、HSG、真格考虑跟投。</p>
+      <div class="src">🔗 原文：<a href="https://www.toutiao.com/article/7686709076893483561/" target="_blank" rel="noopener">今日头条 · 公司研究室</a> ｜ <a href="https://dev.to/hiroki-ii-ai/ai-daily-digest-919-claude-leads-26-of-rd-dream-rsi-cuts-agent-calls-162x-toyotas-400k-robots-24pf" target="_blank" rel="noopener">DEV · AI Daily 9.19</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>Crusoe 完成 39 亿美元 F 轮，估值 309 亿</h3><span class="tag capital">资本</span></div>
+      <span class="date">09-17</span>
+      <p>AI 基础设施商 Crusoe 完成初始 39 亿美元 Series F，投后估值 309 亿美元；Mubadala、Atreides、Valor 领投，英伟达等参投。公司称在手合同价值超 1400 亿美元、承诺容量 6GW，并启动 IPO 前期讨论。</p>
+      <div class="src">🔗 原文：<a href="https://moneycheck.com/crusoe-secures-3-9b-in-series-f-funding-to-scale-ai-infrastructure-empire" target="_blank" rel="noopener">MoneyCheck</a> ｜ <a href="https://techstartups.com/2026/09/18/startup-funding-news-today-september-18-2026-arcos-crusoe-dtcpay-evas-intelligence-ryft-more/" target="_blank" rel="noopener">TechStartups</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>英伟达约 130 亿美元收购 Hugging Face</h3><span class="tag capital">并购</span></div>
+      <span class="date">09-03</span>
+      <p>英伟达宣布以约 130 亿美元收购开放模型平台 Hugging Face，其中约 119 亿美元支付给投资者，并为加入英伟达的员工提供最高 10 亿美元留任激励；HF 继续保持开放平台定位，同步成立 Nemotron 开放模型联盟。</p>
+      <div class="src">🔗 原文：<a href="https://baike.baidu.com/item/%E5%BC%80%E6%94%BE%E6%9D%83%E9%87%8D%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%A8%A1%E5%9E%8B/68630026" target="_blank" rel="noopener">百度百科 · 开放权重模型</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>Mistral 完成 30 亿欧元 D 轮，估值 213 亿欧元</h3><span class="tag capital">融资</span></div>
+      <span class="date">09-08</span>
+      <p>法国 Mistral AI 完成 30 亿欧元融资（欧洲科技企业迄今最大股权融资之一），三星电子首次入股并领投，欧盟 Scaleup Europe Fund 参投；估值升至 213 亿欧元，成欧洲估值第二高私营科技公司。</p>
+      <div class="src">🔗 原文：<a href="https://www.thepaper.cn/newsDetail_forward_34102315" target="_blank" rel="noopener">澎湃 · 大模型周报</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>EVAS Intelligence 近 20 亿元押注 RISC-V AI 芯片</h4></h3><span class="tag capital">融资</span></div>
+      <span class="date">09-18</span>
+      <p>北京 EVAS Intelligence 完成近 20 亿元人民币新融资，投后估值近 150 亿元；20+ 机构参投，首代 Epoch 处理器已量产，下一代云端芯片流片，主打 RISC-V + EVAMIND 加速架构。</p>
+      <div class="src">🔗 原文：<a href="https://techstartups.com/2026/09/18/startup-funding-news-today-september-18-2026-arcos-crusoe-dtcpay-evas-intelligence-ryft-more/" target="_blank" rel="noopener">TechStartups · 09-18 融资日报</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>OpenAI 磋商新一轮融资，潜在估值超 1.2 万亿美元</h3><span class="tag capital">融资</span></div>
+      <span class="date">09 中旬</span>
+      <p>OpenAI 被曝正与投资者磋商新一轮融资，潜在估值超过 1.2 万亿美元，融资节奏将与上市计划协同安排。</p>
+      <div class="src">🔗 原文：<a href="https://tianqi.csdn.net/6aab39eecf836948fcd28e99.html" target="_blank" rel="noopener">CSDN · AI 日报 09-17</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>智谱 Z.ai 计划募资超 50 亿美元</h3><span class="tag capital">融资</span></div>
+      <span class="date">09-18</span>
+      <p>据 Stepmark 周报，智谱（Z.ai）计划通过股权与债权募资超 50 亿美元，其中包括约 20 亿美元配股，为国内大模型头部公司最新大额融资动向。</p>
+      <div class="src">🔗 原文：<a href="https://stepmark.ai/2026/09/18/weekly-newsletter-september-17th-2026" target="_blank" rel="noopener">Stepmark · Weekly Newsletter</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>AI 投融资重心：从模型转向基础设施</h3><span class="tag capital">趋势</span></div>
+      <span class="date">09-18</span>
+      <p>单日融资高度集中于算力/主权芯片/电力/光互连/机器人数据/量子等瓶颈环节；除 Crusoe 39 亿美元外，中国五笔深科技融资合计超 29 亿元，显示「模型智能在扩散，基础设施仍稀缺」。</p>
+      <div class="src">🔗 原文：<a href="https://techstartups.com/2026/09/18/startup-funding-news-today-september-18-2026-arcos-crusoe-dtcpay-evas-intelligence-ryft-more/" target="_blank" rel="noopener">TechStartups · 09-18 融资日报</a></div>
+    </div>
+  </section>
+
+  <!-- 三、AI 安全与治理 -->
+  <section>
+    <div class="sec-title"><span class="dot" style="background:var(--orange)"></span>AI 安全与治理<span class="count">· 5 件</span></div>
+
+    <div class="card">
+      <div class="top"><h3>Anthropic 发布最详细威胁情报报告</h3><span class="tag safety">安全</span></div>
+      <span class="date">09-12</span>
+      <p>报告披露攻击者试图滥用 Claude 进行网络攻击、影响行动、监控、生物研究与武器开发，并点名胡塞组织用 Claude Code 开发导弹制导软件、7 家中国 AI 实验室大规模蒸馏提取数据；公司称已阻断所有相关操作并与权威机构共享情报。</p>
+      <div class="src">🔗 原文：<a href="https://headsupai.io/ai-news-and-updates/this-month" target="_blank" rel="noopener">HeadsUpAI · 月度 AI 大事</a> ｜ <a href="https://aihot.virxact.com/daily" target="_blank" rel="noopener">AI HOT · 每日大事</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>三巨头齐呼「调速」，Amodei 长文倡议降速</h3><span class="tag safety">治理</span></div>
+      <span class="date">09-12</span>
+      <p>在 Grok 4.7 发布同日，Anthropic CEO Amodei 发长文呼吁行业主动降速，数日内奥特曼与马斯克先后表态赞同；九月四场密集发布会引发「模型疲劳」与前沿模型安全节奏的广泛讨论。</p>
+      <div class="src">🔗 原文：<a href="https://www.sohu.com/a/1077428178_114690" target="_blank" rel="noopener">搜狐 · 九月四场发布会</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>OpenAI 万名智能体 88 小时攻克 Navier-Stokes</h3><span class="tag safety">科研 / 争议</span></div>
+      <span class="date">09-08</span>
+      <p>OpenAI 称用下一代内部模型组织约 1 万个 AI 智能体，历时约 88 小时给出 Navier-Stokes 千禧年难题的解答，并公开论文式证明与 Lean 形式化验证；该结果同时引发学术优先权与「自我改进」边界争议。</p>
+      <div class="src">🔗 原文：<a href="https://headsupai.io/ai-news-and-updates/this-month" target="_blank" rel="noopener">HeadsUpAI · 月度 AI 大事</a> ｜ <a href="https://www.thepaper.cn/newsDetail_forward_34102315" target="_blank" rel="noopener">澎湃 · 大模型周报</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>Bernie Sanders 提案暂停先进 AI 开发</h3><span class="tag safety">治理</span></div>
+      <span class="date">09 上旬</span>
+      <p>美国参议员 Bernie Sanders 提出联邦立法，主张暂停先进 AI 系统的进一步开发，成为本月最受关注的 AI 监管动议之一。</p>
+      <div class="src">🔗 原文：<a href="https://headsupai.io/ai-news-and-updates/this-month" target="_blank" rel="noopener">HeadsUpAI · 月度 AI 大事</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>Claude Opus 5.2 灰度上线，押注 RSI 自我改进</h3><span class="tag safety">安全 / 研发</span></div>
+      <span class="date">09 中旬</span>
+      <p>Claude Opus 5.2 已在 Claude Code 灰度，开发者实测响应更快、废话更少，并进入「严酷循环」自主迭代代码；内部风险报告披露未发布的 CoBench v2 与 RSI（递归自我改进）模型，称将替代约 85% 研究团队工作。</p>
+      <div class="src">🔗 原文：<a href="https://weibo.com/ttarticle/p/show?id=2309405344532102774925" target="_blank" rel="noopener">微博 · 硬核盘点 09.12-09.18</a></div>
+    </div>
+  </section>
+
+  <!-- 四、GitHub 开源热点 -->
+  <section>
+    <div class="sec-title"><span class="dot" style="background:var(--purple)"></span>GitHub 开源热点<span class="count">· 9 件</span></div>
+
+    <div class="card">
+      <div class="top"><h3>cloudflare/security-audit-skill 登顶今日趋势榜</h3><span class="tag github">开源</span></div>
+      <span class="date">09-19</span>
+      <p>Cloudflare 推出的多阶段安全审计 Skill 在 9/19 GitHub Trending 冲至榜首（约 12.2 万星），以独立可验证、机器可读的安全发现著称，反映「Agent 安全工具」成为新热点。</p>
+      <div class="src">🔗 原文：<a href="http://orangebot.ai/" target="_blank" rel="noopener">OrangeBot · GitHub Trending 09-19</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>anthropics/claude-code 进入趋势榜</h3><span class="tag github">开源</span></div>
+      <span class="date">09-19</span>
+      <p>Anthropic 官方 Claude Code 仓库在 9/19 GitHub Trending 高居前列（约 14.6 万星），成为开发者最关注的 AI 编码智能体之一。</p>
+      <div class="src">🔗 原文：<a href="http://orangebot.ai/" target="_blank" rel="noopener">OrangeBot · GitHub Trending 09-19</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>alibaba/open-code-review：混合代码审查工具</h3><span class="tag github">开源</span></div>
+      <span class="date">09-17</span>
+      <p>阿里 open-code-review 在 9/17 稳居 GitHub 日榜第一（约 3.3 万星，单日涨约 1.18 万），结合确定性流水线 + LLM Agent，提供行级评论与 NPE/线程安全/XSS/SQL 注入等规则，兼容 OpenAI 与 Anthropic。</p>
+      <div class="src">🔗 原文：<a href="https://www.trendsmcp.ai/trending/github-trending-september-17-2026" target="_blank" rel="noopener">Trends MCP · 09-17 趋势</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>addyosmani/agent-skills：Agent 技能集</h3><span class="tag github">开源</span></div>
+      <span class="date">09-19</span>
+      <p>Addy Osmani 的 agent-skills 仓库在趋势榜约 9.6 万星，持续领跑「Agent 技能 / 插件」生态，与 Anthropic、Google 同期推进结构化技能格式形成共振。</p>
+      <div class="src">🔗 原文：<a href="http://orangebot.ai/" target="_blank" rel="noopener">OrangeBot · GitHub Trending 09-19</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>腾讯开源 BrowserSkill 与 TencentCloud/Octop</h3><span class="tag github">开源</span></div>
+      <span class="date">09-19</span>
+      <p>腾讯系 BrowserSkill（约 4.9 万星）与 TencentCloud/Octop（约 3.8 万星）进入 9/19 趋势榜，显示国内大厂在 Agent 浏览器操作与云原生工具链上的开源投入。</p>
+      <div class="src">🔗 原文：<a href="http://orangebot.ai/" target="_blank" rel="noopener">OrangeBot · GitHub Trending 09-19</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>jamiepine/voicebox：开源 AI 语音工作室</h3><span class="tag github">开源</span></div>
+      <span class="date">09-17</span>
+      <p>voicebox 以约 5.46 万星冲入 9/17 趋势榜前五，提供开源的语音克隆、听写与创作工作流，与本地语音工具（VoiceStudio、VoxCPM）升温同频。</p>
+      <div class="src">🔗 原文：<a href="https://startupcorners.com/digest/devtools-digest-2026-09-17" target="_blank" rel="noopener">Startup Corners · 09-17 DevTools</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>JustVugg/colibri：纯 C 引擎流式推理 MoE</h3><span class="tag github">开源</span></div>
+      <span class="date">09-17</span>
+      <p>colibri 以约 3.53 万星居 9/17 趋势榜第三，纯 C 实现、零依赖，从磁盘流式加载 MoE 权重，是本地轻量推理的代表项目。</p>
+      <div class="src">🔗 原文：<a href="https://www.trendsmcp.ai/trending/github-trending-september-17-2026" target="_blank" rel="noopener">Trends MCP · 09-17 趋势</a> ｜ <a href="https://www.github-pulse.com/digest" target="_blank" rel="noopener">GitHub Pulse · 周报</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>mattpocock/skills：真实工程 AI 技能集</h3><span class="tag github">开源</span></div>
+      <span class="date">W26 周榜</span>
+      <p>由 TypeScript 专家 Matt Pocock 打造的 AI Agent 技能集，周榜约 14.8 万星、单周涨约 1.1 万，主打小巧、可组合、聚焦工程实践而非「氛围编程」。</p>
+      <div class="src">🔗 原文：<a href="http://www.mhpn.cn/news/1043436" target="_blank" rel="noopener">尧图 · GitHub 周趋势 W26</a></div>
+    </div>
+
+    <div class="card">
+      <div class="top"><h3>OpenMontage：首个开源 AI 视频制作系统</h3><span class="tag github">开源</span></div>
+      <span class="date">W26 周榜</span>
+      <p>OpenMontage 周榜约 2.4 万星（单周涨约 1.7 万）夺冠，用自然语言描述需求即可由 AI Agent 自动完成调研、脚本、素材生成、剪辑与合成，将编程助手变为视频工作室。</p>
+      <div class="src">🔗 原文：<a href="http://www.mhpn.cn/news/1043436" target="_blank" rel="noopener">尧图 · GitHub 周趋势 W26</a></div>
+    </div>
+  </section>
+
+  <!-- 原文链接汇总 -->
+  <div class="links">
+    <h2>🔗 原文链接汇总（按板块分组 · 均为检索实际命中）</h2>
+    <div class="note">以下链接来自公开报道与官方更新渠道；点击可在新标签页查看原文。无编造、无占位 URL。</div>
+
+    <h4>一、大模型上新</h4>
+    <ul>
+      <li>OpenAI GPT-6 Astra — <a href="https://reconn-ai.com/llm-changelog.php" target="_blank" rel="noopener">reconn-ai · LLM Changelog</a> ｜ <a href="http://releasebot.io/updates/openai/openai" target="_blank" rel="noopener">OpenAI Updates &amp; Release Notes</a></li>
+      <li>Claude Fable 5.1 / Mythos 5.1 — <a href="https://reconn-ai.com/llm-changelog.php" target="_blank" rel="noopener">reconn-ai · LLM Changelog</a></li>
+      <li>Gemini 3.8 Flash / Live — <a href="https://ai.google.dev/gemini-api/docs/changelog" target="_blank" rel="noopener">Google AI · Gemini API 版本说明</a> ｜ <a href="https://www.thenextgentechinsider.com/pulse/google-unveils-gemini-38-live-models-for-real-time-conversational-ai" target="_blank" rel="noopener">The Next Gen Tech Insider</a></li>
+      <li>DeepSeek V4.1-Flash — <a href="https://capitalandcompute.net/ai-model-releases" target="_blank" rel="noopener">Capital &amp; Compute · 模型发布月报</a> ｜ <a href="https://www.thepaper.cn/newsDetail_forward_34102315" target="_blank" rel="noopener">澎湃 · 大模型周报</a></li>
+      <li>中电信星辰 Xing4.0-29B-A4B — <a href="https://www.toutiao.com/article/7686829685325546007" target="_blank" rel="noopener">今日头条 · 人民邮电报</a></li>
+      <li>Qwen3.8-Omni-Flash — <a href="https://www.toutiao.com/a1876709223648256" target="_blank" rel="noopener">今日头条 · AI 日报 09-18</a> ｜ <a href="https://aihot.virxact.com/daily" target="_blank" rel="noopener">AI HOT · 每日大事</a></li>
+      <li>Suno v6 — <a href="https://ai2day.live/story/suno-launches-v6-ai-music-models-trained-on-licensed-songs-as-copyright-lawsuits" target="_blank" rel="noopener">AI2Day</a> ｜ <a href="http://www.mhpn.cn/news/2184571" target="_blank" rel="noopener">尧图 · Suno v6 解读</a></li>
+      <li>xAI Grok 4.7 — <a href="https://www.sohu.com/a/1077428178_114690" target="_blank" rel="noopener">搜狐 · 九月四场发布会</a></li>
+      <li>Kimi K2.8 Preview — <a href="https://weibo.com/ttarticle/p/show?id=2309405344532102774925" target="_blank" rel="noopener">微博 · 硬核盘点 09.12-09.18</a></li>
+      <li>Naive AI — <a href="https://dy.163.com/article/L75A5NR60511D6RL.html" target="_blank" rel="noopener">网易 · 云头条</a></li>
+    </ul>
+
+    <h4>二、资本与融资并购</h4>
+    <ul>
+      <li>Manus 融资 — <a href="https://www.toutiao.com/article/7686709076893483561/" target="_blank" rel="noopener">今日头条 · 公司研究室</a> ｜ <a href="https://dev.to/hiroki-ii-ai/ai-daily-digest-919-claude-leads-26-of-rd-dream-rsi-cuts-agent-calls-162x-toyotas-400k-robots-24pf" target="_blank" rel="noopener">DEV · AI Daily 9.19</a></li>
+      <li>Crusoe 39 亿美元 F 轮 — <a href="https://moneycheck.com/crusoe-secures-3-9b-in-series-f-funding-to-scale-ai-infrastructure-empire" target="_blank" rel="noopener">MoneyCheck</a> ｜ <a href="https://techstartups.com/2026/09/18/startup-funding-news-today-september-18-2026-arcos-crusoe-dtcpay-evas-intelligence-ryft-more/" target="_blank" rel="noopener">TechStartups</a></li>
+      <li>英伟达收购 Hugging Face — <a href="https://baike.baidu.com/item/%E5%BC%80%E6%94%BE%E6%9D%83%E9%87%8D%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%A8%A1%E5%9E%8B/68630026" target="_blank" rel="noopener">百度百科 · 开放权重模型</a></li>
+      <li>Mistral 30 亿欧元 D 轮 — <a href="https://www.thepaper.cn/newsDetail_forward_34102315" target="_blank" rel="noopener">澎湃 · 大模型周报</a></li>
+      <li>EVAS Intelligence RISC-V 芯片 — <a href="https://techstartups.com/2026/09/18/startup-funding-news-today-september-18-2026-arcos-crusoe-dtcpay-evas-intelligence-ryft-more/" target="_blank" rel="noopener">TechStartups · 09-18 融资日报</a></li>
+      <li>OpenAI 1.2 万亿估值 — <a href="https://tianqi.csdn.net/6aab39eecf836948fcd28e99.html" target="_blank" rel="noopener">CSDN · AI 日报 09-17</a></li>
+      <li>智谱 Z.ai 募资 — <a href="https://stepmark.ai/2026/09/18/weekly-newsletter-september-17th-2026" target="_blank" rel="noopener">Stepmark · Weekly Newsletter</a></li>
+    </ul>
+
+    <h4>三、AI 安全与治理</h4>
+    <ul>
+      <li>Anthropic 威胁情报报告 — <a href="https://headsupai.io/ai-news-and-updates/this-month" target="_blank" rel="noopener">HeadsUpAI · 月度 AI 大事</a> ｜ <a href="https://aihot.virxact.com/daily" target="_blank" rel="noopener">AI HOT · 每日大事</a></li>
+      <li>三巨头调速 / 模型疲劳 — <a href="https://www.sohu.com/a/1077428178_114690" target="_blank" rel="noopener">搜狐 · 九月四场发布会</a></li>
+      <li>Navier-Stokes 千禧难题 — <a href="https://headsupai.io/ai-news-and-updates/this-month" target="_blank" rel="noopener">HeadsUpAI</a> ｜ <a href="https://www.thepaper.cn/newsDetail_forward_34102315" target="_blank" rel="noopener">澎湃</a></li>
+      <li>Bernie Sanders 提案 — <a href="https://headsupai.io/ai-news-and-updates/this-month" target="_blank" rel="noopener">HeadsUpAI</a></li>
+      <li>Claude Opus 5.2 / RSI — <a href="https://weibo.com/ttarticle/p/show?id=2309405344532102774925" target="_blank" rel="noopener">微博 · 硬核盘点</a></li>
+    </ul>
+
+    <h4>四、GitHub 开源热点</h4>
+    <ul>
+      <li>GitHub Trending 09-19（cloudflare/security-audit-skill、claude-code、agent-skills、腾讯 BrowserSkill/Octop）— <a href="http://orangebot.ai/" target="_blank" rel="noopener">OrangeBot · GitHub Trending</a></li>
+      <li>alibaba/open-code-review、colibri（09-17）— <a href="https://www.trendsmcp.ai/trending/github-trending-september-17-2026" target="_blank" rel="noopener">Trends MCP · 09-17</a></li>
+      <li>voicebox 等 DevTools — <a href="https://startupcorners.com/digest/devtools-digest-2026-09-17" target="_blank" rel="noopener">Startup Corners · 09-17</a></li>
+      <li>GitHub 周趋势 W26（mattpocock/skills、OpenMontage）— <a href="http://www.mhpn.cn/news/1043436" target="_blank" rel="noopener">尧图 · GitHub 周趋势 W26</a></li>
+      <li>GitHub Pulse 周报 — <a href="https://www.github-pulse.com/digest" target="_blank" rel="noopener">GitHub Pulse · Weekly Digest</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    本速报由自动化任务聚合公开来源生成 · 仅作信息汇总，不构成任何投资建议 · 数据截至 2026-09-19
+  </footer>
+
+</div>
+</body>
+</html>
