@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Happened in Markets Today | September 21, 2026 (EN)</title>
+<style>
+:root {
+  --bg: #f5f7fa;
+  --card: #ffffff;
+  --text: #1a1a2e;
+  --text-sec: #555;
+  --accent: #1a73e8;
+  --green: #16a34a;
+  --red: #dc2626;
+  --border: #e2e8f0;
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --radius: 12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 15px;
+}
+.container { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #1e3a5f, #2563eb);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow);
+}
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.header .subtitle { font-size: 15px; opacity: 0.85; }
+.header .badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.18);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 32px 0 16px;
+  padding-left: 14px;
+  border-left: 4px solid var(--accent);
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.card h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.kpi {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--accent);
+}
+.kpi .label { font-size: 12px; color: var(--text-sec); text-transform: uppercase; letter-spacing: 0.5px; }
+.kpi .value { font-size: 22px; font-weight: 700; margin: 6px 0 2px; }
+.kpi .change { font-size: 13px; font-weight: 600; }
+.kpi .change.up { color: var(--green); }
+.kpi .change.down { color: var(--red); }
+.kpi .change.neutral { color: var(--text-sec); }
+.kpi.green-top { border-top-color: var(--green); }
+.kpi.red-top { border-top-color: var(--red); }
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th, td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  background: #f8fafc;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-sec);
+}
+td .up { color: var(--green); font-weight: 600; }
+td .down { color: var(--red); font-weight: 600; }
+
+/* Event items */
+.event {
+  border-left: 3px solid var(--border);
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  background: #fafbfc;
+  border-radius: 0 8px 8px 0;
+  transition: border-left-color 0.2s;
+}
+.event:hover { border-left-color: var(--accent); }
+.event .date-tag {
+  display: inline-block;
+  background: #eef2ff;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 12px;
+  margin-bottom: 6px;
+}
+.event h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+.event p { font-size: 14px; color: var(--text-sec); }
+.event .source { font-size: 12px; color: var(--accent); text-decoration: none; }
+.event .source:hover { text-decoration: underline; }
+
+/* Two column layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+/* Mini bar chart */
+.bar-chart { margin: 12px 0; }
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.bar-row .bar-label { width: 100px; font-size: 13px; text-align: right; flex-shrink: 0; }
+.bar-row .bar-track { flex: 1; height: 24px; background: #f0f0f0; border-radius: 4px; overflow: hidden; position: relative; }
+.bar-row .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 12px; color: #fff; font-weight: 600; }
+.bar-fill.green { background: var(--green); }
+.bar-fill.red { background: var(--red); }
+
+/* Source list */
+.source-list { font-size: 12px; color: var(--text-sec); }
+.source-list a { color: var(--accent); text-decoration: none; }
+.source-list a:hover { text-decoration: underline; }
+.source-list li { margin-bottom: 4px; word-break: break-all; }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--text-sec);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  margin-top: 32px;
+}
+
+/* Tag */
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.tag.fed { background: #fef3c7; color: #92400e; }
+.tag.boj { background: #dbeafe; color: #1e40af; }
+.tag.geopolitical { background: #fee2e2; color: #991b1b; }
+.tag.earnings { background: #d1fae5; color: #065f46; }
+.tag.policy { background: #e0e7ff; color: #3730a3; }
+
+/* Section highlight box */
+.highlight-box {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  border: 1px solid #bfdbfe;
+}
+.highlight-box h3 { color: #1e40af; margin-bottom: 10px; }
+.highlight-box ul { list-style: none; }
+.highlight-box li {
+  padding: 6px 0;
+  font-size: 14px;
+  position: relative;
+  padding-left: 20px;
+}
+.highlight-box li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- Header -->
+<div class="header">
+  <h1>What Happened in Markets Today</h1>
+  <div class="subtitle">Global Financial Markets &amp; Macroeconomic Weekly Review — September 14–21, 2026</div>
+  <div class="badge">Language: English (EN) &nbsp;|&nbsp; Date: 2026-09-21</div>
+</div>
+
+<!-- Executive Summary -->
+<div class="highlight-box">
+  <h3>Executive Summary</h3>
+  <ul>
+    <li><strong>Fed hikes 25bps to 3.75%–4.00%</strong> — First rate increase in over three years (Sep 16), unanimous 12-0 vote; dot plot signals one more hike possible in 2026.</li>
+    <li><strong>BOJ raises rates to 1.25%</strong> — Highest since 1995, but yen weakens on 7-2 split and dovish Governor Ueda tone (Sep 18).</li>
+    <li><strong>US 10Y Treasury yield surges past 5%</strong> — First time since October 2023; peaked at 5.02% on Sep 15, highest since 2007.</li>
+    <li><strong>Oil volatility</strong> — Brent hit $108.48/barrel on Middle East pipeline disruption, then fell to $103.19 as diplomatic efforts eased supply fears.</li>
+    <li><strong>Gold rallies toward $4,400/oz</strong> — Shrugs off Fed hike as falling yields and weaker dollar support precious metals.</li>
+    <li><strong>China LPR unchanged for 16th straight month</strong> — 1Y at 3.00%, 5Y at 3.50%; China-US trade talks begin in New York (Sep 20).</li>
+    <li><strong>Bitcoin volatile</strong> — Traded around $78,000; 101,300 positions liquidated ($240M) in 24 hours amid risk-off sentiment.</li>
+  </ul>
+</div>
+
+<!-- KPI Grid -->
+<div class="section-title">Key Market Data Overview</div>
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="label">S&amp;P 500</div>
+    <div class="value">7,650.50</div>
+    <div class="change down">-0.08% / week</div>
+  </div>
+  <div class="kpi red-top">
+    <div class="label">Dow Jones</div>
+    <div class="value">51,682.64</div>
+    <div class="change down">-1.69% / week</div>
+  </div>
+  <div class="kpi green-top">
+    <div class="label">Nasdaq</div>
+    <div class="value">26,522.55</div>
+    <div class="change up">+0.72% / week</div>
+  </div>
+  <div class="kpi red-top">
+    <div class="label">Russell 2000</div>
+    <div class="value">2,860.40</div>
+    <div class="change down">-1.50% / week</div>
+  </div>
+  <div class="kpi green-top">
+    <div class="label">Nikkei 225</div>
+    <div class="value">65,018.95</div>
+    <div class="change up">+1.38% / day</div>
+  </div>
+  <div class="kpi green-top">
+    <div class="label">KOSPI</div>
+    <div class="value">6,894.23</div>
+    <div class="change up">+2.66% / day</div>
+  </div>
+  <div class="kpi green-top">
+    <div class="label">Shanghai Composite</div>
+    <div class="value">3,911.87</div>
+    <div class="change up">+0.94% / day</div>
+  </div>
+  <div class="kpi green-top">
+    <div class="label">Hang Seng</div>
+    <div class="value">24,750.78</div>
+    <div class="change up">+0.60% / day</div>
+  </div>
+  <div class="kpi red-top">
+    <div class="label">Brent Crude</div>
+    <div class="value">$103.19/bbl</div>
+    <div class="change down">-1.5% / week</div>
+  </div>
+  <div class="kpi green-top">
+    <div class="label">Gold (COMEX)</div>
+    <div class="value">$4,415.90/oz</div>
+    <div class="change up">Above $4,400</div>
+  </div>
+  <div class="kpi">
+    <div class="label">US 10Y Treasury</div>
+    <div class="value">~5.00%</div>
+    <div class="change down">Highest since 2007</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Fed Funds Rate</div>
+    <div class="value">3.75%–4.00%</div>
+    <div class="change down">+25 bps</div>
+  </div>
+</div>
+
+<!-- US STOCKS -->
+<div class="section-title">US Stock Markets &amp; Macroeconomics</div>
+
+<div class="card">
+  <h3><span class="tag fed">Fed</span> Federal Reserve Rate Hike — September 16, 2026</h3>
+  <p>The FOMC voted <strong>12-0 unanimously</strong> to raise the federal funds rate by <strong>25 basis points</strong> to a target range of <strong>3.75%–4.00%</strong>, marking the first rate hike in over three years. Chairman Kevin Warsh stated inflation had been "too high for too long."</p>
+  <table style="margin-top:14px;">
+    <tr><th>Item</th><th>Detail</th></tr>
+    <tr><td>Rate Change</td><td>+25 bps → 3.75%–4.00%</td></tr>
+    <tr><td>Vote</td><td>12-0 unanimous</td></tr>
+    <tr><td>Dot Plot</td><td>16 of 18 participants expect another hike; 4 see two more possible</td></tr>
+    <tr><td>2026 PCE Forecast</td><td>Headline 3.7%, Core 3.4% (up 0.1pp each from June)</td></tr>
+    <tr><td>Unemployment Forecast</td><td>4.1% (down 0.2pp)</td></tr>
+    <tr><td>Future Path</td><td>One cut projected in 2028; at least one in 2029</td></tr>
+  </table>
+  <p style="margin-top:10px;"><a class="source" href="https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html" target="_blank">Source: CNBC — Federal Reserve unanimously raises federal funds rate</a></p>
+</div>
+
+<div class="card">
+  <h3>US Index Performance (Week Ending Sep 18)</h3>
+  <table>
+    <tr><th>Index</th><th>Close</th><th>Weekly Change</th></tr>
+    <tr><td>S&amp;P 500</td><td>7,650.50</td><td class="down">-0.08%</td></tr>
+    <tr><td>Dow Jones Industrial Average</td><td>51,682.64</td><td class="down">-1.69%</td></tr>
+    <tr><td>Nasdaq Composite</td><td>26,522.55</td><td class="up">+0.72%</td></tr>
+    <tr><td>Russell 2000</td><td>2,860.40</td><td class="down">-1.50%</td></tr>
+    <tr><td>VIX (Volatility)</td><td>14.81</td><td class="up">-4.08%</td></tr>
+  </table>
+  <p style="margin-top:10px;"><a class="source" href="https://www.nasdaq.com/articles/us-stocks-close-mixed-following-choppy-trading-day" target="_blank">Source: Nasdaq — US Stocks Close Mixed</a></p>
+</div>
+
+<div class="card">
+  <h3>US Sector Performance (Weekly)</h3>
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">Healthcare</div>
+      <div class="bar-track"><div class="bar-fill green" style="width:40%;">+1.83%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Technology</div>
+      <div class="bar-track"><div class="bar-fill green" style="width:25%;">+1.03%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Energy</div>
+      <div class="bar-track"><div class="bar-fill" style="width:2%; background:#94a3b8;">0.0%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Materials</div>
+      <div class="bar-track"><div class="bar-fill red" style="width:35%;">-1.88%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Real Estate</div>
+      <div class="bar-track"><div class="bar-fill red" style="width:38%;">-2.05%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Financials</div>
+      <div class="bar-track"><div class="bar-fill red" style="width:42%;">-2.43%</div></div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Utilities</div>
+      <div class="bar-track"><div class="bar-fill red" style="width:50%;">-3.04%</div></div>
+    </div>
+  </div>
+  <p style="margin-top:8px;"><a class="source" href="https://www.cnbc.com/markets/" target="_blank">Source: CNBC Markets</a></p>
+</div>
+
+<div class="card">
+  <h3>US Treasury Yields &amp; Dollar</h3>
+  <table>
+    <tr><th>Tenor</th><th>Yield</th><th>Change</th></tr>
+    <tr><td>2-Year</td><td>4.757%</td><td class="up">+0.014</td></tr>
+    <tr><td>5-Year</td><td>4.864%</td><td class="up">+0.012</td></tr>
+    <tr><td>10-Year</td><td>~5.00%</td><td class="up">+0.004</td></tr>
+    <tr><td>30-Year</td><td>5.328%</td><td class="up">+0.001</td></tr>
+    <tr><td>3-Month</td><td>4.082%</td><td>unchanged</td></tr>
+  </table>
+  <p style="margin-top:8px;"><strong>Dollar Index (DXY):</strong> 100.218 (flat on Friday). The 10Y yield broke 5.00% on Sep 14 for the first time since Oct 2023, peaking at 5.02% on Sep 15 — the highest since 2007.</p>
+  <p><a class="source" href="https://www.cnbc.com/markets/" target="_blank">Source: CNBC Markets</a></p>
+</div>
+
+<div class="card">
+  <h3>Major Individual Stocks</h3>
+
+  <div class="event">
+    <div class="date-tag">Sep 18</div>
+    <h4>NVIDIA (NVDA) — $222.27, +1.34%</h4>
+    <p>Fiscal Q2 revenue <strong>$96.2B (+106% YoY)</strong>, above $92.17B consensus. Data center revenue $89.0B (+117% YoY). FY2028 guidance: ~70% revenue growth. Jensen Huang announced Vera Rubin GPU ramp — "$40B revenue opportunity per gigawatt" of AI compute. NVIDIA also announced acquisition of Hugging Face for $12.93B.</p>
+    <a class="source" href="https://www.nasdaq.com/articles/nvidia-ceo-signals-strong-momentum-shareholders" target="_blank">Source: Nasdaq</a> |
+    <a class="source" href="https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/09/nvidia-postq-growth-outlook-resets-expectations-well-above-preq-consensus" target="_blank">S&P Global</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 18</div>
+    <h4>Tesla (TSLA) — $364.27, -0.53%</h4>
+    <p>Tesla rose 6% on Sep 3 after Cybercab robotaxi introduction. Market cap nearing $1.5 trillion. P/E above 320, reflecting autonomous-vehicle and robotaxi ambitions.</p>
+    <a class="source" href="https://finance.sina.com.cn/stock/t/2026-09-03/doc-iniqqncn1046523.shtml" target="_blank">Source: Sina Finance</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 18</div>
+    <h4>Apple (AAPL) — $336.13, -0.26% | Microsoft (MSFT) — $493.78, -0.80%</h4>
+    <p>Both stocks declined; Tech 7 index fell 1.13% on the day, with Apple and Microsoft among the largest percentage losers.</p>
+    <a class="source" href="https://stock.finance.sina.com.cn/usstock/quotes/AAPL.html" target="_blank">Source: Sina Finance / Morningstar</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 18</div>
+    <h4>Notable Movers</h4>
+    <p><strong>Gainers:</strong> SanDisk (SNDK) +10.99%, Coinbase (COIN) +11.66%, Strategy (MSTR) +16.05%, MARA Holdings +14%. Semiconductor stocks (Lam Research, Applied Materials) up 6%+.<br>
+    <strong>Losers:</strong> Xenon Pharmaceuticals (XENE) -30% (paused clinical enrollment), Nucor (NUE) -6% (Q3 EPS miss), Netflix (NFLX) -4% (Wells Fargo downgrade), Steel Dynamics (STLD) -4%.</p>
+    <a class="source" href="https://www.nasdaq.com/articles/stocks-finish-mostly-higher-crude-prices-fall" target="_blank">Source: Nasdaq</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3>August CPI Report — September 11, 2026</h3>
+  <table>
+    <tr><th>Metric</th><th>Value</th><th>Expected</th></tr>
+    <tr><td>CPI MoM</td><td>+0.4%</td><td>+0.4%</td></tr>
+    <tr><td>CPI YoY</td><td>+3.4%</td><td>+3.4%</td></tr>
+    <tr><td>Core CPI MoM</td><td>+0.3%</td><td>+0.2% (higher than forecast)</td></tr>
+    <tr><td>Core CPI YoY</td><td>+2.4%</td><td>—</td></tr>
+  </table>
+  <p style="margin-top:8px;">Energy index rose 2.1% YoY (gasoline +3.9%, fuel oil +52%). Shelter costs rose 0.3% MoM. After the report, CME FedWatch odds for a September hike jumped to ~90%.</p>
+  <p><a class="source" href="https://www.cnbc.com/2026/09/11/cpi-inflation-report-august-2026.html" target="_blank">Source: CNBC — CPI Inflation Report</a></p>
+</div>
+
+<div class="card">
+  <h3>Geopolitical &amp; Policy Events</h3>
+
+  <div class="event">
+    <div class="date-tag">Sep 18</div>
+    <span class="tag geopolitical">Geopolitical</span>
+    <h4>Trump-Xi State Visit</h4>
+    <p>Chinese President Xi Jinping's state visit to Washington expected, meeting President Trump on Thursday. OpenAI's Sam Altman and NVIDIA's Jensen Huang expected at the state dinner. US House cleared a bill allowing further tariffs, though administration expected to hold off ahead of the visit.</p>
+    <a class="source" href="https://www.cnbc.com/2026/09/18/rate-hike-hold-trump-xi-elections.html" target="_blank">Source: CNBC Daily Open</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 18</div>
+    <span class="tag geopolitical">Geopolitical</span>
+    <h4>France Bond Market Stress</h4>
+    <p>The spread France pays over Germany passed a full percentage point for the first time since the euro-zone debt crisis.</p>
+    <a class="source" href="https://www.cnbc.com/markets/" target="_blank">Source: CNBC Markets</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 18</div>
+    <span class="tag geopolitical">Geopolitical</span>
+    <h4>Germany State Elections</h4>
+    <p>Two state elections marked another test for Chancellor Friedrich Merz after the far-right AfD party won a regional vote. Merz announced he would not attend the UNGA meeting to focus on domestic campaigning.</p>
+    <a class="source" href="https://www.cnbc.com/2026/09/18/rate-hike-hold-trump-xi-elections.html" target="_blank">Source: CNBC Daily Open</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 17</div>
+    <span class="tag policy">Policy</span>
+    <h4>Bank of England Holds Rates</h4>
+    <p>The BoE held rates, but Governor Andrew Bailey said longer-lasting volatility could increase inflation and make further rate hikes more likely.</p>
+    <a class="source" href="https://www.cnbc.com/2026/09/18/rate-hike-hold-trump-xi-elections.html" target="_blank">Source: CNBC Daily Open</a>
+  </div>
+</div>
+
+<!-- JAPAN -->
+<div class="section-title">Japan Stock Market</div>
+
+<div class="card">
+  <h3><span class="tag boj">BOJ</span> Bank of Japan Rate Hike — September 18, 2026</h3>
+  <p>The BOJ voted <strong>7-2</strong> to raise the policy rate from <strong>1.00% to 1.25%</strong> — the highest since 1995. This is the sixth rate hike since exiting negative rates in March 2024. Toichiro Asada and Ayano Sato dissented, arguing sub-2% inflation and limited economic acceleration did not justify a hike.</p>
+  <table style="margin-top:12px;">
+    <tr><th>Item</th><th>Detail</th></tr>
+    <tr><td>Policy Rate Change</td><td>+25 bps → 1.25%</td></tr>
+    <tr><td>Vote</td><td>7-2 (Asada, Sato dissented)</td></tr>
+    <tr><td>August Core CPI</td><td>1.7% (down from 1.8% in July)</td></tr>
+    <tr><td>USD/JPY</td><td>156.95 (+0.63% on day; hit 158.06 intraday)</td></tr>
+    <tr><td>Next Meeting</td><td>October 29–30</td></tr>
+    <tr><td>FX Intervention (August)</td><td>15.4 trillion yen ($98.6B)</td></tr>
+  </table>
+  <p style="margin-top:8px;">Yen weakened despite the hike because the 7-2 split and Governor Ueda's cautious tone suggested more cautious tightening ahead. Markets priced ~53% chance of another hike at the October meeting.</p>
+  <a class="source" href="https://www.babypips.com/news/headline-boj-rate-hike-september-2026-yen-falls-dovish-ueda" target="_blank">Source: BabyPips</a> |
+  <a class="source" href="https://www.fxstreet.com/news/japanese-yen-weakens-despite-boj-hike-as-us-dollar-remains-firm-202609181554" target="_blank">FXStreet</a>
+</div>
+
+<div class="card">
+  <h3>Nikkei 225 &amp; TOPIX Daily Performance</h3>
+  <table>
+    <tr><th>Date</th><th>Nikkei 225 Close</th><th>Change</th><th>TOPIX Close</th><th>Change</th></tr>
+    <tr><td>Sep 14</td><td>63,499</td><td class="down">-0.80%</td><td>4,061.18</td><td class="up">+32.88</td></tr>
+    <tr><td>Sep 15</td><td>63,484.10</td><td class="down">-0.01%</td><td>4,037.16</td><td class="down">-0.52%</td></tr>
+    <tr><td>Sep 16</td><td>63,923.00</td><td class="up">+0.69%</td><td>—</td><td class="up">+0.61%</td></tr>
+    <tr><td>Sep 17</td><td>64,136.25</td><td class="up">+0.33%</td><td>4,094.19</td><td class="up">+0.80%</td></tr>
+    <tr><td>Sep 18</td><td>65,018.95</td><td class="up">+1.38%</td><td>4,091.14</td><td class="down">-0.07%</td></tr>
+  </table>
+  <p style="margin-top:8px;">Sep 18 surge driven by semiconductor stocks — Nikkei Semiconductor Stock Index jumped <strong>5.48%</strong> to 23,966.83. Weaker yen from BOJ hike supported Japanese exporters.</p>
+  <a class="source" href="https://newsonjapan.com/article/150749.php" target="_blank">Source: News on Japan</a> |
+  <a class="source" href="https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Japanese+Stocks+Rise+as+Oil+Falls+After+US+Fed+Rate+Hike&news_id=242508&group_news=IPOTNEWS" target="_blank">IndoPremier</a>
+</div>
+
+<!-- KOREA -->
+<div class="section-title">Korea Stock Market</div>
+
+<div class="card">
+  <h3>KOSPI &amp; KOSDAQ Performance</h3>
+  <table>
+    <tr><th>Date</th><th>KOSPI Close</th><th>Change</th><th>Key Drivers</th></tr>
+    <tr><td>Sep 14</td><td>6,692.61 (open)</td><td class="down">-3.14%</td><td>Mid East tensions, US CPI concerns; SK Hynix -5%, Samsung -3.6%</td></tr>
+    <tr><td>Sep 15</td><td>6,627.24</td><td class="down">-0.85%</td><td>Risk-off sentiment before Fed decision</td></tr>
+    <tr><td>Sep 16</td><td>6,717.97</td><td class="up">+1.37%</td><td>Samsung +2.01%, SK Hynix +4.08%; Hynix in talks with Intel</td></tr>
+    <tr><td>Sep 17</td><td>6,715.41</td><td class="down">-0.04%</td><td>Essentially flat</td></tr>
+    <tr><td>Sep 18</td><td>6,894.23</td><td class="up">+2.66%</td><td>SK Hynix +6.42%, Samsung +3.37%</td></tr>
+  </table>
+  <p style="margin-top:8px;"><strong>Capital flows (Sep 18):</strong> Foreign investors bought 424.6B KRW; domestic institutions bought 1.5T KRW; retail sold 3.59T KRW. <strong>USD/KRW:</strong> 1,383.3 (won strengthened 1.1).</p>
+  <a class="source" href="https://pasardana.id/news/2026/9/18/indeks-kospi-melonjak-2-66-persen" target="_blank">Source: Pasardana</a>
+</div>
+
+<!-- CHINA A-SHARES -->
+<div class="section-title">China A-Shares</div>
+
+<div class="card">
+  <h3>A-Share Daily Performance</h3>
+  <table>
+    <tr><th>Date</th><th>Shanghai Composite</th><th>Shenzhen Component</th><th>ChiNext</th></tr>
+    <tr><td>Sep 14</td><td class="down">3,885.33 (-0.07%)</td><td class="down">13,384.57 (-0.64%)</td><td>—</td></tr>
+    <tr><td>Sep 17</td><td class="down">3,875.60 (-0.41%)</td><td class="down">13,409.91 (-0.33%)</td><td>—</td></tr>
+    <tr><td>Sep 18</td><td class="up">3,911.87 (+0.94%)</td><td class="up">13,640.87 (+1.72%)</td><td class="up">3,372.68 (+2.25%)</td></tr>
+  </table>
+  <a class="source" href="http://www.china.org.cn/china/Off_the_Wire/2026-09/14/content_118695140.shtml" target="_blank">Source: China.org.cn</a>
+</div>
+
+<div class="card">
+  <h3><span class="tag policy">Policy</span> PBOC LPR &amp; Macro Data</h3>
+  <p><strong>Sep 20 — LPR unchanged for 16th consecutive month:</strong> 1-Year at 3.00%, 5-Year at 3.50%.</p>
+  <table style="margin-top:12px;">
+    <tr><th>Indicator</th><th>Value</th><th>Trend</th></tr>
+    <tr><td>Manufacturing PMI (Aug)</td><td>49.8%</td><td>+0.6 pts from July (still below 50)</td></tr>
+    <tr><td>Non-manufacturing PMI (Aug)</td><td>49.0%</td><td>unchanged</td></tr>
+    <tr><td>Composite PMI (Aug)</td><td>49.5%</td><td>+0.2 pts</td></tr>
+    <tr><td>CPI (Aug) YoY</td><td>+0.8%</td><td>MoM +0.4%</td></tr>
+    <tr><td>Core CPI (Aug) YoY</td><td>+1.0%</td><td>—</td></tr>
+    <tr><td>Total Trade (Aug)</td><td>$683.8B</td><td class="up">+26.3% YoY</td></tr>
+    <tr><td>Exports (Aug)</td><td>$401.44B</td><td class="up">+25.0% YoY</td></tr>
+    <tr><td>Imports (Aug)</td><td>$282.36B</td><td class="up">+28.2% YoY</td></tr>
+    <tr><td>Trade Surplus (Aug)</td><td>$119.09B</td><td>—</td></tr>
+  </table>
+  <a class="source" href="http://www.chinaview.cn/20260920/46a3ecc0aa92423da6dfaa6c1eeacdf0/c.html" target="_blank">Source: Xinhua</a> |
+  <a class="source" href="https://www.stats.gov.cn/english/PressRelease/202609/t20260910_1965275.html" target="_blank">NBS</a>
+</div>
+
+<div class="card">
+  <h3>Corporate &amp; Policy Highlights</h3>
+
+  <div class="event">
+    <div class="date-tag">Sep 20</div>
+    <span class="tag earnings">Earnings</span>
+    <h4>CXMT Fifth-Generation DRAM (G5) in Mass Production</h4>
+    <p>CXMT announced G5 DRAM platform entered mass production. Two LPDDR5X products showcased, each with 24GB capacity — a 50% increase over the previous generation.</p>
+    <a class="source" href="https://m.thepaper.cn/newsDetail_forward_34113470" target="_blank">Source: The Paper</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 20</div>
+    <span class="tag policy">Policy</span>
+    <h4>China-US Trade Talks Begin in New York</h4>
+    <p>China-US economic and trade teams began negotiations in New York on September 20.</p>
+    <a class="source" href="https://m.thepaper.cn/newsDetail_forward_34113470" target="_blank">Source: The Paper</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 20</div>
+    <h4>Dong Mingzhu Steps Down as Gree E-commerce Legal Representative</h4>
+    <p>Dong Mingzhu stepped down as legal representative of Gree E-commerce Co., Ltd., with Zhang Xinlei taking over.</p>
+    <a class="source" href="https://m.thepaper.cn/newsDetail_forward_34113470" target="_blank">Source: The Paper</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 20</div>
+    <h4>World Manufacturing Conference in Hefei</h4>
+    <p>MIIT Deputy Minister Xin Guobin said China will advance AI-plus-manufacturing, cultivate smart factories, and promote service manufacturing.</p>
+    <a class="source" href="https://m.thepaper.cn/newsDetail_forward_34113470" target="_blank">Source: The Paper</a>
+  </div>
+</div>
+
+<!-- HONG KONG -->
+<div class="section-title">Hong Kong Stock Market</div>
+
+<div class="card">
+  <h3>Hang Seng Index Performance</h3>
+  <table>
+    <tr><th>Date</th><th>HSI Close</th><th>Change</th><th>HSI Tech Close</th><th>Change</th></tr>
+    <tr><td>Sep 14</td><td>24,917.60</td><td class="up">+0.45%</td><td>—</td><td class="down">-0.06%</td></tr>
+    <tr><td>Sep 15</td><td>24,859.00</td><td class="down">-0.2%</td><td>4,350.00</td><td class="up">+0.8%</td></tr>
+    <tr><td>Sep 16</td><td>24,713.78</td><td class="up">+0.19%</td><td>4,325.45</td><td class="up">+0.79%</td></tr>
+    <tr><td>Sep 17</td><td>24,533.00</td><td class="down">-0.7%</td><td>4,292.00</td><td class="down">-0.8%</td></tr>
+    <tr><td>Sep 18</td><td>24,750.78</td><td class="up">+0.60%</td><td>—</td><td>—</td></tr>
+  </table>
+  <p style="margin-top:8px;"><strong>Sep 18 notable moves:</strong> Z.AI +2.8% to HK$740; MINIMAX-W +7.1% to HK$254.8; Tencent -1.7% to HK$426; BABA-W -1% to HK$105.1; CNOOC -2% to HK$23.88. Southbound funds net inflow: HK$3.36B (+60.2%).</p>
+  <a class="source" href="https://www.kgi.com.hk/en/market-news-and-analysis/market-news/market-news-feed?id=6083903&iid=fbad7c73d0da40f9a6a0429063978820&type=scnews" target="_blank">Source: KGI Hong Kong</a>
+</div>
+
+<!-- FUTURES & COMMODITIES -->
+<div class="section-title">Futures &amp; Commodities — Large Fluctuations</div>
+
+<div class="card">
+  <h3>Crude Oil — Major Volatility</h3>
+  <table>
+    <tr><th>Date</th><th>Brent</th><th>WTI</th><th>Driver</th></tr>
+    <tr><td>Sep 14</td><td class="up">$108.48 (+3.7%)</td><td class="up">$103.58 (+3.5%)</td><td>Saudi East-West Pipeline damaged; Middle East conflict spreads</td></tr>
+    <tr><td>Sep 18</td><td class="down">$102.59 (-2.13%)</td><td>—</td><td>US seeks to ease Saudi supply concerns</td></tr>
+    <tr><td>Sep 21</td><td class="down">$103.19 (-1.6%)</td><td class="down">$99.53 (-2.3%)</td><td>Diplomatic progress; first WTI close below $100 since Sep 9</td></tr>
+  </table>
+  <p style="margin-top:8px;"><strong>Weekly:</strong> Brent -1.5%, WTI -0.7%. Saudi Aramco reportedly informed European customers they would receive no crude next month. US granted visas to Iranian officials for UN General Assembly. Trump said Iran was "very much wanting to make a deal."</p>
+  <a class="source" href="https://www.hellenicshippingnews.com/oil-prices-snap-two-week-winning-streak-on-easing-middle-east-supply-fears/" target="_blank">Source: Hellenic Shipping News</a>
+</div>
+
+<div class="card">
+  <h3>Gold &amp; Precious Metals</h3>
+  <table>
+    <tr><th>Metal</th><th>Price</th><th>Change</th></tr>
+    <tr><td>Gold (COMEX, Sep 19)</td><td>$4,415.90/oz</td><td class="up">Back above $4,400</td></tr>
+    <tr><td>Gold (Sep 21)</td><td>$4,401.10/oz</td><td class="down">-$28.70 (-0.65%)</td></tr>
+    <tr><td>Silver (COMEX Dec'26)</td><td>$64.150/oz</td><td class="up">+0.46%</td></tr>
+    <tr><td>Platinum (spot)</td><td>$1,800.00/oz</td><td class="up">+$25.00</td></tr>
+    <tr><td>Palladium (Sep'26)</td><td>$1,306.20/oz</td><td class="up">+$16.00 (+1.24%)</td></tr>
+  </table>
+  <p style="margin-top:8px;">Gold shrugged off the Fed hike as falling Treasury yields (~7bps drop to 4.949%) and a weaker dollar (DXY at 100.22) reopened the path toward $4,400. Safe-haven demand from Middle East conflict also supported precious metals.</p>
+  <a class="source" href="https://www.fxstreet.com/news/gold-shrugs-off-fed-hike-as-falling-yields-reopen-path-to-4-400-202609171858" target="_blank">Source: FXStreet</a>
+</div>
+
+<div class="card">
+  <h3>Industrial Metals — Copper Near Record Highs</h3>
+  <table>
+    <tr><th>Metal</th><th>Price</th><th>Trend</th></tr>
+    <tr><td>LME Copper (3M)</td><td>$14,190/ton</td><td class="down">-1.2% from record highs ($14,779)</td></tr>
+    <tr><td>Copper (US, Sep 14)</td><td>$6.395/lb</td><td class="down">-1.2% on positioning reassessment</td></tr>
+    <tr><td>Global Mine Output (H1)</td><td>-1.1%</td><td class="down">Supply tightening</td></tr>
+  </table>
+  <p style="margin-top:8px;">Copper hit record highs (~$14,779/ton) driven by tight mine supply, US refined-copper tariff uncertainty, and AI/electrification demand. US tariff fears led traders to stockpile refined copper domestically, reducing inventories elsewhere. Nickel began underperforming vs. copper.</p>
+  <a class="source" href="https://kessler-prod.reta52d8.eas.morningstar.com/news/dow-jones/202609141179/oil-prices-gain-as-middle-east-conflict-spreads-commodities-roundup" target="_blank">Source: Morningstar/Dow Jones</a>
+</div>
+
+<div class="card">
+  <h3>Natural Gas</h3>
+  <table>
+    <tr><th>Market</th><th>Price</th><th>Change</th></tr>
+    <tr><td>European Benchmark Gas (Sep 14)</td><td>€84.09/MWh</td><td class="up">+5.8%</td></tr>
+    <tr><td>Dutch TTF (Mar'27)</td><td>€74.765/MWh</td><td>—</td></tr>
+    <tr><td>Dutch TTF (Sep'27)</td><td>€51.635/MWh</td><td>—</td></tr>
+  </table>
+  <p style="margin-top:8px;">Middle East disruptions constrained LNG supply. Qatar's Ras Laffan complex remained below normal capacity after earlier missile damage. Goldman Sachs forecast TTF gas prices to rise above €100/MWh if Persian Gulf LNG exports don't improve. European gas storage below seasonal norms.</p>
+  <a class="source" href="https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data" target="_blank">Source: ICE</a> |
+  <a class="source" href="https://www.cls.cn/subject/1501" target="_blank">CLS</a>
+</div>
+
+<div class="card">
+  <h3>Agricultural Commodities</h3>
+  <table>
+    <tr><th>Commodity</th><th>Price</th><th>Driver</th></tr>
+    <tr><td>Soybeans (Nov)</td><td>~$13.04/bushel</td><td class="up">Rebound after USDA selloff; China demand</td></tr>
+    <tr><td>Corn</td><td>Lower</td><td class="down">Midwest rain disrupts harvest</td></tr>
+    <tr><td>Wheat</td><td>Lower</td><td class="down">Midwest rain disrupts harvest</td></tr>
+    <tr><td>Cotton (Dec NY/ICE)</td><td>~86 cents/lb</td><td>Slow export business</td></tr>
+  </table>
+  <p style="margin-top:8px;">US soybean condition: 58% good-to-excellent, 44% dropping leaves, 6% harvested (both ahead of average). 2-3 inches of rain forecast from Dakotas through Ohio, temporarily interrupting harvest.</p>
+  <a class="source" href="https://www.agrolatam.com/usa/news/midwest-rains-harvest-corn-soybean-wheat-prices/" target="_blank">Source: Agrolatam</a>
+</div>
+
+<div class="card">
+  <h3>Cryptocurrency — Bitcoin Volatility</h3>
+  <table>
+    <tr><th>Date</th><th>BTC/USD</th><th>Change</th></tr>
+    <tr><td>Sep 14</td><td>$78,155.93</td><td class="up">+1.78%</td></tr>
+    <tr><td>Sep 15</td><td>$75,614.13</td><td class="down">-3.25%</td></tr>
+    <tr><td>Sep 20</td><td>~$78,000</td><td>Back to pre-Fed-hike levels</td></tr>
+  </table>
+  <p style="margin-top:8px;">Bitcoin down 1.5% for the month but up ~32% for the quarter. Sep 20: 101,300 positions liquidated in 24 hours totaling $240M. US Senate Digital Asset Market Clarity Act procedural vote received 49 votes, reflecting continued policy uncertainty. Ethereum, BNB, XRP, Solana all fell on risk-off sentiment.</p>
+  <a class="source" href="https://www.exchangerates.org.uk/crypto-currencies/bitcoin-to-us-dollar-history-btc-usd" target="_blank">Source: ExchangeRates</a> |
+  <a class="source" href="https://finance.sina.com.cn/stock/usstock/c/2026-09-20/doc-inisnhca6661311.shtml" target="_blank">Sina Finance</a>
+</div>
+
+<!-- KEY MACRO EVENTS SUMMARY -->
+<div class="section-title">Key Macro Events Summary</div>
+
+<div class="card">
+  <div class="event">
+    <div class="date-tag">Sep 16</div>
+    <span class="tag fed">Fed</span>
+    <h4>Fed Raises Rates 25bps to 3.75%–4.00%</h4>
+    <p>First hike in 3+ years. Unanimous 12-0 vote. Dot plot: 16/18 expect another hike. 2026 PCE forecast: 3.7% headline, 3.4% core. Unemployment lowered to 4.1%.</p>
+    <a class="source" href="https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html" target="_blank">Source: CNBC</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 18</div>
+    <span class="tag boj">BOJ</span>
+    <h4>BOJ Raises Rates to 1.25% — Highest Since 1995</h4>
+    <p>7-2 vote. Core CPI at 1.7%. Yen weakened to 156.95 on dovish Ueda tone. Next meeting Oct 29-30.</p>
+    <a class="source" href="https://www.babypips.com/news/headline-boj-rate-hike-september-2026-yen-falls-dovish-ueda" target="_blank">Source: BabyPips</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 14</div>
+    <span class="tag geopolitical">Geopolitical</span>
+    <h4>Saudi East-West Pipeline Damaged</h4>
+    <p>Drone strikes disrupted Saudi Aramco's pipeline. Saudi Arabia informed European customers of no crude deliveries next month. China asked Iran to rein in Houthi attacks.</p>
+    <a class="source" href="https://www.ainvest.com/news/japanese-refiners-scramble-mideast-crude-saudi-route-closes-2609/" target="_blank">Source: AInvest</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 20</div>
+    <span class="tag policy">Policy</span>
+    <h4>China-US Trade Talks Begin in New York</h4>
+    <p>Economic and trade teams from both countries started negotiations. This precedes the Trump-Xi state visit expected later in the week.</p>
+    <a class="source" href="https://m.thepaper.cn/newsDetail_forward_34113470" target="_blank">Source: The Paper</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 17</div>
+    <span class="tag policy">Policy</span>
+    <h4>Bank of England Holds Rates</h4>
+    <p>BoE kept rates unchanged, but Governor Bailey warned that persistent volatility could raise inflation and justify further hikes.</p>
+    <a class="source" href="https://www.cnbc.com/2026/09/18/rate-hike-hold-trump-xi-elections.html" target="_blank">Source: CNBC</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 14-15</div>
+    <h4>US 10Y Treasury Yield Breaks 5%</h4>
+    <p>First time since October 2023. Peaked at 5.02% on Sep 15 — highest since 2007. 2Y added ~10bps on the week; 10Y-2Y spread narrowed to ~25bps.</p>
+    <a class="source" href="https://www.cnbc.com/markets/" target="_blank">Source: CNBC Markets</a>
+  </div>
+
+  <div class="event">
+    <div class="date-tag">Sep 18</div>
+    <h4>US Antitrust Lawsuit Against AI Companies</h4>
+    <p>Lawsuit filed against Anthropic, OpenAI, SpaceX AI (formerly xAI), and Google in US Northern District of California, alleging they slowed AI development through an "illegal agreement."</p>
+    <a class="source" href="https://m.thepaper.cn/newsDetail_forward_34113470" target="_blank">Source: The Paper</a>
+  </div>
+</div>
+
+<!-- Source Index -->
+<div class="section-title">Source Index</div>
+<div class="card">
+  <ol class="source-list">
+    <li><a href="https://www.cnbc.com/2026/09/18/jim-cramer-week-ahead-costco-okta.html" target="_blank">CNBC — Cramer's week ahead</a></li>
+    <li><a href="https://www.nasdaq.com/articles/us-stocks-close-mixed-following-choppy-trading-day" target="_blank">Nasdaq — US Stocks Close Mixed</a></li>
+    <li><a href="https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html" target="_blank">CNBC — Fed Rate Decision September 2026</a></li>
+    <li><a href="https://www.cnbc.com/2026/09/11/cpi-inflation-report-august-2026.html" target="_blank">CNBC — CPI Inflation Report August 2026</a></li>
+    <li><a href="https://www.nasdaq.com/articles/stocks-finish-mostly-higher-crude-prices-fall" target="_blank">Nasdaq — Stocks Finish Mostly Higher</a></li>
+    <li><a href="https://www.nasdaq.com/articles/nvidia-ceo-signals-strong-momentum-shareholders" target="_blank">Nasdaq — NVIDIA CEO Signals Strong Momentum</a></li>
+    <li><a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/09/nvidia-postq-growth-outlook-resets-expectations-well-above-preq-consensus" target="_blank">S&P Global — NVIDIA PostQ Growth Outlook</a></li>
+    <li><a href="https://www.nasdaq.com/articles/jensen-huang-just-announced-fantastic-news-nvidia-shareholders" target="_blank">Nasdaq — Jensen Huang Announcement</a></li>
+    <li><a href="https://investor.nvidia.com/stock-info/stock-quote-and-chart/default.aspx" target="_blank">NVIDIA Investor Relations</a></li>
+    <li><a href="https://www.cnbc.com/2026/09/18/rate-hike-hold-trump-xi-elections.html" target="_blank">CNBC Daily Open — Rate Hike, Trump-Xi</a></li>
+    <li><a href="https://finance.sina.com.cn/stock/t/2026-09-03/doc-iniqqncn1046523.shtml" target="_blank">Sina Finance — Tesla Cybercab</a></li>
+    <li><a href="https://www.barchart.com/stocks/quotes/TSLA/overview" target="_blank">Barchart — Tesla Stock</a></li>
+    <li><a href="https://stock.finance.sina.com.cn/usstock/quotes/AAPL.html" target="_blank">Sina Finance — Apple Stock</a></li>
+    <li><a href="https://www.marketbeat.com/stocks/NASDAQ/MSFT/" target="_blank">MarketBeat — Microsoft Stock</a></li>
+    <li><a href="https://www.cnbc.com/markets/" target="_blank">CNBC — Markets Dashboard</a></li>
+    <li><a href="https://www.thorft.com/blog/the-s-p-finished-flat-the-dow-lost-890-points" target="_blank">THOR Financial Technologies — Weekly Review</a></li>
+    <li><a href="https://newsonjapan.com/article/150749.php" target="_blank">News on Japan — Nikkei Falls</a></li>
+    <li><a href="https://www.indopremier.com/ipotnews/newsDetail.php?jdl=Japanese+Stocks+Rise+as+Oil+Falls+After+US+Fed+Rate+Hike&news_id=242508&group_news=IPOTNEWS" target="_blank">IndoPremier — Japanese Stocks Rise</a></li>
+    <li><a href="https://www.fxstreet.com/news/japanese-yen-weakens-despite-boj-hike-as-us-dollar-remains-firm-202609181554" target="_blank">FXStreet — Japanese Yen Weakens</a></li>
+    <li><a href="https://www.babypips.com/news/headline-boj-rate-hike-september-2026-yen-falls-dovish-ueda" target="_blank">BabyPips — BOJ Rate Hike</a></li>
+    <li><a href="https://finance.sina.com.cn/roll/2026-09-18/doc-inisftwx3322999.shtml" target="_blank">Sina Finance — Japan FX Intervention</a></li>
+    <li><a href="https://marketinsiders.in/2026/09/14/kospi-shock-on-14-september-2026-stocks-and-ipos/" target="_blank">Market Insiders — KOSPI Shock</a></li>
+    <li><a href="https://finance.sina.com.cn/stock/bxjj/2026-09-16/doc-inirzfsz4840400.shtml" target="_blank">Sina Finance — KOSPI Rebound</a></li>
+    <li><a href="https://pasardana.id/news/2026/9/18/indeks-kospi-melonjak-2-66-persen" target="_blank">Pasardana — KOSPI Surges</a></li>
+    <li><a href="http://www.china.org.cn/china/Off_the_Wire/2026-09/14/content_118695140.shtml" target="_blank">China.org.cn — A-Share Sep 14</a></li>
+    <li><a href="http://www.china.org.cn/china/Off_the_Wire/2026-09/17/content_118700808.shtml" target="_blank">China.org.cn — A-Share Sep 17</a></li>
+    <li><a href="https://m.thepaper.cn/newsDetail_forward_34113470" target="_blank">The Paper — Sep 20 Highlights</a></li>
+    <li><a href="http://www.chinaview.cn/20260920/46a3ecc0aa92423da6dfaa6c1eeacdf0/c.html" target="_blank">Xinhua — LPR Unchanged</a></li>
+    <li><a href="http://www.stats.gov.cn/english/PressRelease/202609/t20260901_1965170.html" target="_blank">NBS — Manufacturing PMI</a></li>
+    <li><a href="https://www.stats.gov.cn/english/PressRelease/202609/t20260910_1965275.html" target="_blank">NBS — August CPI</a></li>
+    <li><a href="https://www.kgi.com.hk/en/market-news-and-analysis/market-news/market-news-feed?id=6083903&iid=fbad7c73d0da40f9a6a0429063978820&type=scnews" target="_blank">KGI Hong Kong — HSI Sep 18</a></li>
+    <li><a href="https://www.jpmorgan.com/insights/markets-and-economy/economy/federal-reserve-raises-rates-officials-signal-one-more-hike-in-2026" target="_blank">JPMorgan — Fed Rate Hike Analysis</a></li>
+    <li><a href="https://www.hellenicshippingnews.com/oil-prices-snap-two-week-winning-streak-on-easing-middle-east-supply-fears/" target="_blank">Hellenic Shipping News — Oil Prices</a></li>
+    <li><a href="https://www.aa.com.tr/en/economy/oil-prices-fall-around-4-as-us-seeks-to-ease-saudi-supply-concerns/4059273" target="_blank">Anadolu Agency — Oil Prices Fall</a></li>
+    <li><a href="https://www.fxstreet.com/news/gold-shrugs-off-fed-hike-as-falling-yields-reopen-path-to-4-400-202609171858" target="_blank">FXStreet — Gold Rally</a></li>
+    <li><a href="https://www.morningstar.com/markets/commodities" target="_blank">Morningstar — Commodities</a></li>
+    <li><a href="https://www.markets-apac.com/news/copper-price-today-september-8-2026/" target="_blank">Markets APAC — Copper Price</a></li>
+    <li><a href="https://www.agrolatam.com/usa/news/soybean-prices-14-usda-wasde-china-demand-2026/" target="_blank">Agrolatam — Soybean Prices</a></li>
+    <li><a href="https://www.agrolatam.com/usa/news/midwest-rains-harvest-corn-soybean-wheat-prices/" target="_blank">Agrolatam — Midwest Rains</a></li>
+    <li><a href="https://www.ice.com/products/27996665/Dutch-TTF-Natural-Gas-Futures/data" target="_blank">ICE — Dutch TTF Natural Gas</a></li>
+    <li><a href="https://www.cls.cn/subject/1501" target="_blank">CLS — Goldman Sachs Gas Forecast</a></li>
+    <li><a href="https://www.exchangerates.org.uk/crypto-currencies/bitcoin-to-us-dollar-history-btc-usd" target="_blank">ExchangeRates — Bitcoin History</a></li>
+    <li><a href="https://finance.sina.com.cn/stock/usstock/c/2026-09-20/doc-inisnhca6661311.shtml" target="_blank">Sina Finance — Bitcoin Sep 20</a></li>
+    <li><a href="https://www.ainvest.com/news/japanese-refiners-scramble-mideast-crude-saudi-route-closes-2609/" target="_blank">AInvest — Saudi Pipeline Disruption</a></li>
+  </ol>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <p>What Happened in Markets Today — September 21, 2026 (EN) | Generated from real-time financial news sources</p>
+  <p>Disclaimer: This report is for informational purposes only and does not constitute investment advice.</p>
+</div>
+
+</div>
+</body>
+</html>
