@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Happened in Markets Today — September 22, 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+:root {
+  --bg: #f0f3f8; --bg2: #ffffff; --bg2-hover: #f7f9fc;
+  --ink: #1a202c; --muted: #64748b; --rule: #e2e8f0;
+  --accent: #2563eb; --accent2: #7c3aed;
+  --up: #dc2626; --down: #059669;
+  --jp: #7c3aed; --kr: #ea580c; --cn: #059669; --hk: #0891b2; --fu: #dc2626;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --mono: "SF Mono", "JetBrains Mono", "Fira Code", monospace;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--ink); font-family:var(--font); line-height:1.75; font-size:15px; }
+
+.cover { background:linear-gradient(180deg,#fff 0%,#eef2f9 100%); padding:56px 24px 44px; text-align:center; border-bottom:1px solid var(--rule); }
+.cover h1 { font-size:34px; font-weight:800; letter-spacing:0.5px; color:var(--ink); }
+.cover .subtitle { font-size:15px; color:var(--muted); margin-top:8px; }
+.cover .date-badge { display:inline-block; background:var(--accent); color:#fff; border-radius:6px; padding:5px 16px; font-size:13px; font-weight:600; margin-top:14px; }
+.cover .stats { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:22px; }
+.cover .stat-item { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:14px 22px; min-width:100px; box-shadow:var(--shadow); }
+.cover .stat-item .num { font-size:24px; font-weight:800; color:var(--accent); font-family:var(--mono); }
+.cover .stat-item .label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.5px; }
+
+.container { max-width:1080px; margin:0 auto; padding:0 20px; }
+h2.section-title { font-size:18px; font-weight:700; text-align:center; margin:40px 0 6px; color:var(--ink); }
+p.section-sub { text-align:center; color:var(--muted); font-size:13px; margin-bottom:20px; }
+
+.metrics-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:12px; margin:20px 0; }
+.metric-card { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:16px 14px; text-align:center; box-shadow:var(--shadow); transition:box-shadow .2s; }
+.metric-card:hover { box-shadow:var(--shadow-md); }
+.metric-card .name { font-size:11px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:0.5px; }
+.metric-card .value { font-size:22px; font-weight:800; font-family:var(--mono); color:var(--ink); }
+.metric-card .change { font-size:13px; margin-top:4px; font-weight:600; }
+.metric-card .change.up { color:var(--up); }
+.metric-card .change.down { color:var(--down); }
+.metric-card .note { font-size:10px; color:var(--muted); margin-top:2px; }
+.metric-card.us { border-top:3px solid var(--accent); }
+.metric-card.jp { border-top:3px solid var(--jp); }
+.metric-card.kr { border-top:3px solid var(--kr); }
+.metric-card.cn { border-top:3px solid var(--cn); }
+.metric-card.hk { border-top:3px solid var(--hk); }
+.metric-card.futures { border-top:3px solid var(--fu); }
+
+.chart-box { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:20px 24px; margin:20px 0; box-shadow:var(--shadow); }
+.chart-box h3 { font-size:14px; color:var(--ink); margin-bottom:14px; font-weight:700; }
+.chart { width:100%; height:360px; }
+
+.toc { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:20px 24px; margin:28px 0; box-shadow:var(--shadow); }
+.toc h2 { font-size:15px; margin-bottom:14px; color:var(--ink); font-weight:700; }
+.toc ul { list-style:none; display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:6px; }
+.toc a { color:var(--muted); text-decoration:none; font-size:13px; transition:color .2s; display:flex; align-items:center; gap:6px; }
+.toc a:hover { color:var(--accent); }
+.toc a .dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+
+.section { margin:36px 0; }
+.section-header { display:flex; align-items:center; gap:10px; margin-bottom:20px; padding-bottom:10px; border-bottom:2px solid var(--rule); }
+.section-header .icon { width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; color:#fff; }
+.section-header h2 { font-size:20px; font-weight:700; color:var(--ink); }
+.section-header .desc { font-size:12px; color:var(--muted); margin-left:auto; }
+
+.card { background:var(--bg2); border:1px solid var(--rule); border-radius:var(--radius); padding:22px 24px; margin-bottom:14px; box-shadow:var(--shadow); transition:box-shadow .2s, border-color .2s; }
+.card:hover { box-shadow:var(--shadow-md); border-color:var(--accent); }
+.card-header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:10px; flex-wrap:wrap; }
+.card-title { font-size:15px; font-weight:700; color:var(--ink); flex:1; min-width:200px; }
+.card-date { background:var(--bg); border:1px solid var(--rule); border-radius:5px; padding:3px 10px; font-size:11px; color:var(--muted); white-space:nowrap; }
+.card-body { font-size:14px; color:var(--ink); line-height:1.8; }
+.card-body p { margin-bottom:8px; }
+.card-body mark.key { background:rgba(37,99,235,0.08); color:var(--accent); padding:1px 5px; border-radius:3px; font-weight:600; }
+.card-body mark.red { background:rgba(220,38,38,0.08); color:var(--up); padding:1px 5px; border-radius:3px; font-weight:600; }
+.card-body mark.green { background:rgba(5,150,105,0.08); color:var(--down); padding:1px 5px; border-radius:3px; font-weight:600; }
+
+.card-data { margin-top:10px; overflow-x:auto; }
+.card-data table { width:100%; border-collapse:collapse; font-size:13px; }
+.card-data th { text-align:left; color:var(--muted); padding:6px 10px; border-bottom:1px solid var(--rule); font-weight:600; font-size:12px; }
+.card-data td { padding:7px 10px; border-bottom:1px solid #f1f5f9; }
+.card-data td.num { font-family:var(--mono); text-align:right; }
+.card-data td.up { color:var(--up); font-weight:600; }
+.card-data td.down { color:var(--down); font-weight:600; }
+
+.card-sources { margin-top:12px; display:flex; flex-wrap:wrap; gap:5px; }
+.card-sources a { font-size:11px; color:var(--muted); text-decoration:none; background:var(--bg); border:1px solid var(--rule); border-radius:4px; padding:2px 8px; transition:all .2s; }
+.card-sources a:hover { color:var(--accent); border-color:var(--accent); background:rgba(37,99,235,0.04); }
+
+.table-wrap { overflow-x:auto; overflow-y:auto; max-height:600px; margin:20px 0; border:1px solid var(--rule); border-radius:var(--radius); box-shadow:var(--shadow); }
+.table-wrap table { width:100%; border-collapse:collapse; font-size:13px; min-width:700px; }
+.table-wrap th { background:#f8fafc; color:var(--ink); padding:10px 14px; text-align:left; font-weight:700; border-bottom:2px solid var(--rule); position:sticky; top:0; z-index:1; font-size:12px; }
+.table-wrap td { padding:8px 14px; border-bottom:1px solid #f1f5f9; }
+.table-wrap tr:nth-child(even) { background:#fafbfc; }
+.table-wrap tr:hover { background:rgba(37,99,235,0.03); }
+.table-wrap td.up { color:var(--up); font-weight:600; }
+.table-wrap td.down { color:var(--down); font-weight:600; }
+.region-tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:700; }
+.region-tag.us { background:rgba(37,99,235,0.1); color:var(--accent); }
+.region-tag.jp { background:rgba(124,58,237,0.1); color:var(--jp); }
+.region-tag.kr { background:rgba(234,88,12,0.1); color:var(--kr); }
+.region-tag.cn { background:rgba(5,150,105,0.1); color:var(--cn); }
+.region-tag.hk { background:rgba(8,145,178,0.1); color:var(--hk); }
+.region-tag.futures { background:rgba(220,38,38,0.1); color:var(--fu); }
+
+.footer { margin-top:50px; padding:32px 24px; border-top:1px solid var(--rule); background:var(--bg2); }
+.footer .disclaimer { font-size:12px; color:var(--muted); max-width:700px; margin:0 auto 18px; line-height:1.8; text-align:center; }
+.footer .ref-list { text-align:left; max-width:800px; margin:0 auto; font-size:12px; color:var(--muted); }
+.footer .ref-list h2 { font-size:15px; color:var(--ink); margin-bottom:12px; font-weight:700; }
+.footer .ref-list ol { padding-left:20px; }
+.footer .ref-list li { margin-bottom:4px; word-break:break-all; line-height:1.7; }
+.footer .ref-list a { color:var(--accent); text-decoration:none; }
+.footer .ref-list a:hover { text-decoration:underline; }
+.footer .copyright { margin-top:18px; text-align:center; font-size:11px; color:var(--muted); }
+
+@media (max-width: 768px) {
+  .cover h1 { font-size:24px; }
+  .cover .stats { flex-direction:column; align-items:center; }
+  .metrics-grid { grid-template-columns:repeat(2,1fr); }
+  .section-header { flex-wrap:wrap; }
+  .section-header .desc { margin-left:0; width:100%; }
+  .card-header { flex-direction:column; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <h1>What Happened in Markets Today</h1>
+  <p class="subtitle">Global Financial Markets &amp; Macroeconomic Review</p>
+  <span class="date-badge">September 22, 2026 (EN)</span>
+  <div class="stats">
+    <div class="stat-item"><div class="num">5</div><div class="label">Regions</div></div>
+    <div class="stat-item"><div class="num">25+</div><div class="label">Key Events</div></div>
+    <div class="stat-item"><div class="num">45+</div><div class="label">Sources</div></div>
+    <div class="stat-item"><div class="num">3</div><div class="label">Interactive Charts</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- KEY METRICS -->
+<h2 class="section-title">Key Market Indicators</h2>
+<p class="section-sub">Latest closes and policy rates across global markets</p>
+<div class="metrics-grid">
+  <div class="metric-card us"><div class="name">S&amp;P 500</div><div class="value">7,764.70</div><div class="change up">+1.49%</div><div class="note">Sep 21 close</div></div>
+  <div class="metric-card us"><div class="name">Nasdaq</div><div class="value">27,122.09</div><div class="change up">+2.26%</div><div class="note">Sep 21 close</div></div>
+  <div class="metric-card us"><div class="name">Dow Jones</div><div class="value">52,048.82</div><div class="change up">+0.71%</div><div class="note">Sep 21 close</div></div>
+  <div class="metric-card us"><div class="name">Fed Funds Rate</div><div class="value">3.75–4.00%</div><div class="change up">+25 bps</div><div class="note">Sep 16 hike</div></div>
+  <div class="metric-card us"><div class="name">US 10Y Yield</div><div class="value">5.00%</div><div class="change up">Crossed 5%</div><div class="note">Since 2007</div></div>
+  <div class="metric-card jp"><div class="name">Nikkei 225</div><div class="value">65,018.95</div><div class="change up">+1.38%</div><div class="note">Sep 18 close</div></div>
+  <div class="metric-card jp"><div class="name">BOJ Rate</div><div class="value">1.25%</div><div class="change up">+25 bps</div><div class="note">31-yr high</div></div>
+  <div class="metric-card jp"><div class="name">USD/JPY</div><div class="value">~157</div><div class="change">Stable</div><div class="note">Post-BOJ</div></div>
+  <div class="metric-card kr"><div class="name">KOSPI</div><div class="value">7,161.61</div><div class="change up">+2.20%</div><div class="note">Sep 22 open</div></div>
+  <div class="metric-card kr"><div class="name">BOK Rate</div><div class="value">3.00%</div><div class="change up">+25 bps</div><div class="note">Aug 27 hike</div></div>
+  <div class="metric-card cn"><div class="name">Shanghai Comp.</div><div class="value">3,949.91</div><div class="change up">+0.97%</div><div class="note">Sep 21 close</div></div>
+  <div class="metric-card cn"><div class="name">Shenzhen Comp.</div><div class="value">13,730.02</div><div class="change up">+0.65%</div><div class="note">Sep 21 close</div></div>
+  <div class="metric-card cn"><div class="name">ChiNext</div><div class="value">3,399.59</div><div class="change up">+0.80%</div><div class="note">Sep 21 close</div></div>
+  <div class="metric-card hk"><div class="name">Hang Seng</div><div class="value">25,042.71</div><div class="change up">+1.18%</div><div class="note">Sep 21 close</div></div>
+  <div class="metric-card hk"><div class="name">HS Tech</div><div class="value">4,423.29</div><div class="change up">+0.40%</div><div class="note">Sep 21 close</div></div>
+  <div class="metric-card cn"><div class="name">1Y LPR</div><div class="value">3.00%</div><div class="change">Unchanged</div><div class="note">16th month</div></div>
+  <div class="metric-card cn"><div class="name">5Y LPR</div><div class="value">3.50%</div><div class="change">Unchanged</div><div class="note">16th month</div></div>
+  <div class="metric-card futures"><div class="name">WTI Crude</div><div class="value">$95.78</div><div class="change down">-4.51%</div><div class="note">Sep 21</div></div>
+  <div class="metric-card futures"><div class="name">Brent Crude</div><div class="value">$100.34</div><div class="change down">-3.40%</div><div class="note">Sep 21</div></div>
+  <div class="metric-card futures"><div class="name">Gold (COMEX)</div><div class="value">$4,345.80</div><div class="change down">-0.91%</div><div class="note">Sep 21</div></div>
+  <div class="metric-card futures"><div class="name">Copper</div><div class="value">$6.43/lb</div><div class="change up">+0.99%</div><div class="note">Sep 17</div></div>
+  <div class="metric-card futures"><div class="name">Liium Carb.</div><div class="value">¥127,080/t</div><div class="change down">-20%+ Sep</div><div class="note">DCE Sep 16</div></div>
+  <div class="metric-card futures"><div class="name">Bitcoin</div><div class="value">$80,000+</div><div class="change up">+5%</div><div class="note">Sep 18</div></div>
+</div>
+
+<!-- CHARTS -->
+<div class="chart-box">
+  <h3>Global Index Performance — Weekly Returns (Sep 15–21, 2026)</h3>
+  <div id="chart-global" class="chart" style="height:380px"></div>
+</div>
+
+<div class="chart-box">
+  <h3>Commodity Futures — Recent Price Changes</h3>
+  <div id="chart-futures" class="chart" style="height:380px"></div>
+</div>
+
+<div class="chart-box">
+  <h3>A-Share Indices — Multi-Day Trend (Sep 16–21, 2026)</h3>
+  <div id="chart-ashare" class="chart" style="height:380px"></div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <ul>
+    <li><a href="#us"><span class="dot" style="background:var(--accent)"></span> US Stocks &amp; Macro</a></li>
+    <li><a href="#japan"><span class="dot" style="background:var(--jp)"></span> Japan Markets</a></li>
+    <li><a href="#korea"><span class="dot" style="background:var(--kr)"></span> South Korea Markets</a></li>
+    <li><a href="#china"><span class="dot" style="background:var(--cn)"></span> A-Shares &amp; HK</a></li>
+    <li><a href="#futures"><span class="dot" style="background:var(--fu)"></span> Commodity Futures</a></li>
+    <li><a href="#geopolitics"><span class="dot" style="background:var(--accent2)"></span> Geopolitics &amp; Trade</a></li>
+    <li><a href="#summary"><span class="dot" style="background:var(--muted)"></span> Summary Table</a></li>
+  </ul>
+</div>
+
+<!-- US SECTION -->
+<div class="section" id="us">
+  <div class="section-header">
+    <div class="icon" style="background:var(--accent)">US</div>
+    <h2>US Stocks &amp; Macroeconomy</h2>
+    <span class="desc">Fed hikes, inflation data, Treasury yields cross 5%</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Fed Raises Rates 25 bps to 3.75–4.00% — First Hike Since 2023</div>
+      <span class="card-date">Sep 16, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>The FOMC raised the federal funds rate target range by <mark class="key">25 basis points to 3.75–4.00%</mark>, the first increase since 2023. The decision was approved <mark class="key">12–0</mark> under new Chair Kevin Warsh. The statement emphasized that inflation remains elevated and the policy action supports a timelier return to the 2% inflation goal.</p>
+      <p>The SEP dot plot raised the 2026 year-end median rate projection from <mark class="key">3.8% to 4.1%</mark>. Of 18 officials, 16 expected the year-end rate above current levels. Forward guidance points to <mark class="red">one more hike in 2026</mark>, with rates held steady through 2027.</p>
+      <div class="card-data">
+        <table>
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>New Fed Funds Rate</td><td class="num">3.75–4.00%</td></tr>
+          <tr><td>Vote Count</td><td class="num">12–0</td></tr>
+          <tr><td>2026 Year-End Median (SEP)</td><td class="num">4.1%</td></tr>
+          <tr><td>2Y Treasury Yield</td><td class="num up">4.738% (+7.5 bps)</td></tr>
+          <tr><td>10Y Treasury Yield</td><td class="num up">5.00% (+2.45 bps)</td></tr>
+          <tr><td>DXY</td><td class="num up">100.31 (+0.63%)</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.newyorkfed.org/medialibrary/media/markets/fomc-statement-20260916.pdf" target="_blank">NY Fed FOMC Statement</a>
+      <a href="https://live.euronext.com/en/financial-news/stocks-fall-fed-delivers-hawkish-rate-hike" target="_blank">Reuters via Euronext</a>
+      <a href="https://www.infomoney.com.br/mercados/wall-street-cai-apos-fed-elevar-juros-e-sinalizar-mais-aperto-monetario-pela-frente/" target="_blank">Reuters via Infomoney</a>
+      <a href="http://m.toutiao.com/group/7688146072695079467/" target="_blank">Beijing Daily</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">US Stocks Rally on Sep 21 — Nasdaq Leads +2.26%</div>
+      <span class="card-date">Sep 21, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>The S&amp;P 500, Nasdaq, and Dow all closed higher after a sharp bounce, with the <mark class="key">Nasdaq surging +2.26%</mark> to 27,122.09. The S&amp;P 500 rose <mark class="green">+1.49%</mark> to 7,764.70, and the Dow gained <mark class="green">+0.71%</mark> to 52,048.82.</p>
+      <p>Drivers included crude prices giving up early gains, hopes for diplomacy to resume Middle East oil flows, strength in <mark class="key">chipmakers and AI-infrastructure stocks</mark>, and a rally in crypto-exposed stocks. The Philadelphia Semiconductor Index surged 2.8% on Sep 18.</p>
+      <div class="card-data">
+        <table>
+          <tr><th>Index</th><th>Close</th><th>Change</th></tr>
+          <tr><td>S&amp;P 500</td><td class="num">7,764.70</td><td class="up">+1.49%</td></tr>
+          <tr><td>Dow Jones</td><td class="num">52,048.82</td><td class="up">+0.71%</td></tr>
+          <tr><td>Nasdaq</td><td class="num">27,122.09</td><td class="up">+2.26%</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.nasdaq.com/articles/stocks-finish-mostly-higher-crude-prices-fall" target="_blank">Nasdaq/Barchart</a>
+      <a href="http://m.toutiao.com/group/7688151806030938674/" target="_blank">Sina Finance</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">10-Year Treasury Yield Crosses 5% — First Time Since 2007</div>
+      <span class="card-date">Sep 18, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>The 10-year Treasury yield hit <mark class="red">5.004%</mark> on September 18, crossing the 5% threshold for the first time since 2007. The 30-year yield reached <mark class="red">5.333%</mark>. The 2-year yield rose to 4.738% after the Fed's hawkish decision.</p>
+      <p>The surging yields pressured rate-sensitive sectors and contributed to the Dow's third consecutive weekly decline. The higher yields also weighed on gold, which fell 0.69% to $4,263.19/oz.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.nasdaq.com/articles/dow-down-third-straight-week-and-nasdaq-somehow" target="_blank">Motley Fool via Nasdaq</a>
+      <a href="https://live.euronext.com/en/financial-news/stocks-fall-fed-delivers-hawkish-rate-hike" target="_blank">Reuters via Euronext</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">August CPI: Core Inflation Remains Sticky at 2.4%</div>
+      <span class="card-date">Sep 11, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>August headline CPI came in at <mark class="key">3.4% YoY</mark>, matching expectations. Core CPI eased slightly to <mark class="key">2.4% YoY</mark> from 2.5%, but core MoM rose <mark class="red">0.3%</mark> vs 0.2% expected. Energy prices rose 2.1% MoM, led by gasoline up 3.9%.</p>
+      <p>After the data, markets upgraded the probability of a September rate hike to <mark class="red">above 80%</mark>. The hotter-than-expected core MoM print reinforced the Fed's hawkish stance.</p>
+      <div class="card-data">
+        <table>
+          <tr><th>Metric</th><th>Actual</th><th>Expected</th><th>Previous</th></tr>
+          <tr><td>CPI YoY</td><td class="num">3.4%</td><td class="num">3.4%</td><td class="num">3.4%</td></tr>
+          <tr><td>Core CPI YoY</td><td class="num">2.4%</td><td class="num">2.4%</td><td class="num">2.5%</td></tr>
+          <tr><td>CPI MoM</td><td class="num up">+0.4%</td><td class="num">+0.4%</td><td class="num">+0.1%</td></tr>
+          <tr><td>Core CPI MoM</td><td class="num up">+0.3%</td><td class="num">+0.2%</td><td class="num">+0.2%</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card-sources">
+      <a href="https://data.eastmoney.com/report/zw_macresearch.jshtml?encodeUrl=MDtmnUO9AKEHF3M2lyUPXps69fzIu043Zz%2FFZmcRIds=" target="_blank">Eastmoney/DFCF</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">August Nonfarm Payrolls Surge +162K vs +55K Expected</div>
+      <span class="card-date">Sep 7, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>August nonfarm payrolls blew past expectations at <mark class="key">+162,000</mark> vs the consensus <mark class="key">+55,000</mark>. The unemployment rate held at <mark class="key">4.1%</mark>. Leisure and hospitality led gains (+62,000), followed by healthcare (+28,400), construction (+22,000), and manufacturing (+16,000).</p>
+      <p>Finance and IT lost jobs (-11,000 and -23,000 respectively). The strong labor market data reduced the margin for early easing and supported the case for the Fed's September rate hike.</p>
+      <div class="card-data">
+        <table>
+          <tr><th>Metric</th><th>Actual</th><th>Expected</th></tr>
+          <tr><td>Nonfarm Payrolls</td><td class="num up">+162K</td><td class="num">+55K</td></tr>
+          <tr><td>Unemployment Rate</td><td class="num">4.1%</td><td class="num">4.1%</td></tr>
+          <tr><td>Labor Force Participation</td><td class="num">61.6%</td><td class="num">61.5%</td></tr>
+          <tr><td>Avg Hourly Earnings YoY</td><td class="num">+3.1%</td><td class="num">+3.1%</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card-sources">
+      <a href="https://finance.sina.com.cn/wm/2026-09-07/doc-iniqyeuh5729138.shtml" target="_blank">Sina Finance/Zhongxin</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Warren Buffett Steps Down as Berkshire Chairman</div>
+      <span class="card-date">Sep 18, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>Warren Buffett, 96, stepped down as chairman of Berkshire Hathaway, becoming chairman emeritus. His son <mark class="key">Howard Buffett</mark> took over the chair, while <mark class="key">Greg Abel</mark> remains CEO. Berkshire shares moved about 0.2% lower on the news.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.nasdaq.com/articles/dow-down-third-straight-week-and-nasdaq-somehow" target="_blank">Motley Fool via Nasdaq</a>
+      <a href="https://www.infobae.com/estados-unidos/2026/09/18/wall-street-cerro-con-resultados-mixtos-tras-uma-semana-marcada-por-la-reserva-federal/" target="_blank">Infobae</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Bitcoin Breaks $80,000 — Coinbase +11.7%, Robinhood +9.1%</div>
+      <span class="card-date">Sep 18, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>Bitcoin jumped more than <mark class="key">5% past $80,000</mark> after the SEC opened a regulatory path for tokenized stocks. Coinbase Global rose <mark class="green">+11.7%</mark> and Robinhood Markets rose <mark class="green">+9.1%</mark>. However, the Senate failed to pass comprehensive crypto legislation, and the DOJ charged two former Robinhood engineers with insider trading.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.nasdaq.com/articles/dow-down-third-straight-week-and-nasdaq-somehow" target="_blank">Motley Fool via Nasdaq</a>
+      <a href="https://www.infobae.com/estados-unidos/2026/09/18/wall-street-cerro-con-resultados-mixtos-tras-uma-semana-marcada-por-la-reserva-federal/" target="_blank">Infobae</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Corporate Movers: Intel, Broadcom, Nucor, GM, Qualcomm</div>
+      <span class="card-date">Sep 16–21, 2026</span>
+    </div>
+    <div class="card-body">
+      <p><strong>Intel</strong> rose <mark class="green">+4.0%</mark> on reports SK Hynix was in talks with Intel about manufacturing memory chips in the US. <strong>Broadcom</strong> gained <mark class="green">+2.4%</mark> on Sep 18, the largest contributor to both S&amp;P 500 and Nasdaq gains that day.</p>
+      <p><strong>Nucor</strong> fell <mark class="red">-6.3%</mark> after its profit forecast missed expectations. <strong>General Motors</strong> declined <mark class="red">-5.1%</mark>, and <strong>Qualcomm</strong> fell <mark class="red">-5.8%</mark>.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.infomoney.com.br/mercados/wall-street-cai-apos-fed-elevar-juros-e-sinalizar-mais-aperto-monetario-pela-frente/" target="_blank">Reuters via Infomoney</a>
+      <a href="https://www.infobae.com/estados-unidos/2026/09/18/wall-street-cerro-con-resultados-mixtos-tras-uma-semana-marcada-por-la-reserva-federal/" target="_blank">Infobae</a>
+      <a href="https://www.nasdaq.com/articles/dow-down-third-straight-week-and-nasdaq-somehow" target="_blank">Motley Fool via Nasdaq</a>
+    </div>
+  </div>
+</div>
+
+<!-- JAPAN SECTION -->
+<div class="section" id="japan">
+  <div class="section-header">
+    <div class="icon" style="background:var(--jp)">JP</div>
+    <h2>Japan Markets</h2>
+    <span class="desc">BOJ hikes to 31-year high, yen near 157, record intervention</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">BOJ Raises Policy Rate to 1.25% — 31-Year High</div>
+      <span class="card-date">Sep 18, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>The BOJ raised its uncollateralized overnight call rate from ~1.0% to <mark class="key">1.25%</mark> on a <mark class="key">7–2 vote</mark>, effective September 24. Governor Ueda Kazuo and six members supported the increase; Asada Toichiro and Sato Ayano dissented. This marks the <mark class="red">highest policy rate in 31 years</mark>.</p>
+      <p>The BOJ also raised the complementary deposit facility rate to 1.25% and the basic loan rate to 1.5%. It unanimously rewrote climate-lending terms, switching to a floating rate and capping each counterparty's borrowing at ¥10 trillion. The BOJ signaled it would "continue to raise the policy interest rate and adjust the degree of monetary accommodation."</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://tokyobrief.com/articles/boj-raises-policy-rate-to-125-percent-reworks-climate-lending" target="_blank">Tokyo Brief</a>
+      <a href="https://www.infobae.com/estados-unidos/2026/09/18/wall-street-cerro-con-resultados-mixtos-tras-uma-semana-marcada-por-la-reserva-federal/" target="_blank">Infobae</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Nikkei 225 Closes at 65,018.95 Before Extended Holiday</div>
+      <span class="card-date">Sep 18, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>The Nikkei 225 closed at <mark class="key">65,018.95</mark>, up <mark class="green">+882.70 (+1.38%)</mark>, in the last trading day before Japan's three-day market closure. The index opened at 64,681.55, hit a high of 65,436.57, and a low of 64,403.85.</p>
+      <p>For September 2026, the Nikkei opened at 66,215.34, with a monthly range of <mark class="key">63,484.10–66,399.84</mark>.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://indexes.nikkei.co.jp/en/nkave/archives/data?list=daily" target="_blank">Nikkei Indexes</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">USD/JPY Stabilizes Near 157 After BOJ Decision</div>
+      <span class="card-date">Sep 18–21, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>After the BOJ's decision, USD/JPY moved to around <mark class="key">157</mark>, briefly rising to ~158 before retreating. Japan's 10-year JGB yield hovered around <mark class="key">2.98–2.99%</mark>, while the US 10-year yield was about 4.97%.</p>
+      <p>The 7-day range (as of Sep 21) was <mark class="key">154.4250–157.3850</mark>, averaging 156.15, with a change of +1.92%. Earlier on Sep 3, the yen surged nearly 2% in a single session, falling from 160.39 to ~155.30.</p>
+      <p>Japan's Ministry of Finance reported record forex intervention of <mark class="red">¥15.3993 trillion</mark> from July 30 to August 26, 2026. Cumulative 2026 intervention reached <mark class="red">¥27.1342 trillion</mark>, exceeding the ~¥15 trillion spent in all of 2024. This followed the first Japan-US joint intervention since 1998 on July 31.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://k.sina.com.cn/article_5953740931_162dee08306703zqoi.html" target="_blank">Sina Finance</a>
+      <a href="https://wise.com/zh-hk/currency-converter/usd-to-jpy-rate/history" target="_blank">Wise USD/JPY History</a>
+      <a href="https://news.cgtn.com/news/2026-08-13/US-Japan-joint-intervention-in-yen-exchange-rate-A-short-term-fix-1PzEbGH0K4w/p.html" target="_blank">CGTN</a>
+      <a href="http://www.chinanews.com.cn/gj/2026/08-29/10686540.shtml" target="_blank">China News</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">SoftBank Adds $21B in AI-Related Financing</div>
+      <span class="card-date">Sep 18, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>SoftBank added nearly <mark class="key">$21 billion</mark> in potential fresh borrowings for AI investment. It increased its Arm-backed margin loan by $5B to $25B, expanded an existing credit line by $450M to $6.5B, and was in talks to raise $10–20B in a separate bond deal. Total committed and potential new debt reached <mark class="red">$20.92 billion</mark>, supporting SoftBank's $65 billion commitment to OpenAI.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://m.economictimes.com/tech/artificial-intelligence/softbank-adds-21-billion-to-ai-firepower-in-new-debt-deals/articleshow/134334981.cms" target="_blank">Economic Times</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Toyota Q1 FY2027: Net Income Rises to ¥1.477 Trillion</div>
+      <span class="card-date">Apr–Jun 2026</span>
+    </div>
+    <div class="card-body">
+      <p>Toyota reported net income of <mark class="key">¥1.477 trillion ($9.2B)</mark> for April–June 2026, up from ¥0.841 trillion a year earlier. Consolidated net revenues were <mark class="key">¥13.525 trillion ($84.5B)</mark>, up 10.4%. Full-year FY2027 forecasts: net revenue of ¥54.0 trillion ($337.5B) and net income of ¥3.25 trillion ($20.3B).</p>
+      <p>However, FY2026 full-year results showed net income fell <mark class="red">-22.0%</mark> compared with FY2025, with operating income down 20.3%.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://pressroom.toyota.com/tmc-announces-april-through-june-2026-financial-results/" target="_blank">Toyota Pressroom</a>
+      <a href="https://global.toyota/pages/global_toyota/ir/financial-results/2026_4q_summary_en.pdf" target="_blank">Toyota FY2026 Results</a>
+    </div>
+  </div>
+</div>
+
+<!-- KOREA SECTION -->
+<div class="section" id="korea">
+  <div class="section-header">
+    <div class="icon" style="background:var(--kr)">KR</div>
+    <h2>South Korea Markets</h2>
+    <span class="desc">KOSPI surges 2.2%, Samsung &amp; SK Hynix lead, BOK at 3.00%</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">KOSPI Opens Above 7,160 — Samsung &amp; SK Hynix Both +3%</div>
+      <span class="card-date">Sep 22, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>South Korea's KOSPI opened at <mark class="key">7,161.61</mark>, rising <mark class="green">+2.20%</mark>, tracking a US market rally. Samsung Electronics and SK Hynix both rose about <mark class="green">+3%</mark> at the open. Other reports placed the KOSPI at 7,151.92, up 2.07%.</p>
+      <p>The KOSPI's 2026 YTD return stands at <mark class="key">+44%</mark>, with the past-12-month return at 130%. South Korea's total equity market cap reached <mark class="key">$4.59 trillion</mark>, surpassing Canada to become the world's seventh-largest equity market.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://m.toutiao.com/group/7688154164085490230/" target="_blank">Sina Finance/Shanghai Securities</a>
+      <a href="https://caifuhao.eastmoney.com/news/20260922081003473229960" target="_blank">East Money/Geelonghui</a>
+      <a href="https://www.nasdaq.com/articles/south-korea-etfs-under-spotlight-kospi-tops-7000-first-time" target="_blank">Nasdaq/Zacks</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">BOK Holds at 3.00% — Semiconductor Concentration Drives KOSPI Volatility</div>
+      <span class="card-date">Sep 2026</span>
+    </div>
+    <div class="card-body">
+      <p>The Bank of Korea raised the base rate by 25 bps to <mark class="key">3.00%</mark> on August 27, the second consecutive hike. The BOK's September 2026 Monetary Policy Report indicated inflation remains above the 2.0% target for an extended period.</p>
+      <p>The BOK reported that Samsung Electronics and SK Hynix contributed <mark class="red">99.0%</mark> of the KOSPI's rise from 8,000 to 9,000 points, and <mark class="red">69.3%</mark> of the subsequent decline from 9,100 to 5,500. The call rate stood at 3.033% on Sep 18.</p>
+      <div class="card-data">
+        <table>
+          <tr><th>KOSPI Range</th><th>Samsung + SK Hynix Contribution</th></tr>
+          <tr><td>5,000 → 6,000</td><td class="num">50.8%</td></tr>
+          <tr><td>6,000 → 7,000</td><td class="num">73.2%</td></tr>
+          <tr><td>7,000 → 8,000</td><td class="num">94.6%</td></tr>
+          <tr><td>8,000 → 9,000</td><td class="num up">99.0%</td></tr>
+          <tr><td>9,100 → 5,500 (decline)</td><td class="num down">69.3%</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.bok.or.kr/eng/main/main.do" target="_blank">Bank of Korea</a>
+      <a href="https://finance.eastmoney.com/a/202609143873407347.html" target="_blank">East Money/Jiemian</a>
+      <a href="https://english.mofe.go.kr/" target="_blank">Ministry of Finance Korea</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Korean Semiconductor Exports Surge +155% YoY</div>
+      <span class="card-date">Aug 2026</span>
+    </div>
+    <div class="card-body">
+      <p>Korean exports surged <mark class="green">+45% YoY</mark> in the first 10 days of August 2026, with semiconductor exports even stronger at <mark class="green">+155% YoY</mark>. The surge was driven by memory-chip demand and AI data-center capex commitments from global hyperscalers.</p>
+      <p>Goldman Sachs projected earnings growth of <mark class="key">320% in 2026</mark>, 35% in 2027, and 20% in 2028 for Korean semiconductor names, with a KOSPI target of 12,000. The Korean won appreciated <mark class="green">5%</mark> from its July record low.</p>
+      <p>South Korea's household debt-to-GDP ratio fell to ~<mark class="key">81.3%</mark> at end-Q2 2026, near a 10-year low, approaching the government's 80% by 2030 target.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.morningstar.com/news/marketwatch/2026081385/what-is-driving-the-rapid-shift-as-south-koreas-bear-market-turns-back-into-a-bull" target="_blank">MarketWatch via Morningstar</a>
+      <a href="https://finance.sina.com.cn/roll/2026-09-16/doc-inirzfsz4883046.shtml" target="_blank">Sina Finance</a>
+      <a href="https://www.stcn.com/article/detail/3653334.html" target="_blank">Securities Times</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Samsung Crosses $1 Trillion Valuation; SK Hynix US IPO</div>
+      <span class="card-date">May–Jul 2026</span>
+    </div>
+    <div class="card-body">
+      <p>Samsung Electronics crossed the <mark class="key">$1 trillion</mark> valuation mark, with shares rising 9.25% to 254,000 won on the KOSPI's first 7,000 breach on May 6. SK Hynix surged 10.23% to 1,595,000 won the same day.</p>
+      <p>SK Hynix completed its US equity offering on July 9, 2026. After the blackout period ended August 4, multiple analysts published buy recommendations with a mean target price of <mark class="key">$230</mark> vs a closing price of $154.41.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.nasdaq.com/articles/south-korea-etfs-under-spotlight-kospi-tops-7000-first-time" target="_blank">Nasdaq/Zacks</a>
+      <a href="https://www.morningstar.com/news/marketwatch/2026081385/what-is-driving-the-rapid-shift-as-south-koreas-bear-market-turns-back-into-a-bull" target="_blank">MarketWatch via Morningstar</a>
+    </div>
+  </div>
+</div>
+
+<!-- CHINA / A-SHARES SECTION -->
+<div class="section" id="china">
+  <div class="section-header">
+    <div class="icon" style="background:var(--cn)">CN</div>
+    <h2>A-Shares &amp; Hong Kong Stocks</h2>
+    <span class="desc">Shanghai above 3,950, Hang Seng above 25,000, LPR unchanged</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">A-Shares Rally — Shanghai Composite Closes at 3,949.91 (+0.97%)</div>
+      <span class="card-date">Sep 21, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>A-shares extended a recovery rally with broad gains. The Shanghai Composite closed at <mark class="key">3,949.91</mark>, up <mark class="green">+0.97%</mark>. The Shenzhen Component rose <mark class="green">+0.65%</mark> to 13,730.02, and ChiNext gained <mark class="green">+0.80%</mark> to 3,399.59. The STAR Market Composite rose +0.45% to 1,957.02.</p>
+      <p>Combined turnover was approximately <mark class="key">2.03 trillion yuan ($300.8B)</mark>. Over 4,500 stocks rose, with 105 hitting limit-up. The market was buoyed by AI-related demand and positive signals from US-China trade talks over the weekend.</p>
+      <div class="card-data">
+        <table>
+          <tr><th>Index</th><th>Close</th><th>Change</th></tr>
+          <tr><td>Shanghai Composite</td><td class="num">3,949.91</td><td class="up">+0.97%</td></tr>
+          <tr><td>Shenzhen Component</td><td class="num">13,730.02</td><td class="up">+0.65%</td></tr>
+          <tr><td>ChiNext</td><td class="num">3,399.59</td><td class="up">+0.80%</td></tr>
+          <tr><td>STAR Market</td><td class="num">1,957.02</td><td class="up">+0.45%</td></tr>
+          <tr><td>Combined Turnover</td><td class="num">¥2.03T</td><td class="down">-¥448B</td></tr>
+        </table>
+      </div>
+      <p><strong>Hot sectors:</strong> Pharmaceutical/biotech (multiple limit-ups including Nanhua Bio, Baihua Pharma, Xinhua Pharma), real estate (Greentown Holdings, I Love My Home, Financial Street hit limit-up), consumer/retail, and AI/technology.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://finance.sina.com.cn/jjxw/2026-09-21/doc-inisqriz7718963.shtml" target="_blank">Sina Finance</a>
+      <a href="https://global.chinadaily.com.cn/a/202609/21/WS6ab111e6e4b06d4aa055f51e.html" target="_blank">China Daily</a>
+      <a href="http://www.nbd.com.cn/articles/2026-09-21/4587315.html" target="_blank">NBD</a>
+      <a href="http://www.cnstock.com/commonDetail/793144" target="_blank">CNStock</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Hang Seng Index Closes at 25,042.71 (+1.18%)</div>
+      <span class="card-date">Sep 21, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>The Hang Seng Index closed at <mark class="key">25,042.71</mark>, up <mark class="green">+1.18%</mark>. The Hang Seng China Enterprises Index rose <mark class="green">+1.39%</mark> to 8,339.63, while the Hang Seng Tech Index gained <mark class="green">+0.40%</mark> to 4,423.29.</p>
+      <p>Medical/biotech and hardware/software sectors led gains, while retail, non-ferrous metals, and auto sectors were among the weaker groups. Market sentiment was supported by global AI demand and positive US-China trade-talk signals.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.chinadailyasia.com/hk/article/639878" target="_blank">China Daily Asia</a>
+      <a href="https://www.hsi.com.hk/eng/" target="_blank">Hang Seng Indexes</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">August CPI +0.8% YoY, PPI +3.8% YoY — Both Accelerate</div>
+      <span class="card-date">Sep 9, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>August CPI rose <mark class="key">+0.8% YoY</mark> (up from 0.5% in July) and <mark class="key">+0.4% MoM</mark> (reversing from -0.1%). Core CPI was <mark class="key">+1.0% YoY</mark>. PPI accelerated to <mark class="key">+3.8% YoY</mark> (up from 3.5%) and +0.4% MoM (reversing from -0.7%).</p>
+      <p>The NBS attributed the rebound to international commodity price movements and seasonal food price increases. First 8 months CPI averaged +0.9% YoY.</p>
+      <div class="card-data">
+        <table>
+          <tr><th>Indicator</th><th>August 2026</th><th>Previous (Jul)</th></tr>
+          <tr><td>CPI YoY</td><td class="num up">+0.8%</td><td class="num">+0.5%</td></tr>
+          <tr><td>CPI MoM</td><td class="num up">+0.4%</td><td class="num">-0.1%</td></tr>
+          <tr><td>Core CPI YoY</td><td class="num">+1.0%</td><td class="num">—</td></tr>
+          <tr><td>PPI YoY</td><td class="num up">+3.8%</td><td class="num">+3.5%</td></tr>
+          <tr><td>PPI MoM</td><td class="num up">+0.4%</td><td class="num">-0.7%</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.stats.gov.cn/sj/zxfbhjd/202609/t20260909_1965261.html" target="_blank">NBS</a>
+      <a href="https://www.chinadaily.com.cn/a/202609/09/WS6aa0ce3be4b06d4aa055d1c6.html" target="_blank">China Daily</a>
+      <a href="https://news.cgtn.com/news/2026-09-09/China-s-consumer-and-producer-prices-accelerate-in-August-1QiegEw9Ekg/p.html" target="_blank">CGTN</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">August Trade Data: Exports +25% YoY, Imports +28.2% YoY</div>
+      <span class="card-date">Sep 14, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>August exports reached <mark class="key">$401.44 billion</mark>, up <mark class="green">+25.0% YoY</mark>. Imports totaled <mark class="key">$282.36 billion</mark>, up <mark class="green">+28.2% YoY</mark>. The trade surplus was <mark class="key">$119.09 billion</mark>.</p>
+      <p>Jan-Aug exports rose +19.35% YoY and imports +26.94% YoY. Total trade value reached 34.78 trillion yuan, up 17.6% YoY.</p>
+      <p>Other macro data: Industrial production <mark class="green">+5.2% YoY</mark> (up from +4.5%), manufacturing PMI at <mark class="key">49.8%</mark> (up 0.6pp), retail sales <mark class="down">+0.4% YoY</mark> (down from +0.6%). Social financing stock reached <mark class="key">464.8 trillion yuan</mark>, +7.2% YoY.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://pdf.dfcfw.com/pdf/H3_AP202609141829361730_1.pdf" target="_blank">DFCF Trade Analysis</a>
+      <a href="https://www.gov.cn/zhengce/202609/content_7081277.htm" target="_blank">Gov.cn NBS Q&amp;A</a>
+      <a href="http://www.stats.gov.cn/english/PressRelease/202609/t20260901_1965170.html" target="_blank">NBS PMI</a>
+      <a href="http://www.xinhuanet.com/fortune/20260914/06447ad39fda407a8da93deb2a607b64/c.html" target="_blank">Xinhua</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">PBoC Holds LPR Unchanged for 16th Consecutive Month</div>
+      <span class="card-date">Sep 20, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>The 1-Year LPR remained at <mark class="key">3.00%</mark> and the 5-Year LPR at <mark class="key">3.50%</mark>, unchanged for the <mark class="key">16th consecutive month</mark>. The last cut was in May 2025, when both tenors were reduced by 10 basis points.</p>
+      <p>Credit costs are already low — enterprise loan rates were slightly below 3.0% and new housing loan rates around 3.1%. The PBoC's stance remains broadly accommodative despite the hold.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://jingji.cctv.com/2026/09/20/ARTIF8PP8kwZd58Rr2yCO0VT260920.shtml" target="_blank">CCTV</a>
+      <a href="http://www.xinhuanet.com/20260921/7745aa66d4864417be230868676479b2/c.html" target="_blank">Xinhua</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Northbound Capital ADT Hits ¥345.3B in H1 2026 — Double YoY</div>
+      <span class="card-date">Sep 7, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>H1 2026 Stock Connect data showed Northbound average daily turnover (ADT) of <mark class="key">¥345.3 billion</mark>, more than double H1 2025's ¥171.3 billion and +62.6% vs 2025 full-year. Southbound ADT reached <mark class="key">HK$123.1 billion</mark>, exceeding the full-year 2025 record.</p>
+      <p>Northbound eligible A-shares increased to <mark class="key">3,503</mark> at end-June 2026 from 3,258 at end-2025. Eligible Northbound ETFs rose to 365. Flows were driven by A-share growth and hard-tech supply chains, including semiconductors and advanced manufacturing.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-09-08/doc-inirayqw5981532.shtml" target="_blank">Sina Finance</a>
+      <a href="https://www.hkexgroup.com/media-centre/insight/insight/2026/hkex-insight/stock-connect-h1-2026-review?sc_lang=en" target="_blank">HKEX</a>
+    </div>
+  </div>
+</div>
+
+<!-- FUTURES SECTION -->
+<div class="section" id="futures">
+  <div class="section-header">
+    <div class="icon" style="background:var(--fu)">F</div>
+    <h2>Commodity Futures — Large Movers</h2>
+    <span class="desc">Crude oil plunges, lithium carbonate down 20%+, gold eases</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Crude Oil Plunges — WTI -4.51% to $95.78, Brent -3.40% to $100.34</div>
+      <span class="card-date">Sep 21, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>WTI crude (Oct delivery) settled at <mark class="key">$95.78/barrel</mark>, down <mark class="red">-4.51% (-$4.52)</mark>. Brent crude (Nov delivery) fell <mark class="red">-3.40% (-$3.53)</mark> to $100.34. DCE crude futures (2611) touched 700.9 yuan/barrel intraday, down over 4%.</p>
+      <p>Drivers: market expectation that Saudi Arabia's pipeline repair would be faster than expected, reducing supply disruption concerns. Additional factors include seasonal cooling in overseas refined product demand and a relatively strong dollar. This contrasts with the prior week's spike to $100+ on Middle East tensions.</p>
+      <div class="card-data">
+        <table>
+          <tr><th>Contract</th><th>Settle</th><th>Change</th></tr>
+          <tr><td>WTI (Oct)</td><td class="num">$95.78</td><td class="down">-4.51%</td></tr>
+          <tr><td>Brent (Nov)</td><td class="num">$100.34</td><td class="down">-3.40%</td></tr>
+          <tr><td>DCE Crude (2611)</td><td class="num">¥700.9</td><td class="down">-4%+</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card-sources">
+      <a href="http://m.toutiao.com/group/7688131284350108207/" target="_blank">Securities Times</a>
+      <a href="http://m.toutiao.com/group/7687966442377019951/" target="_blank">Securities Times</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Lithium Carbonate Futures Down 20%+ in September — Spot at ¥133,680/t</div>
+      <span class="card-date">Sep 16, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>Lithium carbonate futures fell sharply, with the September monthly decline exceeding <mark class="red">20%</mark>. On Sep 16, intraday fell over 4%, trading at <mark class="key">¥127,080/ton</mark> (-1.97%), with an intraday low of <mark class="red">¥124,020/ton</mark>. September 15 close was ¥129,120/ton (-3.32%).</p>
+      <p>The latest spot price rose to <mark class="key">¥133,680/ton</mark> (up ¥5,220). A five-month comparison showed the price falling from around <mark class="red">¥210,000/ton</mark> in May to about ¥133,680/ton in September — a decline of over <mark class="red">36%</mark>.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://finance.sina.com.cn/money/future/fmnews/2026-09-16/doc-inirzfsz4823544.shtml" target="_blank">Sina Finance</a>
+      <a href="http://m.toutiao.com/group/7686272862738498074/" target="_blank">Securities Times</a>
+      <a href="http://m.toutiao.com/group/7688151675500053020/" target="_blank">Sina Finance</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Gold Eases — COMEX -0.91% to $4,345.80/oz</div>
+      <span class="card-date">Sep 21, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>COMEX gold (Sept delivery) settled at <mark class="key">$4,345.80/oz</mark>, down <mark class="red">-0.91% (-$40.00)</mark>. New York gold futures (GC) traded at $4,395.71, +0.27% on Sep 22, with a high of $4,414.10.</p>
+      <p>Shanghai gold futures were at <mark class="key">942.02 yuan/g</mark>, down 0.39% (-3.68). The Shanghai gold (au2609) benchmark was 926.46 yuan/g.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.morningstar.com/news/dow-jones/202609215396/comex-gold-settles-091-lower-at-434580-data-talk" target="_blank">Morningstar/Dow Jones</a>
+      <a href="https://www.shfe.com.cn/reports/businessdata/prmsummary/?query_date=20260911&query_options=1&query_params=currinstrumentprop_f&query_product_code=au_f" target="_blank">SHFE</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Copper Gains +0.99% — Largest One-Day Dollar Gain Since Sep 9</div>
+      <span class="card-date">Sep 17, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>COMEX copper settled at <mark class="key">$6.4315/lb</mark>, up <mark class="green">+0.99% (+$0.063)</mark>, marking the largest one-day dollar gain since September 9.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.morningstar.com/news/dow-jones/202609165642/comex-copper-settles-099-higher-at-64315-data-talk" target="_blank">Morningstar/Dow Jones</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Rebar, Glass Rise in Night Session; Soda Ash Stable</div>
+      <span class="card-date">Sep 21, 2026</span>
+    </div>
+    <div class="card-body">
+      <p><strong>Rebar</strong>: Early September price at <mark class="key">¥3,182.7/ton</mark> (+1.7%), up from ¥3,130.3/ton in late August. Night session +0.64%.</p>
+      <p><strong>Glass</strong>: Night session <mark class="green">+0.87%</mark>.</p>
+      <p><strong>Soda ash</strong>: Sep 15 close at ¥1,011/ton (-0.69%); night session +0.1% on Sep 21 — relatively quiet.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://tjj.linzhi.gov.cn/tjj/c103536/202609/0b2510a4421a4c2a92961e6a66b1b35d.shtml" target="_blank">NBS/Linzhi Statistics</a>
+      <a href="https://news.stockstar.com/source_list/%E8%AF%81%E5%88%B8%E4%B9%8B%E6%98%9F%E6%9C%9F%E8%B4%A7_6.shtml" target="_blank">StockStar</a>
+    </div>
+  </div>
+</div>
+
+<!-- GEOPOLITICS SECTION -->
+<div class="section" id="geopolitics">
+  <div class="section-header">
+    <div class="icon" style="background:var(--accent2)">G</div>
+    <h2>Geopolitics &amp; Trade</h2>
+    <span class="desc">Xi-Trump summit, US-Iran tensions, trade talks, rare earths</span>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">President Xi Jinping to Visit US Sep 23–25 — First Visit in Three Years</div>
+      <span class="card-date">Sep 22, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>President Xi Jinping is scheduled to visit the United States from <mark class="key">September 23 to 25, 2026</mark> at the invitation of President Trump. This marks Xi's first visit to the US in <mark class="key">three years</mark> and part of a second mutual visit within six months. The visit is described as having historic and milestone significance for US-China relations.</p>
+      <p>Vice Premier He Lifeng led a delegation to the US on <mark class="key">September 19–23</mark> for trade talks. US Treasury Secretary and USTR Ambassador will meet He Lifeng in New York before the Washington summit.</p>
+    </div>
+    <div class="card-sources">
+      <a href="http://news.cnr.cn/native/gd/sz/20260922/t20260922_527821031.shtml" target="_blank">CNR</a>
+      <a href="https://3w.huanqiu.com/a/de583b/4THLWUFaiEl" target="_blank">Global Times</a>
+      <a href="https://ustr.gov/category/document-type/press-release?page=34" target="_blank">USTR</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">US-Iran Escalation: Strait of Hormuz Tanker Attacks Continue</div>
+      <span class="card-date">Aug 30 – Sep 18, 2026</span>
+    </div>
+    <div class="card-body">
+      <p>On August 30, the US military struck two rocket launchers on Iran's Larak Island, the first escalation since late July. Iran retaliated by attacking US bases in Jordan. On August 31, a tanker transiting the Strait of Hormuz was hit by three unknown projectiles.</p>
+      <p>On September 18, <mark class="red">Iran struck another oil tanker</mark> in the Strait of Hormuz. President Trump said the conflict was "anything can happen." Reports said Saudi Arabia was offering additional crude cargoes through Oman to ease supply concerns.</p>
+      <p>Oil prices spiked from ~$70/barrel in July to near <mark class="red">$110/bbl</mark> early in the week of Sep 18. Diesel reached a record <mark class="red">$6.44/gallon</mark> (~70% higher YoY), and gasoline was $4.47/gallon vs $3.20 a year earlier.</p>
+      <p>China asked Iran, at Saudi Arabia's request, to limit Houthi attacks on Saudi oil infrastructure.</p>
+    </div>
+    <div class="card-sources">
+      <a href="https://www.nasdaq.com/articles/stock-market-news-sep-2-2026" target="_blank">Nasdaq/Zacks</a>
+      <a href="https://www.nasdaq.com/articles/dow-down-third-straight-week-and-nasdaq-somehow" target="_blank">Motley Fool via Nasdaq</a>
+      <a href="https://www.infobae.com/estados-unidos/2026/09/18/wall-street-cerro-con-resultados-mixtos-tras-uma-semana-marcada-por-la-reserva-federal/" target="_blank">Infobae</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Rare Earth Export Restrictions &amp; China Anti-Dumping on Korean Steel</div>
+      <span class="card-date">Sep 2026</span>
+    </div>
+    <div class="card-body">
+      <p>Reports indicated that China's rare-earth export restrictions to Japan had begun to affect US supply chains. China stated it is acting in accordance with regulations on dual-use items while supporting global supply chain stability.</p>
+      <p>Separately, China imposed provisional anti-dumping duties of up to <mark class="red">38%</mark> on Korean galvanized steel and expanded investigations to include hot-rolled and cold-rolled steel products.</p>
+      <p>The US passed legislation expanding sanctions related to Russia and Iran, with provisions that could subject Chinese goods to <mark class="red">100% tariffs</mark> under certain circumstances.</p>
+    </div>
+    <div class="card-sources">
+      <a href="http://m.toutiao.com/group/7687894583337878016/" target="_blank">Red Star News</a>
+      <a href="https://www.keidanren.or.jp/pri/theme/data/20260826_report_Korea.pdf" target="_blank">KCCI Report</a>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY TABLE -->
+<div class="section" id="summary">
+  <h2 class="section-title">Summary Table — All Key Indicators</h2>
+  <p class="section-sub">Comprehensive reference of all tracked metrics</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Region</th><th>Indicator</th><th>Value</th><th>Change</th><th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="region-tag us">US</span></td><td>S&amp;P 500</td><td>7,764.70</td><td class="up">+1.49%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>Nasdaq</td><td>27,122.09</td><td class="up">+2.26%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>Dow Jones</td><td>52,048.82</td><td class="up">+0.71%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>Fed Funds Rate</td><td>3.75–4.00%</td><td class="up">+25 bps</td><td>Sep 16</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>10Y Treasury Yield</td><td>5.00%</td><td class="up">Crossed 5%</td><td>Sep 18</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>CPI (Aug)</td><td>3.4% YoY</td><td class="up">+0.4% MoM</td><td>Sep 11</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>Core CPI (Aug)</td><td>2.4% YoY</td><td class="up">+0.3% MoM</td><td>Sep 11</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>Nonfarm Payrolls (Aug)</td><td>+162K</td><td class="up">vs +55K exp</td><td>Sep 7</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>Unemployment Rate</td><td>4.1%</td><td>—</td><td>Sep 7</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>PPI (Aug)</td><td>+5.4% YoY</td><td class="up">+0.4% MoM</td><td>Sep 11</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>Manufacturing PMI (Aug)</td><td>54.6</td><td class="down">vs 55.2 exp</td><td>Sep 18</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>DXY</td><td>100.31</td><td class="up">+0.63%</td><td>Sep 16</td></tr>
+        <tr><td><span class="region-tag us">US</span></td><td>Bitcoin</td><td>$80,000+</td><td class="up">+5%</td><td>Sep 18</td></tr>
+        <tr><td><span class="region-tag jp">JP</span></td><td>Nikkei 225</td><td>65,018.95</td><td class="up">+1.38%</td><td>Sep 18</td></tr>
+        <tr><td><span class="region-tag jp">JP</span></td><td>BOJ Policy Rate</td><td>1.25%</td><td class="up">+25 bps</td><td>Sep 18</td></tr>
+        <tr><td><span class="region-tag jp">JP</span></td><td>USD/JPY</td><td>~157</td><td>+1.92% (7d)</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag jp">JP</span></td><td>FX Intervention (Jul–Aug)</td><td>¥15.4T</td><td class="up">Record</td><td>Aug 29</td></tr>
+        <tr><td><span class="region-tag jp">JP</span></td><td>10Y JGB Yield</td><td>~2.99%</td><td>—</td><td>Sep 18</td></tr>
+        <tr><td><span class="region-tag kr">KR</span></td><td>KOSPI</td><td>7,161.61</td><td class="up">+2.20%</td><td>Sep 22</td></tr>
+        <tr><td><span class="region-tag kr">KR</span></td><td>BOK Base Rate</td><td>3.00%</td><td class="up">+25 bps</td><td>Aug 27</td></tr>
+        <tr><td><span class="region-tag kr">KR</span></td><td>Semiconductor Exports</td><td>+155% YoY</td><td class="up">10-day Aug</td><td>Aug 2026</td></tr>
+        <tr><td><span class="region-tag kr">KR</span></td><td>Household Debt/GDP</td><td>~81.3%</td><td class="down">10-yr low</td><td>Q2 2026</td></tr>
+        <tr><td><span class="region-tag kr">KR</span></td><td>KOSPI 2026 YTD</td><td>+44%</td><td class="up">—</td><td>Feb 2026</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Shanghai Composite</td><td>3,949.91</td><td class="up">+0.97%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Shenzhen Component</td><td>13,730.02</td><td class="up">+0.65%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>ChiNext</td><td>3,399.59</td><td class="up">+0.80%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>1Y LPR</td><td>3.00%</td><td>Unchanged</td><td>Sep 20</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>5Y LPR</td><td>3.50%</td><td>Unchanged</td><td>Sep 20</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>CPI (Aug)</td><td>+0.8% YoY</td><td class="up">+0.4% MoM</td><td>Sep 9</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>PPI (Aug)</td><td>+3.8% YoY</td><td class="up">+0.4% MoM</td><td>Sep 9</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Industrial Production (Aug)</td><td>+5.2% YoY</td><td class="up">—</td><td>Sep 16</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Manufacturing PMI (Aug)</td><td>49.8%</td><td class="up">+0.6pp</td><td>Sep 1</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Retail Sales (Aug)</td><td>+0.4% YoY</td><td class="down">-0.2pp</td><td>Sep 16</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Exports (Aug)</td><td>$401.4B</td><td class="up">+25.0% YoY</td><td>Sep 14</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Imports (Aug)</td><td>$282.4B</td><td class="up">+28.2% YoY</td><td>Sep 14</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Trade Surplus (Aug)</td><td>$119.1B</td><td>—</td><td>Sep 14</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Social Financing Stock</td><td>¥464.8T</td><td class="up">+7.2% YoY</td><td>Sep 14</td></tr>
+        <tr><td><span class="region-tag cn">CN</span></td><td>Northbound ADT (H1)</td><td>¥345.3B</td><td class="up">+101% YoY</td><td>Sep 7</td></tr>
+        <tr><td><span class="region-tag hk">HK</span></td><td>Hang Seng Index</td><td>25,042.71</td><td class="up">+1.18%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag hk">HK</span></td><td>HS China Enterprises</td><td>8,339.63</td><td class="up">+1.39%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag hk">HK</span></td><td>HS Tech Index</td><td>4,423.29</td><td class="up">+0.40%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag futures">FUT</span></td><td>WTI Crude</td><td>$95.78/bbl</td><td class="down">-4.51%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag futures">FUT</span></td><td>Brent Crude</td><td>$100.34/bbl</td><td class="down">-3.40%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag futures">FUT</span></td><td>Gold (COMEX)</td><td>$4,345.80/oz</td><td class="down">-0.91%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag futures">FUT</span></td><td>Copper (COMEX)</td><td>$6.4315/lb</td><td class="up">+0.99%</td><td>Sep 17</td></tr>
+        <tr><td><span class="region-tag futures">FUT</span></td><td>Rebar</td><td>¥3,182.7/t</td><td class="up">+1.7%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag futures">FUT</span></td><td>Glass</td><td>—</td><td class="up">+0.87%</td><td>Sep 21</td></tr>
+        <tr><td><span class="region-tag futures">FUT</span></td><td>Soda Ash</td><td>¥1,011/t</td><td class="down">-0.69%</td><td>Sep 15</td></tr>
+        <tr><td><span class="region-tag futures">FUT</span></td><td>Lithium Carbonate</td><td>¥127,080/t</td><td class="down">-20%+ Sep</td><td>Sep 16</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <p class="disclaimer">
+    This report is AI-generated for research reference purposes only and does not constitute investment advice.
+    All data is sourced from publicly available financial news outlets and official releases.
+    Market data may be subject to revision. Please verify with original sources before making investment decisions.
+  </p>
+  <div class="ref-list">
+    <h2>Sources</h2>
+    <ol>
+      <li><a href="https://www.newyorkfed.org/medialibrary/media/markets/fomc-statement-20260916.pdf" target="_blank">NY Fed — FOMC Statement, Sep 16, 2026</a></li>
+      <li><a href="https://live.euronext.com/en/financial-news/stocks-fall-fed-delivers-hawkish-rate-hike" target="_blank">Reuters via Euronext — Stocks Fall as Fed Delivers Hawkish Rate Hike</a></li>
+      <li><a href="https://www.infomoney.com.br/mercados/wall-street-cai-apos-fed-elevar-juros-e-sinalizar-mais-aperto-monetario-pela-frente/" target="_blank">Reuters via Infomoney — Wall Street Falls After Fed Rate Hike</a></li>
+      <li><a href="https://www.nasdaq.com/articles/dow-down-third-straight-week-and-nasdaq-somehow" target="_blank">Motley Fool via Nasdaq — Dow Down Third Straight Week</a></li>
+      <li><a href="https://www.nasdaq.com/articles/us-stocks-close-mixed-following-choppy-trading-day" target="_blank">RTTNews via Nasdaq — US Stocks Close Mixed</a></li>
+      <li><a href="https://www.infobae.com/estados-unidos/2026/09/18/wall-street-cerro-con-resultados-mixtos-tras-uma-semana-marcada-por-la-reserva-federal/" target="_blank">Infobae — Wall Street Closes Mixed After Fed Week</a></li>
+      <li><a href="https://www.nasdaq.com/articles/stocks-finish-mostly-higher-crude-prices-fall" target="_blank">Nasdaq/Barchart — Stocks Finish Higher as Crude Falls</a></li>
+      <li><a href="https://finance.sina.com.cn/wm/2026-09-07/doc-iniqyeuh5729138.shtml" target="_blank">Sina Finance — US Nonfarm Payrolls Aug 2026</a></li>
+      <li><a href="https://data.eastmoney.com/report/zw_macresearch.jshtml?encodeUrl=MDtmnUO9AKEHF3M2lyUPXps69fzIu043Zz%2FFZmcRIds=" target="_blank">Eastmoney/DFCF — US August CPI Analysis</a></li>
+      <li><a href="https://www.nasdaq.com/articles/stock-market-news-sep-2-2026" target="_blank">Nasdaq/Zacks — Stock Market News Sep 2, 2026</a></li>
+      <li><a href="http://m.toutiao.com/group/7688146072695079467/" target="_blank">Beijing Daily — Fed Restarts Rate Hikes</a></li>
+      <li><a href="http://m.toutiao.com/group/7688151806030938674/" target="_blank">Sina Finance — US Stocks Close Higher Sep 21</a></li>
+      <li><a href="https://am.jpmorgan.com/us/en/asset-management/adv/insights/market-insights/market-updates/weekly-market-recap/" target="_blank">JPMorgan — Weekly Market Recap</a></li>
+      <li><a href="https://indexes.nikkei.co.jp/en/nkave/archives/data?list=daily" target="_blank">Nikkei Indexes — Historical Data</a></li>
+      <li><a href="https://tokyobrief.com/articles/boj-raises-policy-rate-to-125-percent-reworks-climate-lending" target="_blank">Tokyo Brief — BOJ Raises Policy Rate to 1.25%</a></li>
+      <li><a href="https://k.sina.com.cn/article_5953740931_162dee08306703zqoi.html" target="_blank">Sina Finance — Yen After BOJ Hike</a></li>
+      <li><a href="https://wise.com/zh-hk/currency-converter/usd-to-jpy-rate/history" target="_blank">Wise — USD/JPY History</a></li>
+      <li><a href="https://finance.sina.com.cn/wm/2026-09-05/doc-iniqtwvy0526113.shtml.md" target="_blank">Sina Finance — Yen Rollercoaster Week</a></li>
+      <li><a href="https://news.cgtn.com/news/2026-08-13/US-Japan-joint-intervention-in-yen-exchange-rate-A-short-term-fix-1PzEbGH0K4w/p.html" target="_blank">CGTN — US-Japan Joint Intervention</a></li>
+      <li><a href="http://www.chinanews.com.cn/gj/2026/08-29/10686540.shtml" target="_blank">China News — Japan FX Intervention Record High</a></li>
+      <li><a href="https://m.economictimes.com/tech/artificial-intelligence/softbank-adds-21-billion-to-ai-firepower-in-new-debt-deals/articleshow/134334981.cms" target="_blank">Economic Times — SoftBank Adds $21B AI Financing</a></li>
+      <li><a href="https://pressroom.toyota.com/tmc-announces-april-through-june-2026-financial-results/" target="_blank">Toyota Pressroom — Q1 FY2027 Results</a></li>
+      <li><a href="https://www.bok.or.kr/eng/main/main.do" target="_blank">Bank of Korea — Monetary Policy</a></li>
+      <li><a href="https://finance.eastmoney.com/a/202609143873407347.html" target="_blank">East Money — Samsung &amp; SK Hynix Drive KOSPI</a></li>
+      <li><a href="https://www.morningstar.com/news/marketwatch/2026081385/what-is-driving-the-rapid-shift-as-south-koreas-bear-market-turns-back-into-a-bull" target="_blank">MarketWatch — Korea Bear-to-Bull Shift</a></li>
+      <li><a href="https://www.nasdaq.com/articles/south-korea-etfs-under-spotlight-kospi-tops-7000-first-time" target="_blank">Nasdaq/Zacks — KOSPI Tops 7,000</a></li>
+      <li><a href="https://finance.sina.com.cn/roll/2026-09-16/doc-inirzfsz4883046.shtml" target="_blank">Sina Finance — Korea Household Debt</a></li>
+      <li><a href="https://www.stcn.com/article/detail/3653334.html" target="_blank">Securities Times — KOSPI +44% YTD</a></li>
+      <li><a href="https://finance.sina.com.cn/jjxw/2026-09-21/doc-inisqriz7718963.shtml" target="_blank">Sina Finance — A-Share Close Sep 21</a></li>
+      <li><a href="https://global.chinadaily.com.cn/a/202609/21/WS6ab111e6e4b06d4aa055f51e.html" target="_blank">China Daily — A-Shares Close Higher</a></li>
+      <li><a href="http://www.nbd.com.cn/articles/2026-09-21/4587315.html" target="_blank">NBD — Shanghai Composite +0.97%</a></li>
+      <li><a href="https://www.chinadailyasia.com/hk/article/639878" target="_blank">China Daily Asia — Hang Seng +1.18%</a></li>
+      <li><a href="https://www.hsi.com.hk/eng/" target="_blank">Hang Seng Indexes</a></li>
+      <li><a href="https://www.stats.gov.cn/sj/zxfbhjd/202609/t20260909_1965261.html" target="_blank">NBS — August CPI &amp; PPI</a></li>
+      <li><a href="https://www.stats.gov.cn/english/PressRelease/202609/t20260901_1965170.html" target="_blank">NBS — PMI August 2026</a></li>
+      <li><a href="https://www.gov.cn/zhengce/202609/content_7081277.htm" target="_blank">Gov.cn — NBS Q&amp;A August 2026</a></li>
+      <li><a href="https://pdf.dfcfw.com/pdf/H3_AP202609141829361730_1.pdf" target="_blank">DFCF — August Trade Data</a></li>
+      <li><a href="http://www.xinhuanet.com/fortune/20260914/06447ad39fda407a8da93deb2a607b64/c.html" target="_blank">Xinhua — August Financial Statistics</a></li>
+      <li><a href="https://jingji.cctv.com/2026/09/20/ARTIF8PP8kwZd58Rr2yCO0VT260920.shtml" target="_blank">CCTV — September LPR</a></li>
+      <li><a href="http://www.xinhuanet.com/20260921/7745aa66d4864417be230868676479b2/c.html" target="_blank">Xinhua — LPR Unchanged 16 Months</a></li>
+      <li><a href="https://finance.sina.com.cn/stock/hkstock/ggscyd/2026-09-08/doc-inirayqw5981532.shtml" target="_blank">Sina Finance — Stock Connect H1 2026</a></li>
+      <li><a href="https://www.hkexgroup.com/media-centre/insight/insight/2026/hkex-insight/stock-connect-h1-2026-review?sc_lang=en" target="_blank">HKEX — Stock Connect H1 2026 Review</a></li>
+      <li><a href="http://m.toutiao.com/group/7688131284350108207/" target="_blank">Securities Times — Oil Prices Fall Sep 21</a></li>
+      <li><a href="https://www.morningstar.com/news/dow-jones/202609215396/comex-gold-settles-091-lower-at-434580-data-talk" target="_blank">Morningstar — COMEX Gold Settles</a></li>
+      <li><a href="https://www.morningstar.com/news/dow-jones/202609165642/comex-copper-settles-099-higher-at-64315-data-talk" target="_blank">Morningstar — COMEX Copper Settles</a></li>
+      <li><a href="https://finance.sina.com.cn/money/future/fmnews/2026-09-16/doc-inirzfsz4823544.shtml" target="_blank">Sina Finance — Lithium Carbonate Falls 4%+</a></li>
+      <li><a href="http://m.toutiao.com/group/7686272862738498074/" target="_blank">Securities Times — Lithium Carbonate 4-Month Decline</a></li>
+      <li><a href="http://news.cnr.cn/native/gd/sz/20260922/t20260922_527821031.shtml" target="_blank">CNR — Xi Jinping US Visit</a></li>
+      <li><a href="https://3w.huanqiu.com/a/de583b/4THLWUFaiEl" target="_blank">Global Times — US-China Trade Talks</a></li>
+      <li><a href="http://m.toutiao.com/group/7687894583337878016/" target="_blank">Red Star News — Rare Earth Export Restrictions</a></li>
+    </ol>
+  </div>
+  <p class="copyright">Generated on September 22, 2026 | Language: English (EN) | AI-generated for research reference only</p>
+</div>
+
+<script>
+// Chart 1: Global Index Weekly Returns
+var chart1 = echarts.init(document.getElementById('chart-global'), null, { renderer: 'svg' });
+chart1.setOption({
+  animation: false,
+  tooltip: { trigger: 'axis', appendToBody: true, axisPointer: { type: 'shadow' } },
+  legend: { data: ['Weekly Return %'], top: 10, textStyle: { color: '#1a202c' } },
+  grid: { left: '3%', right: '4%', bottom: '10%', containLabel: true },
+  xAxis: {
+    type: 'category',
+    data: ['S&P 500', 'Nasdaq', 'Dow Jones', 'Nikkei 225', 'KOSPI', 'Shanghai Comp.', 'Hang Seng', 'HS Tech'],
+    axisLabel: { color: '#1a202c', fontSize: 11, rotate: 25 },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  yAxis: {
+    type: 'value',
+    name: '%',
+    axisLabel: { color: '#64748b', formatter: '{value}%' },
+    splitLine: { lineStyle: { color: '#f1f5f9' } },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  series: [{
+    name: 'Weekly Return %',
+    type: 'bar',
+    data: [
+      { value: -0.06, itemStyle: { color: '#059669' } },
+      { value: 0.70, itemStyle: { color: '#dc2626' } },
+      { value: -1.65, itemStyle: { color: '#059669' } },
+      { value: 1.38, itemStyle: { color: '#dc2626' } },
+      { value: 2.20, itemStyle: { color: '#dc2626' } },
+      { value: 0.97, itemStyle: { color: '#dc2626' } },
+      { value: 1.18, itemStyle: { color: '#dc2626' } },
+      { value: 0.40, itemStyle: { color: '#dc2626' } }
+    ],
+    label: { show: true, position: 'top', formatter: '{c}%', fontSize: 11, color: '#1a202c' }
+  }]
+});
+
+// Chart 2: Futures Price Changes
+var chart2 = echarts.init(document.getElementById('chart-futures'), null, { renderer: 'svg' });
+chart2.setOption({
+  animation: false,
+  tooltip: { trigger: 'axis', appendToBody: true, axisPointer: { type: 'shadow' } },
+  legend: { data: ['Price Change %'], top: 10, textStyle: { color: '#1a202c' } },
+  grid: { left: '3%', right: '4%', bottom: '10%', containLabel: true },
+  xAxis: {
+    type: 'category',
+    data: ['WTI Crude', 'Brent Crude', 'Gold (COMEX)', 'Copper', 'Rebar', 'Glass', 'Soda Ash', 'Li Carbonate'],
+    axisLabel: { color: '#1a202c', fontSize: 11, rotate: 25 },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  yAxis: {
+    type: 'value',
+    name: '%',
+    axisLabel: { color: '#64748b', formatter: '{value}%' },
+    splitLine: { lineStyle: { color: '#f1f5f9' } },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  series: [{
+    name: 'Price Change %',
+    type: 'bar',
+    data: [
+      { value: -4.51, itemStyle: { color: '#dc2626' } },
+      { value: -3.40, itemStyle: { color: '#dc2626' } },
+      { value: -0.91, itemStyle: { color: '#dc2626' } },
+      { value: 0.99, itemStyle: { color: '#059669' } },
+      { value: 1.70, itemStyle: { color: '#059669' } },
+      { value: 0.87, itemStyle: { color: '#059669' } },
+      { value: -0.69, itemStyle: { color: '#dc2626' } },
+      { value: -20.0, itemStyle: { color: '#dc2626' } }
+    ],
+    label: { show: true, position: 'top', formatter: '{c}%', fontSize: 11, color: '#1a202c' }
+  }]
+});
+
+// Chart 3: A-Share Multi-Day Trend
+var chart3 = echarts.init(document.getElementById('chart-ashare'), null, { renderer: 'svg' });
+chart3.setOption({
+  animation: false,
+  tooltip: { trigger: 'axis', appendToBody: true },
+  legend: { data: ['Shanghai Composite', 'Shenzhen Component', 'ChiNext'], top: 10, textStyle: { color: '#1a202c' } },
+  grid: { left: '3%', right: '4%', bottom: '10%', containLabel: true },
+  xAxis: {
+    type: 'category',
+    data: ['Sep 16', 'Sep 18', 'Sep 21'],
+    axisLabel: { color: '#1a202c' },
+    axisLine: { lineStyle: { color: '#e2e8f0' } }
+  },
+  yAxis: [
+    { type: 'value', name: 'Shanghai', position: 'left', axisLabel: { color: '#64748b' }, splitLine: { lineStyle: { color: '#f1f5f9' } }, axisLine: { lineStyle: { color: '#e2e8f0' } } },
+    { type: 'value', name: 'Shenzhen/ChiNext', position: 'right', axisLabel: { color: '#64748b' }, splitLine: { show: false }, axisLine: { lineStyle: { color: '#e2e8f0' } } }
+  ],
+  series: [
+    { name: 'Shanghai Composite', type: 'line', yAxisIndex: 0, data: [3900.87, 3911.87, 3949.91], smooth: true, lineStyle: { width: 2, color: '#059669' }, itemStyle: { color: '#059669' }, symbol: 'circle', symbolSize: 7 },
+    { name: 'Shenzhen Component', type: 'line', yAxisIndex: 1, data: [null, null, 13730.02], smooth: true, lineStyle: { width: 2, color: '#2563eb' }, itemStyle: { color: '#2563eb' }, symbol: 'circle', symbolSize: 7 },
+    { name: 'ChiNext', type: 'line', yAxisIndex: 1, data: [null, null, 3399.59], smooth: true, lineStyle: { width: 2, color: '#7c3aed' }, itemStyle: { color: '#7c3aed' }, symbol: 'circle', symbolSize: 7 }
+  ]
+});
+
+// Resize
+window.addEventListener('resize', function() {
+  chart1.resize();
+  chart2.resize();
+  chart3.resize();
+});
+</script>
+
+</body>
+</html>
